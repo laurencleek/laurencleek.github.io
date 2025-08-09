@@ -1,0 +1,252 @@
+/* eslint-disable */
+var StravaCookieBanner = {
+  /**
+   *   _savedAnswer tells us if athlete has allowed or denied nonessential cookies, or if they have not yet answered.
+   *
+   *   true means we can load nonessential cookies
+   *   false means they answered to deny nonessential cookies
+   *   undefined means the athlete has not yet answered and we should show the banner.
+   *
+   *   @returns {(boolean|undefined)}
+   */
+  _savedAnswer: function() {
+    var answer;
+    var loggedIn = "false" === "true";
+
+    if (loggedIn) {
+      answer = "";
+    } else {
+      var name = '_strava_cbv3=';
+      var ca = document.cookie.split(';').filter(function(c) { return c.indexOf(name) !== -1; })[0]
+      answer = ca && ca.split('=')[1]
+    }
+
+    switch (answer) {
+      case "true":
+      case true:
+        return true;
+      case "false":
+      case false:
+        return false;
+      case "":
+      default:
+        return undefined;
+    }
+  },
+  canLoadNonessentialCookies: function() {
+    return this._savedAnswer() &&
+      typeof window !== 'undefined' &&
+      typeof window.loadNonessentialCookies === 'function';
+  },
+  shouldShowBanner: function(){
+    // The cookie policy page shows the 'accept' and 'deny' buttons, so showing the cookie banner would be redundant.
+    if (window.location.pathname.indexOf('/legal/cookie_policy') > -1) {
+      return false;
+    }
+
+    // Show the banner if the athlete has not yet answered to allow or deny cookies.
+    return typeof this._savedAnswer() === 'undefined'
+  },
+  dismiss: function(){
+    document.body.removeChild(document.getElementById('stravaCookieBanner'));
+  },
+  acceptCookies: function(){ this._updateCookiePreference(true); },
+  denyCookies: function(){ this._updateCookiePreference(false); },
+  _updateCookiePreference: function(preference) {
+    var loggedIn = "false" === "true";
+
+    if (loggedIn) {
+      var csrf = "QlrKxPq3nBtlcEwUMiM6xZnV0SxcXeb5JW7s6VUnOx114E7m83Ec0Mf4YNLvxVhWXD00IuCYrasQeAVhrlmusA";
+      var pattern = new RegExp(/^(www|dev|loc)/);
+      var urlPrefix = window.location.host.match(pattern) ? '' : 'https://www.strava.com';
+      var url = urlPrefix + '/frontend/athlete/preferences';
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', url);
+      xhr.setRequestHeader('x-csrf-token', csrf);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.withCredentials = true;
+      xhr.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+          // Request finished. Do processing here.
+        }
+      };
+      xhr.send(JSON.stringify({ allow_nonessential_cookies_v3: preference }));
+    } else {
+      var domain;
+      if (/localhost/.test(window.location.hostname)) {
+        domain = 'localhost';
+      } else if (/staging\./.test(window.location.hostname)) {
+        domain = '.staging.strava.com';
+      } else {
+        domain = '.strava.com';
+      }
+
+      var cookieExpiration = new Date();
+      cookieExpiration.setFullYear(cookieExpiration.getFullYear() + 1);
+
+      document.cookie =
+        `_strava_cbv3=${preference};` +
+        'expires=' + cookieExpiration.toGMTString() + ';' +
+        'domain=' + domain + ';' +
+        'path=/;';
+    }
+
+    document.body.removeChild(document.getElementById('stravaCookieBanner'));
+
+    // After saving the preference, trigger the loadNonessentialCookies event handler
+    typeof window !== 'undefined' &&
+      typeof window.loadNonessentialCookies === 'function' &&
+      window.loadNonessentialCookies();
+
+    if (preference) {
+      this.ensureNonEssentialCookieLoadingCallbacks();
+
+      // This event is listened to by components in the `web` repo
+      // TODO - Use callback (or equivalent) when moderninizing the cookie-banner
+      // see - https://strava.atlassian.net/browse/ACQN-233
+      const cookiesAcceptedEvent = new CustomEvent('AcceptCookies');
+      window.dispatchEvent(cookiesAcceptedEvent);
+    }
+
+    if(typeof Strava !== 'undefined' && typeof Strava.ExternalAnalytics !== 'undefined' && typeof Strava.ExternalAnalytics.trackV2 === 'function'){
+      var loggedIn = "false" === "true";
+      Strava.ExternalAnalytics.trackV2({
+        action: 'click',
+        page: 'cookie_banner',
+        category: 'cookie_banner',
+        element: preference ? 'cookie_banner_accept' : 'cookie_banner_reject',
+        properties: {
+          logged_in: loggedIn,
+          source: 'legacy'
+      }});
+    }
+  },
+  render: function(){
+    if (this._savedAnswer()) {
+      this.ensureNonEssentialCookieLoadingCallbacks();
+    }
+
+    if (this.canLoadNonessentialCookies()) {
+      window.loadNonessentialCookies();
+      return;
+    }
+
+    if (this.shouldShowBanner()) {
+      var message = "We use essential cookies to make our website work. We also set additional cookies that help us improve your experience, help keep you safe, perform analytics, and serve relevant ads. These additional cookies will be set only if you click ‘Accept’ below. For more information about the cookies we use, or to change your preferences, please visit our \u003ca href='https://www.strava.com/legal/cookie_policy'\u003eCookies Policy.\u003c/a\u003e";
+      var accept = "I accept";
+      var deny = "Reject";
+      var html =
+        '<div class="cookie-banner-content">' +
+          '<span>' + message + '</span>' +
+          '<div class="cookie-banner-actions">' +
+          '<button class="btn-accept-cookie-banner">' + accept + '</button>' +
+          '<button class="btn-deny-cookie-banner">' + deny + '</button>' +
+          '</div>' +
+        '</div>';
+
+      var bannerCss =
+        'background-color: rgba(18,18,20,0.95);' +
+        'border-radius: 8px;' +
+        'bottom: 20px;' +
+        'font-family: "Boathouse", Helvetica, Arial, sans-serif;' +
+        'left: 20px;' +
+        'right: 20px;' +
+        'padding: 20px 40px 20px 20px;' +
+        'position: fixed;' +
+        'z-index: 11000;' +
+        'box-shadow: 0 12px 24px -12px rgba(18,18,20,0.12);' +
+        'max-width: 385px;' +
+        '-webkit-font-smoothing: antialiased;';
+      var contentCss =
+        'color: #cbcbd6;' +
+        'font-size: 14px;' +
+        'font-weight: 500;' +
+        'line-height: 1.5em;' +
+        'margin-left: auto;' +
+        'margin-right: auto;' +
+        'max-width: 1216px;' +
+        'justify-content: center;';
+      var linkCss =
+        'color: #fff;' +
+        'font-weight: 600;' +
+        'text-decoration: none;';
+      var actionsCss =
+        'margin-top: 12px;' +
+        'display: flex;' +
+        'justify-content: space-between;' +
+        'gap: 12px;';
+      var actionButtonCss =
+        'background: #fff;' +
+        'border: 1px solid #fff;' +
+        'border-radius: 4px;' +
+        'color: #333;' +
+        'flex-grow: 1;' +
+        'font-family: Helvetica, Arial, sans-serif;' +
+        'padding: 6px 18px;' +
+        'cursor: pointer;'
+
+      var cookieBanner = document.createElement('div');
+      cookieBanner.setAttribute('id', 'stravaCookieBanner');
+      cookieBanner.setAttribute('data-cy', 'cookie-banner');
+      cookieBanner.innerHTML = html;
+      cookieBanner.setAttribute('style', bannerCss);
+      cookieBanner.getElementsByClassName('cookie-banner-content')[0].setAttribute('style', contentCss);
+      cookieBanner.getElementsByTagName('a')[0].setAttribute('style', linkCss);
+
+      var actions = cookieBanner.getElementsByClassName('cookie-banner-actions')[0];
+      actions.setAttribute('style', actionsCss);
+
+      var denyButton = cookieBanner.getElementsByClassName('btn-deny-cookie-banner')[0];
+      var denyCallback = this.denyCookies.bind(this);
+      denyButton.setAttribute('style', actionButtonCss);
+      denyButton.setAttribute('data-cy', 'deny-cookies');
+      document.body.insertBefore(cookieBanner, document.body.childNodes[0]);
+      denyButton.addEventListener('click', denyCallback);
+
+      var acceptButton = cookieBanner.getElementsByClassName('btn-accept-cookie-banner')[0];
+      var acceptCallback = this.acceptCookies.bind(this);
+      acceptButton.setAttribute('style', actionButtonCss);
+      acceptButton.setAttribute('data-cy', 'accept-cookies');
+      document.body.insertBefore(cookieBanner, document.body.childNodes[0]);
+      acceptButton.addEventListener('click', acceptCallback);
+
+      // register screen enter event
+      if(typeof Strava !== 'undefined' && typeof Strava.ExternalAnalytics !== 'undefined' && typeof Strava.ExternalAnalytics.trackV2 === 'function'){
+        var loggedIn = "false" === "true";
+        Strava.ExternalAnalytics.trackV2({
+          action: 'screen_enter',
+          page: 'cookie_banner',
+          category: 'cookie_banner',
+          element: 'cookie_banner',
+          properties: {
+            logged_in: loggedIn,
+            source: 'legacy'
+        }});
+      }
+    }
+  },
+  ensureNonEssentialCookieLoadingCallbacks: function() {
+    const runCallbacks = (callbacks) => {
+      for (const callback of callbacks) {
+        try {
+          callback();
+        } catch(error) {
+          console.error(error);
+        }
+      }
+    };
+
+    window.__LOAD_NON_ESSENTIAL_COOKIES__ =
+      Array.isArray(window.__LOAD_NON_ESSENTIAL_COOKIES__) ?
+        window.__LOAD_NON_ESSENTIAL_COOKIES__ : [];
+
+    runCallbacks([...window.__LOAD_NON_ESSENTIAL_COOKIES__]);
+
+    window.__LOAD_NON_ESSENTIAL_COOKIES__.length = 0;
+
+    window.__LOAD_NON_ESSENTIAL_COOKIES__.push = (...callbacks) => {
+      runCallbacks(callbacks);
+    };
+  }
+}
+
