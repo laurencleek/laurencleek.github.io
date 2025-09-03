@@ -9,11 +9,298 @@
     .eui-logo{position:fixed;top:20px;right:20px;width:180px;height:auto;z-index:1000;opacity:.8}
     .no-logo .eui-logo{display:none}
     .website-link{position:fixed;bottom:20px;left:20px;z-index:1000;font-size:.9em;opacity:.9;display:flex;gap:15px}
-    .website-link a{color:#42affa;text-decoration:none;padding:5px 10px;border:1px solid #42affa;border-radius:15px;background:rgba(66,175,250,.1);transition:all .3s ease}
+    .website-link a{color:#42affa;text-decoration:none;padding:5px 10px;border:1px solid #2474aa;border-radius:15px;background:rgba(66,175,250,.1);transition:all .3s ease}
     .website-link a:hover{background:rgba(66,175,250,.2);transform:translateY(-2px);box-shadow:0 4px 8px rgba(66,175,250,.3)}
     .website-link a.lauren-link{background:linear-gradient(45deg,#ff6b6b,#feca57);color:#fff;border:1px solid #ff6b6b;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,.3)}
     .website-link a.lauren-link:hover{background:linear-gradient(45deg,#ff5252,#ffb74d);transform:translateY(-3px) scale(1.05);box-shadow:0 6px 12px rgba(255,107,107,.4)}
     .no-logo .website-link{display:none}
+
+    /* Puzzle slide layout & arrow */
+  .puzzle-wrap{position:relative;width:90%;margin:0 auto}
+  .puzzle-grid{display:grid;grid-template-columns:5fr 4fr;align-items:center;gap:6.5rem}
+    .puzzle-fig{width:100%;height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))}
+  .puzzle-text{font-size:.9em;position:relative;z-index:3;line-height:1.25}
+  .puzzle-arrow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  .puzzle-arrow path{stroke:#2f8de4;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .puzzle-arrow marker path{fill:#2f8de4}
+
+    /* Headlines collage */
+  .headlines-collage{position:relative;width:88%;margin:1rem auto 0;height:clamp(260px,44vh,560px)}
+    .headline-card{position:absolute;display:block;border-radius:8px;box-shadow:0 12px 28px rgba(0,0,0,.4);filter:saturate(.95) contrast(1.02)}
+    .headline-card img{display:block;width:100%;height:auto;border-radius:8px}
+    /* Card placements */
+    .card-1{width:36%;left:4%;top:8%}
+    .card-2{width:34%;right:6%;top:4%}
+  .card-3{width:32%;left:30%;bottom:2%}
+  .card-4{width:26%;left:36%;top:0%}
+  .card-5{width:28%;left:0%;top:38%}
+  .card-6{width:28%;right:0%;top:42%}
+    /* Pop-in fragment animation that respects each card's base rotation */
+    .headline-card{--base: rotate(0deg);transform: var(--base);transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease}
+    .fragment.pop-headline{opacity:0;transform: scale(.92) translateY(10px) var(--base)}
+    .fragment.pop-headline.visible, .fragment.pop-headline.current-fragment{opacity:1;transform: scale(1) translateY(0) var(--base)}
+
+    @media (max-width: 900px){
+      .headlines-collage{height:auto;display:grid;grid-template-columns:1fr;gap:1rem}
+      .headline-card{position:static;width:100%;transform:none}
+    }
+    @media (max-width: 900px){
+      .puzzle-grid{grid-template-columns:1fr}
+      .puzzle-arrow{display:none}
+      .puzzle-text{position:relative}
+      .puzzle-text::before{content:"\2193"; /* down arrow */ display:block;color:#165b8a;font-size:1.6em;line-height:1;margin-bottom:.25em}
+    }
+
+    /* Introduction list sizing */
+    .intro-slide ul{font-size:.85em;line-height:1.3}
+    @media (max-width: 900px){
+      .intro-slide ul{font-size:.9em}
+    }
+
+    /* Methods & data images side-by-side */
+  .methods-grid{width:100vw;max-width:none;margin:0 calc(-50vw + 50%);display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:center}
+  .methods-img{width:100%;height:auto;display:block;border-radius:12px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35));max-width:98vw;max-height:70vh;object-fit:contain}
+    @media (max-width: 900px){
+      .methods-grid{grid-template-columns:1fr;gap:1rem}
+    }
+
+    /* Chapter title block styling */
+    .chapter-title-block {
+      background: rgba(25, 45, 65, 0.4);
+      border: 1px solid rgba(100, 150, 200, 0.2);
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      margin: 0 auto 2.5rem;
+      display: inline-block;
+    }
+    .chapter-title-block h2 {
+      margin-bottom: 0.5rem;
+    }
+    .chapter-title-block p {
+      margin-top: 0;
+      color: #ccc !important;
+    }
+
+    .rq-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .rq-container p {
+      margin: 0;
+      text-align: left;
+    }
+
+    .question-icon {
+      font-size: 1.8em;
+      color: #42affa;
+      border: 2px solid #42affa;
+      border-radius: 50%;
+      width: 1.6em;
+      height: 1.6em;
+      line-height: 1.6em;
+      text-align: center;
+      margin: 0;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Spotlight effect for list fragments */
+    ul.spotlight .fragment.visible {
+      opacity: 0.35;
+      transition: opacity .4s ease;
+    }
+    ul.spotlight .fragment.current-fragment {
+      opacity: 1;
+    }
+
+    /* Argument replacement transition */
+    #argument-text{transition:opacity .4s ease}
+    #argument-text.fade-out{opacity:0}
+    #core-arg-img{opacity:0;transition:opacity .4s ease}
+    #core-arg-img.visible-img{opacity:1}
+
+    /* Mini section navigation: collapsed pop-out */
+    .mini-nav{
+      position:fixed;
+      top:12px;
+      left:12px;
+      z-index:1100;
+      display:none;
+      flex-direction:column;
+      font-size:11px;
+      font-family:inherit;
+      align-items:flex-start;
+    }
+    .mini-nav.visible{display:flex}
+    #nav-toggle{
+      background:linear-gradient(135deg,#134463,#1a6fa5);
+      color:#fff;
+      border:1px solid #42affa;
+      padding:6px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      letter-spacing:.5px;
+      box-shadow:0 4px 10px rgba(0,0,0,.4);
+      transition:background .25s;
+    }
+    #nav-toggle:hover{background:linear-gradient(135deg,#1b5b84,#238ece)}
+    .mini-nav .nav-items{
+      margin-top:6px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      max-height:0;
+      overflow:hidden;
+      opacity:0;
+      transition:max-height .35s ease, opacity .25s ease;
+      background:rgba(10,25,40,.78);
+      backdrop-filter:blur(4px);
+      padding:0 6px;
+      border:1px solid rgba(66,175,250,.35);
+      border-radius:10px;
+      box-shadow:0 6px 18px rgba(0,0,0,.5);
+    }
+    .mini-nav.open .nav-items{max-height:320px;opacity:1;padding:8px 8px}
+    .mini-nav .nav-items button{
+      background:rgba(255,255,255,.08);
+      color:#eee;
+      border:1px solid rgba(255,255,255,.15);
+      padding:5px 10px;
+      border-radius:6px;
+      cursor:pointer;
+      line-height:1;
+      transition:.25s all;
+      font-weight:500;
+      text-align:left;
+      white-space:nowrap;
+    }
+    .mini-nav .nav-items button:hover{background:rgba(66,175,250,.35);color:#fff}
+    .mini-nav .nav-items button.active{
+      background:#42affa;
+      color:#111;
+      font-weight:600;
+      box-shadow:0 0 0 1px #42affa,0 4px 10px rgba(0,0,0,.35)
+    }
+
+    /* Clock default (will move under nav when nav visible) */
+    #clock{
+      position:fixed;
+      top:10px;
+      left:12px;
+      font-size:.95em;
+      font-weight:600;
+      color:#fff;
+      letter-spacing:.5px;
+      z-index:1080;
+      pointer-events:none;
+      background:linear-gradient(135deg,#0d3a52,#136ea8);
+      padding:6px 14px;
+      border:1px solid #42affa;
+      border-radius:10px;
+      box-shadow:0 4px 14px rgba(0,0,0,.55),0 0 0 1px rgba(66,175,250,.4);
+    }
+    #timebar{
+      position:fixed;
+      top:0;
+      left:0;
+      height:5px;
+      background:#42affa;
+      width:0%;
+      z-index:1080;
+      transition:background .4s ease;
+    }
+
+    /* Spotlight overlay (toggle with 'L') – updated for stronger effect */
+    .spotlight-cursor { cursor:none; }
+    .spot{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      /* Larger clear center & darker surround for visibility on black theme */
+      background:radial-gradient(circle at var(--x,50%) var(--y,50%),
+                  rgba(0,0,0,0) 0 100px,
+                  rgba(0,0,0,.78) 180px);
+      z-index:900; /* below nav (1100) & clock (1080) */
+      display:none;
+      transition:background .15s;
+    }
+
+    /* Guess the Regime styling */
+    .gr-panel{
+      background:rgba(25,45,65,.55);
+      border:1px solid rgba(90,170,230,.35);
+      border-radius:14px;
+      padding:1.1rem 1.4rem 1.2rem;
+      box-shadow:0 6px 18px rgba(0,0,0,.45);
+      backdrop-filter:blur(4px);
+      max-width:1050px;
+      margin:0 auto;
+    }
+    .gr-options{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:.55rem .75rem;
+      margin:1rem 0 .2rem;
+    }
+    .gr-option{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:.55rem;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.18);
+      padding:.55rem .75rem .55rem .65rem;
+      border-radius:10px;
+      font-size:.62em;
+      letter-spacing:.3px;
+      line-height:1.15;
+      cursor:default;
+      transition:.28s background, .28s border-color, .28s box-shadow;
+    }
+    .gr-option .gr-key{
+      display:inline-block;
+      font-weight:600;
+      font-size:.95em;
+      background:#1c6ba0;
+      color:#fff;
+      padding:.25rem .55rem;
+      border-radius:6px;
+      line-height:1;
+      box-shadow:0 2px 6px rgba(0,0,0,.4);
+      min-width:1.9rem;
+      text-align:center;
+      letter-spacing:.5px;
+    }
+    .gr-option .gr-label{flex:1;color:#e4e9ef;font-weight:500}
+    .gr-option.chosen{box-shadow:0 0 0 1px #42affa,0 4px 10px rgba(0,0,0,.45)}
+    .gr-option.correct{
+      background:rgba(70,205,130,.18);
+      border-color:rgba(70,205,130,.55);
+    }
+    .gr-option.wrong{
+      background:rgba(255,90,90,.15);
+      border-color:rgba(255,120,120,.55);
+    }
+    .gr-result{
+      font-size:.7em;
+      margin-top:.9rem;
+      min-height:1.8em;
+    }
+    .gr-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:.6rem;
+      font-size:.55em;
+      opacity:.75;
+    }
+    .gr-meta code{background:rgba(255,255,255,.07);padding:.25em .5em;border-radius:5px}
+    @media (max-width:880px){
+      .gr-options{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+    }
   </style>
 </head>
 <body>
@@ -22,108 +309,269 @@
     <a href="https://laurenleek.eu" target="_blank" class="lauren-link">laurenleek.eu</a>
     <a href="https://centralbanktalk.eu" target="_blank">centralbanktalk.eu</a>
   </div>
+  <!-- Mini navigation (collapsible) -->
+  <div class="mini-nav">
+    <button id="nav-toggle" aria-expanded="false" aria-controls="nav-sections">☰ Sections</button>
+    <div class="nav-items" id="nav-sections">
+      <button data-target="puzzle">Puzzle</button>
+      <button data-target="intro">Intro</button>
+      <button data-target="ch2">Ch2</button>
+      <button data-target="ch3">Ch3</button>
+      <button data-target="ch4">Ch4</button>
+      <button data-target="conclusion">Conclusion</button>
+      <button data-target="appendix">Appendix</button>
+    </div>
+  </div>
+
+  <!-- Elapsed time clock & progress bar (moved to right corner, no auto-start) -->
+  <div id="clock"></div>
+  <div id="timebar"></div>
+
+  <!-- Spotlight overlay element (previously missing) -->
+  <div class="spot"></div>
+
+  <!-- Timer script (authoritative: keep this one) -->
+  <script>
+    const MAX_MIN = 20;
+    let startTime = null;
+    let timerInterval = null;
+    function updateTimer(){
+      const clock = document.getElementById('clock');
+      const bar = document.getElementById('timebar');
+      if(!clock || !bar) return;
+      const elapsedMin = startTime ? (Date.now()-startTime)/60000 : 0;
+      const remaining = Math.max(0, MAX_MIN - elapsedMin);
+      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : '⏱ Time!';
+      if (remaining <= 5){
+        bar.style.background = '#ff3b30'; clock.style.borderColor='#ff3b30';
+      } else if (remaining <= 10){
+        bar.style.background = '#ffa726'; clock.style.borderColor='#ffa726';
+      } else {
+        bar.style.background = '#42affa'; clock.style.borderColor='#42affa';
+      }
+      bar.style.width = Math.min(100,(elapsedMin/MAX_MIN)*100)+'%';
+    }
+    function startTimer(){
+      if(startTime) return;
+      startTime = Date.now();
+      updateTimer();
+      timerInterval = setInterval(updateTimer,1000);
+    }
+    function positionClock(){
+      const nav = document.querySelector('.mini-nav');
+      const clock = document.getElementById('clock');
+      if(!clock) return;
+      if(nav && nav.classList.contains('visible')){
+        const r = nav.getBoundingClientRect();
+        clock.style.top = (r.bottom + 8)+'px';
+        clock.style.left = r.left+'px';
+      } else {
+        clock.style.top = '10px';
+        clock.style.left = '12px';
+      }
+    }
+    window.addEventListener('resize', positionClock);
+    updateTimer(); // initial paint
+  </script>
+
+  <!-- Spotlight logic: press 'L' to toggle -->
+  <script>
+    (function(){
+      const spot = document.querySelector('.spot');
+      let active = false;
+      document.addEventListener('keydown', e=>{
+        if(e.key && e.key.toLowerCase()==='l'){
+          active = !active;
+            spot.style.display = active ? 'block':'none';
+            document.body.classList.toggle('spotlight-cursor', active);
+        }
+      });
+      document.addEventListener('mousemove', e=>{
+        if(active){
+          spot.style.setProperty('--x', e.clientX+'px');
+          spot.style.setProperty('--y', e.clientY+'px');
+        }
+      });
+    })();
+  </script>
+
   <div class="reveal"><div class="slides">
 
     <!-- TITLE -->
     <section>
       <h2 style="font-size:1.35em">The Rise of Central Bank Talk:<br><span style="font-weight:300;font-size:.6em">Essays in Central Bank Communication and Independence</span></h2>
       <p style="font-size:.8em">Thesis Defense →</p><p style="font-size:.6em">Lauren Leek</p>
-      <div class="fragment" style="margin-top:30px;font-size:.3em;color:#666">
-        <p style="font-size:1em;margin-bottom:15px"><strong>August 5, 2025</strong></p>
-        <h4 style="font-size:1.4em;margin-bottom:5px;color:#42affa">Thesis Committee</h4>
-        <p><strong>Prof. Simon Hix</strong> – EUI</p>
-        <p><strong>Prof. Waltraud Schelkle</strong> – EUI</p>
-        <p><strong>Prof. Kenneth Benoit</strong> – SMU</p>
-        <p><strong>Prof. Ana Garriga</strong> – Univ. Essex</p>
+      <div class="fragment" style="margin-top:10px;font-size:.4em;color:#a1a1a1">
+        <p style="font-size:1.2em;margin-bottom:5px"><strong>August 5, 2025</strong></p>
+        <h4 style="font-size:1.4em;margin-bottom:3px;color:#2e82b9">Thesis Committee</h4>
+        <p><strong>Prof. Simon Hix</strong> – European University Institute (supervisor)</p>
+        <p><strong>Prof. Waltraud Schelkle</strong> – European University Institute (co-supervisor)</p>
+        <p><strong>Prof. Kenneth Benoit</strong> – Singapore Management University</p>
+        <p><strong>Prof. Ana Carolina Garriga</strong> – University of Essex</p>
+      </div>
+    </section>
+
+
+        <!-- NEWS CONTEXT -->
+    <section>
+      <h2>Central Banks in the Headlines</h2>
+
+      <!-- FT Headlines collage -->
+      <div class="headlines-collage">
+        <img src="headline_bitcoin.jpg" alt="FT headline on Bitcoin/digital currency" class="headline-card fragment pop-headline card-1" data-fragment-index="4" style="--base: rotate(-5deg)">
+        <img src="headline_cbdc.jpg" alt="FT headline on CBDC" class="headline-card fragment pop-headline card-2" data-fragment-index="5" style="--base: rotate(5deg)">
+        <img src="headline_climate.jpg" alt="FT headline on climate and central banks" class="headline-card fragment pop-headline card-3" data-fragment-index="6" style="--base: rotate(1deg)">
+  <img src="econ_energy.jpg" alt="Economist headline on energy" class="headline-card fragment pop-headline card-4" data-fragment-index="7" style="--base: rotate(-2deg)">
+  <img src="econ_mission.jpg" alt="Economist headline on mission" class="headline-card fragment pop-headline card-5" data-fragment-index="8" style="--base: rotate(3deg)">
+  <img src="bloomberg_saving.jpg" alt="Bloomberg headline on saving" class="headline-card fragment pop-headline card-6" data-fragment-index="9" style="--base: rotate(-4deg)">
       </div>
     </section>
 
     <!-- PUZZLE -->
-    <section>
+    <section data-section="puzzle">
       <h2>Puzzle</h2>
-      <p class="fragment" style="font-size:.9em">How can highly independent central banks remain legitimate while talking more—and about more—than ever before?</p>
-      <img class="fragment" src="topic_prevalence_over_time.png" alt="Topic prevalence" style="width:60%">
+      <div class="puzzle-wrap">
+        <div class="puzzle-grid">
+          <img class="fragment puzzle-fig" data-fragment-index="1" src="topic_prevalence_over_time.png" alt="Topic prevalence over time figure">
+          <p class="fragment puzzle-text" data-fragment-index="3">How do central banks reconcile their independent status with extensive public communication that goes beyond their narrow mandates?</p>
+        </div>
+        <!-- Arrow connecting image (left) to text (right) -->
+        <svg class="fragment puzzle-arrow" data-fragment-index="2" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3.5" markerHeight="3.5" orient="auto" markerUnits="strokeWidth">
+              <path d="M 0 0 L 10 5 L 0 10 Z" stroke="none"></path>
+            </marker>
+          </defs>
+          <!-- Curved arrow from ~center-right of left column to ~center-left of right column -->
+          <path d="M 28 30 C 42 19, 52 27, 55 27" marker-end="url(#arrowhead)"/>
+        </svg>
+      </div>
+
     </section>
 
-    <!-- NEWS CONTEXT -->
-    <section>
-      <h2>Central Banks in the Headlines – 2025</h2>
-      <ul>
-        <li class="fragment"><strong>U.S.</strong> Fed independence debated as <em>digital‑dollar</em> proposal gains traction.</li>
-        <li class="fragment"><strong>Eurozone</strong> ECB adds climate‑risk haircuts (29 Jul 2025).</li>
-        <li class="fragment"><strong>U.K.</strong> 25‑year BoE review triggers scrutiny of its remit.</li>
-      </ul>
-    </section>
+
 
     <!-- INTRODUCTION -->
-    <section>
-      <h2>Introduction</h2>
-      <ul>
-        <li class="fragment">Parallel rise of <em>independence</em> and <em>communication</em>.</li>
-        <li class="fragment">Paradox: technocrats seek public support beyond narrow mandates.</li>
-        <li class="fragment">Thesis view: independence is <strong>dynamic</strong>; talk both shapes &amp; reflects threats.</li>
-      </ul>
+  <section class="intro-slide" data-section="intro">
+      <h2>Argument</h2>
+      <div id="argument-text">
+        <ul class="spotlight">
+          <li class="fragment" data-fragment-index="0">Thesis view: communication is not merely a neutral tool for information transmission; it is <strong>dynamically</strong> shaped by &amp; employed to address challenges to their independence.</li>
+          <li class="fragment" data-fragment-index="1">Independence ≠ one‑off grant; requires continuous <em>responsiveness and therefore they actively seek public support and macro-economic coordination</em>.</li>
+          <li class="fragment" data-fragment-index="2">Specifically, they respond to a limited degree to societal &amp; financial &amp; fiscal pressures, not just inflation to fulfil their mandates.</li>
+          <li class="fragment" data-fragment-index="3">This is not limited to central banks embedded in advanced democracies.</li>
+        </ul>
+      </div>
+      <img id="core-arg-img" class="fragment" data-fragment-index="4"
+           src="core_arg.png" alt="Core argument schematic"
+           style="display:none;width:90%;max-width:900px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.4);margin-top:1.2rem">
+  </section>
+
+      <section class="intro-slide">
+      <h2>Methods & data</h2>
+      <div class="methods-grid">
+        <img src="coverage_map.jpg" alt="Global coverage map" class="methods-img fragment" data-fragment-index="1">
+        <img src="text_as_data.jpg" alt="Text as data overview" class="methods-img fragment" data-fragment-index="2">
+      </div>
+
     </section>
 
-    <!-- CHAPTER 1 -->
-    <section>
-      <section>
-        <h2>Chapter 1<br><small>The Rise of Independence & Communication</small></h2>
-        <h3>Research Question</h3>
-        <p>Why did legal independence and proactive communication expand together after 1990?</p>
-      </section>
-      <section>
-        <h3>Methods</h3>
-        <ul>
-          <li>Global panel (119 CBs, 1997‑2024) of statutes &amp; speeches.</li>
-          <li>Sequence analysis of reforms &amp; content trends.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Findings</h3>
-        <ul>
-          <li>Independence ≠ one‑off grant; requires continuous <em>responsiveness</em>.</li>
-          <li>Societal &amp; financial pressures, not just inflation history, drive reforms.</li>
-        </ul>
-      </section>
-    </section>
 
     <!-- CHAPTER 2 -->
-    <section>
+    <section data-section="ch2">
       <section>
-        <h2>Chapter 2<br><small>Independence &rarr; Monetary‑Policy Talk</small></h2>
-        <h3>Research Question</h3>
-        <p>Does greater independence change <strong>what</strong> central banks say about monetary policy?</p>
+        <div class="chapter-title-block">
+          <h2>Chapter 2<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
+          <p style="font-size:0.7em; line-height:1.2;">How Central Bank Independence Shapes Monetary Policy Communication:<br>A Large Language Model Application</p>
+        </div>
+        <div class="fragment" data-fragment-index="2">
+          <div class="rq-container">
+            <div class="question-icon">?</div>
+            <p>Does the way in which central banks communicate about monetary policy change with increases in independence?</p>
+          </div>
+        </div>
+        <div class="fragment" data-fragment-index="1" style="position:absolute;bottom:-90px;left:calc(-50vw + 50% + 20px);font-size:0.4em;text-align:left;max-width:95%;color:#a1a1a1;">
+          * Published as: Leek, L., & Bischl, S. (2025). How central bank independence shapes monetary policy communication. <i>European Journal of Political Economy, 87</i>, 102668. <a href="https://doi.org/10.1016/j.ejpoleco.2025.102668" target="_blank" style="color:inherit">doi.org/10.1016/j.ejpoleco.2025.102668</a>
+        </div>
+      </section>
+      <section>
+        <h3>Theory</h3>
+        <ul class="spotlight">
+          <li class="fragment"><strong>Delegation Dilemma:</strong> Gov'ts delegate to ICBs for credibility, but this creates a democratic deficit.</li>
+          <li class="fragment"><strong>Communication as Legitimacy:</strong> ICBs use communication to bridge this gap, demonstrating accountability and managing expectations.</li>
+          <li class="fragment"><strong>Hypothesis:</strong> As independence ↑, communication shifts from narrow, technical justifications (price stability) to broader topics (financial stability) to build public legitimacy.</li>
+        </ul>
       </section>
       <section>
         <h3>Methods</h3>
-        <ul>
-          <li>Gemini‑based sentence tagging (monetary vs. financial).</li>
-          <li>Staggered DiD on 100 CBs (1997‑2023) + IV.</li>
+        <ul class="spotlight">
+          <li class="fragment">Google Gemini sentence classification (monetary vs. financial pressures).</li>
+          <li class="fragment">Staggered DiD on 100 CBs (1997‑2023) + IV.</li>
         </ul>
+        <img src="workflow.jpg" alt="Workflow diagram" class="methods-img fragment" data-fragment-index="1" style="margin-top:1.2rem;max-width:900px;width:90%">
+      </section>
+      <section style="overflow:hidden">
+        <h3>Findings</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;">
+          <div>
+            <ul>
+              <li><span style="color:green">↑</span> Independence ⇒ <span style="color:red">↓</span> price‑stability talk; <span style="color:green">↑</span> financial‑stability talk.</li>
+              <li>Effect strongest in advanced democracies; robust to crises controls.</li>
+            </ul>
+          </div>
+          <div>
+            <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img fragment" data-fragment-index="1" style="margin-top:1.2rem;width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain">
+          </div>
+        </div>
       </section>
       <section>
         <h3>Findings</h3>
-        <ul>
-          <li>↑ Independence ⇒ ↓ price‑stability talk; ↑ financial‑stability talk.</li>
-          <li>Effect strongest in advanced democracies; robust to crises controls.</li>
-        </ul>
+        <div class="methods-grid">
+            <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height: 70vh;">
+            <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height: 70vh;">
+        </div>
+      </section>
+      <section>
+        <h3>Findings</h3>
+        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height: 75vh;">
       </section>
     </section>
 
     <!-- CHAPTER 3 -->
-    <section>
+    <section data-section="ch3">
       <section>
-        <h2>Chapter 3<br><small>Who Sets the Eurosystem Agenda?</small></h2>
-        <h3>Research Question</h3>
-        <p>Do NCBs or the ECB introduce new policy topics first?</p>
+        <div class="chapter-title-block">
+          <h2>Chapter 3<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
+          <p style="font-size:0.7em; line-height:1.2;">Who Sets the Agenda? The Role of National<br>Central Banks in the Eurosystem</p>
+        </div>
+        <div class="fragment" data-fragment-index="2">
+          <div class="rq-container">
+            <div class="question-icon">?</div>
+            <p>What drives the expansion of the ECB agenda and continued engagement with a variety of topics?</p>
+          </div>
+        </div>
+        <div class="fragment" data-fragment-index="1" style="position:absolute;bottom:-90px;left:calc(-50vw + 50% + 20px);font-size:0.4em;text-align:left;max-width:95%;color:#a1a1a1;">
+          * Revise & Resubmit at <i>Journal of European Public Policy</i> (JEPP).
+        </div>
+      </section>
+      <section>
+        <h3>Theory</h3>
+        <ul class="spotlight">
+          <li class="fragment"><strong>Agenda-Setting &amp; Policy Entrepreneurship:</strong> Actors (here, NCBs) can introduce new ideas into the policy debate.</li>
+          <li class="fragment"><strong>Bureaucratic Politics:</strong> Policy is an outcome of competition among organizations (NCBs vs ECB).</li>
+          <li class="fragment"><strong>Hypothesis:</strong> NCBs, closer to national concerns, act as policy entrepreneurs, introducing topics (e.g., climate) which the ECB later adopts to maintain relevance and control.</li>
+        </ul>
       </section>
       <section>
         <h3>Methods</h3>
-        <ul>
-          <li>BERTopic on 4 659 speeches (1997‑2024).</li>
-          <li>First‑mover graphs &amp; Markov chains.</li>
+        <ul class="spotlight">
+          <li class="fragment">BERTopic on 4 659 speeches (1997‑2024).</li>
+          <li class="fragment">First‑mover graphs &amp; Markov chains.</li>
         </ul>
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem;">
+          <img src="methods_ch3.png" alt="Methods CHR" style="width:90%;max-width:700px;height:auto;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.18);">
+          <img src="workflow_bert.jpg" alt="Workflow BERT" style="width:90%;max-width:700px;height:auto;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.18);">
+        </div>
       </section>
       <section>
         <h3>Findings</h3>
@@ -132,41 +580,172 @@
           <li>Coalition of NCBs ↑ probability topic diffuses to ECB.</li>
         </ul>
       </section>
+      <section>
+        <h3>Findings: NCBs first movers</h3>
+        <img src="first_movers.jpg" alt="First Movers" class="methods-img" style="max-height: 75vh;">
+      </section>
+      <section>
+        <h3>Findings: ECB direct responsive</h3>
+        <img src="topic_transitions.jpg" alt="Topic Transitions" class="methods-img" style="max-height: 75vh;">
+      </section>
+      <section>
+        <h3>Findings: NCBs lead 3 month lags </h3>
+        <img src="coefficient_plot.jpg" alt="Coefficient Plot" class="methods-img" style="max-height: 75vh;">
+      </section>
+      <section>
+        <h3>Findings: ECB not extra responsive under pressure </h3>
+        <img src="interaction_grid.jpg" alt="Interaction Grid" class="methods-img" style="max-height: 75vh;">
+      </section>
     </section>
 
     <!-- CHAPTER 4 -->
-    <section>
+    <section data-section="ch4">
       <section>
-        <h2>Chapter 4<br><small>Textual Indices of Policy Linkages</small></h2>
-        <h3>Research Question</h3>
-        <p>Can LLMs detect shifts toward dominance or coordination across policy domains?</p>
+        <div class="chapter-title-block">
+          <h2>Chapter 4</h2>
+          <p style="font-size:0.7em; line-height:1.2;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT-3.5</p>
+        </div>
+        <div class="fragment">
+          <div class="rq-container">
+            <div class="question-icon">?</div>
+            <p>How good are LLMs at detecting shifts toward dominance or coordination across policy domains?</p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h3>Theory</h3>
+        <ul class="spotlight">
+          <li class="fragment"><strong>Policy Dominance:</strong> One policy area (e.g., fiscal) can constrain another (monetary), threatening independence.</li>
+          <li class="fragment"><strong>Coordination vs. Dominance:</strong> A spectrum, not a binary choice. Central banks can coordinate with governments or be dominated by them.</li>
+          <li class="fragment"><strong>Hypothesis:</strong> LLMs can be trained to detect subtle linguistic cues in communication that signal shifts along the coordination-dominance spectrum.</li>
+        </ul>
       </section>
       <section>
         <h3>Methods</h3>
-        <ul>
-          <li>GPT‑3.5 multi‑stage prompting → 2 M sentences → 6 regimes.</li>
-          <li>Validation vs. human gold set.</li>
+        <ul class="spotlight">
+          <li class="fragment">GPT‑3.5 multi‑stage prompting → 2 M sentences → 6 regimes.</li>
+          <li class="fragment">Validation vs. human gold set.</li>
         </ul>
+      </section>
+
+      <!-- REPLACED Guess the Regime slide -->
+      <section>
+        <h3>Guess the Regime</h3>
+        <div class="gr-panel">
+          <p id="gr-text" style="font-style:italic;margin:0 0 .9rem">Loading example…</p>
+          <div class="gr-options" id="gr-options">
+            <div class="gr-option" data-key="A"><span class="gr-key">A</span><span class="gr-label">Monetary Independence</span></div>
+            <div class="gr-option" data-key="B"><span class="gr-key">B</span><span class="gr-label">Monetary → Fiscal Coordination</span></div>
+            <div class="gr-option" data-key="C"><span class="gr-key">C</span><span class="gr-label">Fiscal Dominance</span></div>
+            <div class="gr-option" data-key="D"><span class="gr-key">D</span><span class="gr-label">Financial Coordination</span></div>
+            <div class="gr-option" data-key="E"><span class="gr-key">E</span><span class="gr-label">Financial Dominance</span></div>
+            <div class="gr-option" data-key="F"><span class="gr-key">F</span><span class="gr-label">Other / Neutral</span></div>
+          </div>
+          <div id="gr-result" class="gr-result"></div>
+          <div class="gr-meta">
+            <span><code>A–F</code> classify</span>
+            <span><code>N</code> next example &nbsp;|&nbsp; <code>L</code> spotlight toggle</span>
+          </div>
+        </div>
+        <script>
+          (() => {
+            const dataset = [
+              { t:"“We stand ready to adjust the pace of purchases to preserve transmission.”", gold:'D', note:'Financial coordination (backstop language)' },
+              { t:"“Budgetary support must be calibrated to avoid adding to inflationary pressures.”", gold:'B', note:'Monetary→Fiscal coordination guidance' },
+              { t:"“Debt sustainability considerations limit our room for manoeuvre.”", gold:'C', note:'Fiscal dominance cue' },
+              { t:"“We will maintain an adequate liquidity stance while monitoring market functioning.”", gold:'D', note:'Financial coordination / liquidity assurance' },
+              { t:"“Further rate moves will depend on data, not political timelines.”", gold:'A', note:'Monetary independence assertion' }
+            ];
+            const textEl = document.getElementById('gr-text');
+            const resultEl = document.getElementById('gr-result');
+            const optionEls = Array.from(document.querySelectorAll('.gr-option'));
+            let idx = 0, answered = false;
+
+            function clearState(){
+              optionEls.forEach(o=>o.classList.remove('chosen','correct','wrong'));
+              resultEl.textContent='';
+              resultEl.style.color='';
+              answered = false;
+            }
+            function show(){
+              clearState();
+              textEl.textContent = dataset[idx].t;
+            }
+            function grade(k){
+              const opt = optionEls.find(o=>o.dataset.key===k);
+              if(!opt) return;
+              optionEls.forEach(o=>o.classList.remove('chosen'));
+              opt.classList.add('chosen');
+              if(answered){ // allow re-evaluate same sentence
+                optionEls.forEach(o=>o.classList.remove('correct','wrong'));
+              }
+              const correct = (k===dataset[idx].gold);
+              opt.classList.add(correct?'correct':'wrong');
+              resultEl.innerHTML = (correct? '✅ Correct':'❌ We coded: <strong>'+dataset[idx].gold+'</strong>')
+                                   +' — <em>'+dataset[idx].note+'</em>';
+              resultEl.style.color = correct ? '#5ad27d' : '#ff736a';
+              answered = true;
+            }
+
+            document.addEventListener('keydown', e=>{
+              if(!Reveal.isFocused()) return;
+              const k = e.key.toUpperCase();
+              if('ABCDEF'.includes(k)) grade(k);
+              else if(k==='N'){
+                idx = (idx + 1) % dataset.length;
+                show();
+              }
+            });
+
+            // Click support (optional)
+            optionEls.forEach(o=>{
+              o.addEventListener('click', ()=> grade(o.dataset.key));
+            });
+
+            show();
+          })();
+        </script>
+      </section>
+
+      <section>
+        <h3>Findings</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;">
+          <div>
+            <ul>
+              <li><span style="color:green">↑</span> Coordination talk ↑; <span style="color:red">↓</span> dominance talk.</li>
+              <li>Shift stronger in crises; robust to controls.</li>
+            </ul>
+          </div>
+          <div>
+            <img src="dominance_trends.jpg" alt="Dominance Trends" class="methods-img fragment" data-fragment-index="1" style="margin-top:1.2rem;width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain">
+          </div>
+        </div>
       </section>
       <section>
         <h3>Findings</h3>
-        <ul>
-          <li>Mon‑fiscal coordination rises in crises; fiscal dominance rare in EMU.</li>
-          <li>Financial dominance clusters around market‑stress events.</li>
-        </ul>
+        <div class="methods-grid">
+            <img src="gpt_examples.jpg" alt="GPT Examples" class="methods-img" style="max-height: 70vh;">
+            <img src="gpt_results.jpg" alt="GPT Results" class="methods-img" style="max-height: 70vh;">
+        </div>
       </section>
     </section>
 
     <!-- CHAPTER 5 / CONCLUSION -->
-    <section>
+    <section data-section="conclusion">
       <section>
-        <h2>Chapter 5<br><small>Conclusion – More Than Talk?</small></h2>
-        <h3>Research Question</h3>
-        <p>How does communication safeguard legitimacy of autonomous central banks?</p>
+        <div class="chapter-title-block">
+          <h2>Chapter 5<br><small>Conclusion – More Than Talk?</small></h2>
+        </div>
+        <div class="fragment">
+          <div class="rq-container">
+            <div class="question-icon">?</div>
+            <p>How does communication safeguard legitimacy of autonomous central banks?</p>
+          </div>
+        </div>
       </section>
       <section>
         <h3>Methods</h3>
-        <p>Synthesis of empirical chapters + current‑affairs triangulation.</p>
+        <p class="fragment">Synthesis of empirical chapters + current‑affairs triangulation.</p>
       </section>
       <section>
         <h3>Findings</h3>
@@ -186,7 +765,7 @@
     </section>
 
     <!-- APPENDIX -->
-    <section>
+    <section data-section="appendix">
       <section>
         <h2>Appendix</h2>
         <ul>
@@ -201,8 +780,114 @@
 
   </div></div>
   <script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
+  <script src="https://unpkg.com/reveal.js@5.2.1/plugin/search/search.js"></script>
   <script>
-    Reveal.initialize({hash:true,slideNumber:'c/t',progress:true});
+    // Single Reveal initialization with plugins
+    Reveal.initialize({
+      hash:true,
+      slideNumber:'c/t',
+      progress:true,
+      plugins:[RevealZoom, RevealSearch]
+    });
+
+    // Disable slide navigation for spotlight toggle (L) globally
+    // and for A–F + N while on the Guess-the-Regime game slide
+    function isGameSlide(){
+      return !!document.querySelector('.present #gr-text');
+    }
+    Reveal.configure({
+      keyboardCondition: function(evt){
+        const k = (evt.key || '').toLowerCase();
+        if(k === 'l') return false;                 // prevent 'l' from moving right
+        if(isGameSlide() && (k === 'n' || 'abcdef'.includes(k)))
+          return false;                             // allow game keys without slide change
+        return true;
+      }
+    });
+
+    // Core argument fragment replacement
+    function showImage(){
+      const txt=document.getElementById('argument-text');
+      const img=document.getElementById('core-arg-img');
+      if(!img||!txt)return;
+      txt.classList.add('fade-out');
+      setTimeout(()=>{txt.style.display='none';},400);
+      img.style.display='block';
+      requestAnimationFrame(()=>img.classList.add('visible-img'));
+    }
+    function restoreText(){
+      const txt=document.getElementById('argument-text');
+      const img=document.getElementById('core-arg-img');
+      if(!img||!txt)return;
+      img.classList.remove('visible-img');
+      setTimeout(()=>{img.style.display='none';},400);
+      txt.style.display='';
+      requestAnimationFrame(()=>txt.classList.remove('fade-out'));
+    }
+    Reveal.on('fragmentshown', e=>{ if(e.fragment.id==='core-arg-img') showImage(); });
+    Reveal.on('fragmenthidden', e=>{ if(e.fragment.id==='core-arg-img') restoreText(); });
+
+    // Section index mapping
+    const sectionIndexMap = {};
+    Array.from(document.querySelectorAll('.reveal .slides > section'))
+      .forEach((s,i)=>{const k=s.dataset.section; if(k) sectionIndexMap[k]=i;});
+
+    // Collapsible navigation
+    const nav = document.querySelector('.mini-nav');
+    const toggleBtn = document.getElementById('nav-toggle');
+
+    function updateNav(h){
+      const puzzleIdx = sectionIndexMap['puzzle'];
+      if(nav){
+        if(h >= puzzleIdx) nav.classList.add('visible');
+        else {
+          nav.classList.remove('visible','open');
+          toggleBtn.setAttribute('aria-expanded','false');
+        }
+      }
+      document.querySelectorAll('.mini-nav .nav-items button[data-target]').forEach(b=>{
+        b.classList.toggle('active', sectionIndexMap[b.dataset.target] === h);
+      });
+      positionClock();
+    }
+
+    toggleBtn.addEventListener('click', e=>{
+      e.stopPropagation();
+      nav.classList.toggle('open');
+      toggleBtn.setAttribute('aria-expanded', nav.classList.contains('open'));
+      positionClock();
+    });
+
+    document.querySelectorAll('.mini-nav .nav-items button[data-target]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const h = sectionIndexMap[btn.dataset.target];
+        if(h!=null) Reveal.slide(h,0);
+        nav.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded','false');
+        positionClock();
+      });
+    });
+
+    document.addEventListener('click', e=>{
+      if(nav && nav.classList.contains('open') && !nav.contains(e.target)){
+        nav.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded','false');
+        positionClock();
+      }
+    });
+
+    Reveal.on('slidechanged', e=>{
+      updateNav(e.indexh);
+      if(e.indexh > 0) startTimer();
+    });
+
+    // Initial state
+    updateNav(Reveal.getIndices().indexh);
+    positionClock();
   </script>
 </body>
 </html>
+
+
+
