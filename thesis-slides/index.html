@@ -52,9 +52,82 @@
     }
 
     /* Introduction list sizing */
-    .intro-slide ul{font-size:.85em;line-height:1.3}
+    .intro-slide ul{font-size:.75em;line-height:1.3}
     @media (max-width: 900px){
-      .intro-slide ul{font-size:.9em}
+      .intro-slide ul{font-size:.85em}
+    }
+
+    /* Methods & data images side-by-side */
+  .methods-grid{width:100vw;max-width:none;margin:0 calc(-50vw + 50%);display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;align-items:center}
+  .methods-img{width:100%;height:auto;display:block;border-radius:12px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35));max-width:98vw;max-height:70vh;object-fit:contain}
+    @media (max-width: 900px){
+      .methods-grid{grid-template-columns:1fr;gap:1rem}
+    }
+
+    /* Chapter title block styling */
+    .chapter-title-block {
+      background: rgba(25, 45, 65, 0.4);
+      border: 1px solid rgba(100, 150, 200, 0.2);
+      border-radius: 15px;
+      padding: 1rem 2rem;
+      margin: 0 auto 2.5rem;
+      display: inline-block;
+    }
+    .chapter-title-block h2 {
+      margin-bottom: 0.5rem;
+    }
+    .chapter-title-block p {
+      margin-top: 0;
+      color: #ccc !important;
+    }
+
+    .rq-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .rq-container p {
+      margin: 0;
+      text-align: left;
+    }
+
+    .question-icon {
+      font-size: 1.8em;
+      color: #42affa;
+      border: 2px solid #42affa;
+      border-radius: 50%;
+      width: 1.6em;
+      height: 1.6em;
+      line-height: 1.6em;
+      text-align: center;
+      margin: 0;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Spotlight effect for list fragments (scoped only to spotlight lists) */
+    ul.spotlight .fragment { opacity:0; }                 /* hidden until revealed */
+    ul.spotlight .fragment.visible { opacity:.35; }       /* previously revealed */
+    ul.spotlight .fragment.current-fragment { opacity:1; }/* active */
+
+    /* Restore normal behavior for all other fragments (images, tables, etc.) */
+    .reveal .slides section .fragment.visible,
+    .reveal .slides section .fragment.current-fragment {
+      opacity:1;
+    }
+
+    /* (If images disappeared after moving index.html deeper, uncomment & adjust:
+       img[src^="headline_"],
+       img[src="frankfurt_sky.jpg"],
+       img[src="core_arg.png"] { content: url("../core_arg.png"); }
+       Better: prepend ../ to each src in HTML if assets are one level up.)
+    */
+
+    /* Introduction list sizing */
+    .intro-slide ul{font-size:.75em;line-height:1.3}
+    @media (max-width: 900px){
+      .intro-slide ul{font-size:.85em}
     }
 
     /* Methods & data images side-by-side */
@@ -107,13 +180,9 @@
     }
 
     /* Spotlight effect for list fragments */
-    ul.spotlight .fragment.visible {
-      opacity: 0.35;
-      transition: opacity .4s ease;
-    }
-    ul.spotlight .fragment.current-fragment {
-      opacity: 1;
-    }
+    /* Ensure unrevealed fragments remain hidden until Reveal adds .visible */
+    ul.spotlight .fragment.visible{opacity:.35;}          /* previously revealed (but not current) */
+    ul.spotlight .fragment.current-fragment{opacity:1;}   /* the one being discussed */
 
     /* Argument replacement transition */
     #argument-text{transition:opacity .4s ease}
@@ -241,7 +310,7 @@
     }
     .gr-options{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); /* was 210px */
       gap:.55rem .75rem;
       margin:1rem 0 .2rem;
     }
@@ -259,6 +328,7 @@
       line-height:1.15;
       cursor:default;
       transition:.28s background, .28s border-color, .28s box-shadow;
+      min-width:0; /* allow grid to shrink below content width */
     }
     .gr-option .gr-key{
       display:inline-block;
@@ -274,7 +344,13 @@
       text-align:center;
       letter-spacing:.5px;
     }
-    .gr-option .gr-label{flex:1;color:#e4e9ef;font-weight:500}
+    .gr-option .gr-label{
+      flex:1;
+      color:#e4e9ef;
+      font-weight:500;
+      word-break:break-word; /* allow wrapping */
+      white-space:normal;    /* allow wrapping */
+    }
     .gr-option.chosen{box-shadow:0 0 0 1px #42affa,0 4px 10px rgba(0,0,0,.45)}
     .gr-option.correct{
       background:rgba(70,205,130,.18);
@@ -299,8 +375,1541 @@
     }
     .gr-meta code{background:rgba(255,255,255,.07);padding:.25em .5em;border-radius:5px}
     @media (max-width:880px){
-      .gr-options{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+      .gr-options{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))} /* was 160px */
     }
+
+    /* Compact styling for the Theory Contributions slide */
+    .intro-slide.theory-tight{
+      max-width:900px;
+      margin:0 auto;
+      padding:0 .5rem;
+    }
+    .intro-slide.theory-tight h2{
+      font-size:.9em;
+      letter-spacing:.6px;
+      font-weight:600;
+      margin:.15em 0 .7em;
+      text-transform:uppercase;
+    }
+    .intro-slide.theory-tight .theory-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      counter-reset:ctr;
+      display:flex;
+      flex-direction:column;
+      gap:.55em;
+      font-size:.62em;        /* smaller text */
+      line-height:1.28;
+    }
+    .intro-slide.theory-tight .theory-item{
+      position:relative;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:10px;
+      padding:.55em .9em .55em 2.4em;
+      backdrop-filter:blur(2px);
+      transition:background .25s,border-color .25s;
+    }
+    .intro-slide.theory-tight .theory-item:hover{
+      background:rgba(255,255,255,.07);
+      border-color:rgba(255,255,255,.20);
+    }
+    /* Number badges generated without altering text */
+    .intro-slide.theory-tight .theory-item::before{
+      counter-increment:ctr;
+      content:counter(ctr);
+      position:absolute;
+      left:.75em;
+      top:50%;
+      transform:translateY(-50%);
+      width:1.45em;
+      height:1.45em;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.7em;
+      font-weight:600;
+      letter-spacing:.5px;
+      background:linear-gradient(135deg,#1a6d9b,#42affa);
+      color:#0b2233;
+      box-shadow:0 0 0 2px rgba(12,40,60,.55),0 2px 5px rgba(0,0,0,.35);
+    }
+    /* Existing check icons visually softened */
+    .intro-slide.theory-tight .theory-check{
+      position:absolute;
+      left:.58em;
+      top:50%;
+      transform:translateY(-50%) scale(.0); /* hidden but kept for accessibility */
+      opacity:0;
+    }
+    /* Limitation / note styling */
+    .intro-slide.theory-tight .theory-item.note{
+      background:rgba(255,183,77,.08);
+      border-color:rgba(255,183,77,.55);
+    }
+    .intro-slide.theory-tight .theory-item.note::before{
+      background:#ffb74d;
+      color:#3b2a00;
+      box-shadow:0 0 0 2px rgba(70,45,0,.55),0 2px 5px rgba(0,0,0,.35);
+      content:"!";
+      font-weight:700;
+      font-size:.85em;
+    }
+    .intro-slide.theory-tight .theory-note em{
+      font-style:normal;
+      font-weight:600;
+      letter-spacing:.3px;
+    }
+    @media (max-height: 700px){
+      .intro-slide.theory-tight .theory-list{font-size:.58em}
+    }
+    @media (max-height: 600px){
+      .intro-slide.theory-tight .theory-list{font-size:.54em}
+    }
+
+    /* Overview table styles */
+    .methods-table{
+      width:92%;
+      margin:1rem auto 0;
+      border-collapse:separate;
+      border-spacing:0;
+      font-size:.8em;
+    }
+    .methods-table th, .methods-table td{
+      padding:.6em .8em;
+      border:1px solid rgba(255,255,255,.18);
+      vertical-align:top;
+      text-align:left;
+    }
+    .methods-table th{
+      background:rgba(255,255,255,.08);
+      font-weight:600;
+    }
+    .methods-table tbody tr:nth-child(odd) td{
+      background:rgba(255,255,255,.04);
+    }
+    @media (max-width: 900px){
+      .methods-table{font-size:.9em;width:100%}
+      .methods-table th, .methods-table td{padding:.55em .6em}
+    }
+
+    /* Compact the overview slide so it fits neatly */
+    .intro-slide.methods-overview h2{font-size:1.0em;margin-bottom:.5em}
+    .intro-slide.methods-overview .methods-table{font-size:.72em;width:88%}
+    .intro-slide.methods-overview .methods-table th,
+    .intro-slide.methods-overview .methods-table td{padding:.45em .55em}
+    @media (max-height:700px){
+      .intro-slide.methods-overview .methods-table{font-size:.68em}
+    }
+    @media (max-height:600px){
+      .intro-slide.methods-overview h2{font-size:.95em}
+      .intro-slide.methods-overview .methods-table{font-size:.64em}
+    }
+
+    /* Standard vs Thesis view badges */
+    .view-badges .badge{
+      display:inline-block;
+      padding:.18em .6em .2em;
+      border-radius:999px;
+      font-size:.55em;
+      letter-spacing:.5px;
+      font-weight:600;
+      vertical-align:baseline;
+      line-height:1.05;
+    }
+    .view-badges .badge.std{
+      background:rgba(255,255,255,.12);
+      color:#c9cfd4;
+      border:1px solid rgba(255,255,255,.25);
+    }
+    .view-badges .badge.thesis{
+      background:#42affa;
+      color:#0c2a3b;
+      border:1px solid #42affa;
+      box-shadow:0 0 0 2px rgba(10,50,70,.4);
+    }
+    .view-badges .diff-arrow{
+      display:inline-block;
+      margin:0 .45em;
+      font-size:.75em;
+      color:#42affa;
+      opacity:.85;
+    }
+    .view-badges .neutral{
+      color:#b5bcc2;
+      font-style:italic;
+    }
+    .view-badges .emph{
+      color:#ff5252;
+      font-weight:700;
+    }
+    /* Slight highlight on hover (optional) */
+    .view-badges .badge:hover{filter:brightness(1.15);}
+
+  /* REMOVE old .view-badges badge styling block and replace with richer comparison layout */
+  /* Argument slide: Standard vs Thesis comparison */
+  .argument-contrast .contrast-wrap{
+    display:flex;
+    align-items:stretch;
+    gap:1.1rem;
+    flex-wrap:nowrap;
+  }
+  .argument-contrast .contrast-box{
+    flex:1 1 0;
+    position:relative;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:14px;
+    padding:.85em 1em .9em;
+    line-height:1.25;
+    font-size:.62em;
+    backdrop-filter:blur(2px);
+    display:flex;
+    flex-direction:column;
+    gap:.35em;
+    transition:border-color .35s, background .35s, transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .argument-contrast .contrast-box.std{
+    background:linear-gradient(135deg,rgba(120,130,140,.08),rgba(70,80,95,.10));
+  }
+  .argument-contrast .contrast-box.thesis{
+    background:linear-gradient(135deg,rgba(32,110,155,.22),rgba(25,75,115,.28));
+    border-color:rgba(66,175,250,.55);
+    box-shadow:0 0 0 1px rgba(66,175,250,.55),0 6px 18px -4px rgba(0,0,0,.55);
+  }
+  .argument-contrast.fragment.visible .contrast-box.thesis{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 1px rgba(66,175,250,.7),0 10px 26px -6px rgba(0,0,0,.6);
+  }
+  .argument-contrast .contrast-label{
+    font-size:.75em;
+    font-weight:600;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    opacity:.9;
+    display:flex;
+    align-items:center;
+    gap:.4em;
+  }
+  .argument-contrast .contrast-label::before{
+    content:"";
+    width:.65em;
+    height:.65em;
+    border-radius:50%;
+    background:currentColor;
+    filter:brightness(1.3);
+    opacity:.8;
+  }
+  .argument-contrast .contrast-box.std .contrast-label{color:#d1d6da;}
+  .argument-contrast .contrast-box.thesis .contrast-label{color:#42affa;}
+  .argument-contrast .contrast-text{color:#e5e8ea;}
+  .argument-contrast .contrast-text .emph{color:#ff5252;font-weight:600;}
+  .argument-contrast .contrast-arrow{
+    align-self:center;
+    font-size:1.4em;
+    line-height:1;
+    padding:.15em .35em .25em;
+    color:#42affa;
+    opacity:.85;
+    font-weight:600;
+    text-shadow:0 0 8px rgba(66,175,250,.55);
+  }
+  @media (max-width:780px){
+    .argument-contrast .contrast-wrap{
+      flex-wrap:wrap;
+    }
+    .argument-contrast .contrast-arrow{
+      order:3;
+      width:100%;
+      text-align:center;
+      transform:rotate(90deg);
+      font-size:1.2em;
+      margin-top:.2em;
+    }
+  }
+  @media (max-height:620px){
+    .argument-contrast .contrast-box{font-size:.58em;padding:.7em .85em .75em}
+  }
+
+  /* Argument slide restructuring */
+  .argument-block{
+    display:flex;
+    flex-direction:column;
+    gap:1.25rem;
+    max-width:1050px;
+    margin:.25rem auto 0;
+  }
+  .premise-def{
+    background:linear-gradient(135deg,rgba(60,95,130,.28),rgba(30,55,80,.35));
+    border:1px solid rgba(110,170,215,.45);
+    border-left:6px solid #42affa;
+    padding:.85em 1.05em .95em;
+    font-size:.68em;
+    line-height:1.3;
+    border-radius:12px;
+    box-shadow:0 4px 18px -6px rgba(0,0,0,.55);
+    position:relative;
+  }
+  .premise-def:before{
+    content:"Premise";
+    position:absolute;
+    top:-.62em;
+    left:.9em;
+    background:#42affa;
+    color:#0d2a3b;
+    font-size:.55em;
+    font-weight:600;
+    letter-spacing:.6px;
+    padding:.25em .6em .28em;
+    border-radius:6px;
+    box-shadow:0 2px 6px rgba(0,0,0,.4);
+    text-transform:uppercase;
+  }
+  .argument-contrast{
+    margin-top:.15rem;
+  }
+  .argument-remark{
+    font-size:.6em;
+    line-height:1.25;
+    font-style:italic;
+    background:rgba(255,183,77,.08);
+    border:1px solid rgba(255,183,77,.45);
+    border-left:5px solid #ffb74d;
+    padding:.65em 1em .7em;
+    border-radius:10px;
+    box-shadow:0 3px 12px -4px rgba(0,0,0,.45);
+  }
+  .argument-remark .remark-label{
+    font-style:normal;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.55px;
+    font-size:.58em;
+    background:#ffb74d;
+    color:#2d1b00;
+    padding:.22em .55em .25em;
+    border-radius:5px;
+    margin-right:.55em;
+  }
+  /* Shrink on small heights */
+  @media (max-height:620px){
+    .premise-def{font-size:.63em;padding:.7em .9em .8em}
+    .argument-remark{font-size:.56em}
+  }
+
+  /* Methods & data fit overrides (placed after earlier definitions) */
+  .intro-slide.methods-fit h2{
+    font-size:1.05em;
+    margin-bottom:.45em;
+  }
+  .methods-grid{
+    width:100%;
+    max-width:1100px;
+    margin:0 auto;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:1rem 1.2rem;
+  }
+  .methods-grid.compact{gap:.85rem 1rem;}
+  .methods-img{
+    max-height:58vh;
+    object-fit:contain;
+  }
+  @media (max-width:1100px){
+    .methods-grid{
+      grid-template-columns:1fr;
+      max-width:880px;
+    }
+    .methods-img{max-height:60vh;}
+  }
+  @media (max-height:760px){
+    .methods-img{max-height:54vh;}
+  }
+  @media (max-height:680px){
+    .methods-img{max-height:50vh;}
+  }
+  @media (max-height:600px){
+    .intro-slide.methods-fit h2{font-size:1.0em;}
+    .methods-img{max-height:46vh;}
+  }
+  @media (max-height:520px){
+    .methods-img{max-height:42vh;}
+  }
+
+  /* Fancy overview grid (replaces table) */
+  .methods-overview{
+    --ov-font:.62em;
+  }
+  .methods-overview h2{
+    margin-bottom:.55em;
+  }
+  .overview-grid{
+    font-size:var(--ov-font);
+    display:grid;
+    grid-template-columns:1.05fr 1.55fr 1.8fr 1.25fr;
+    gap:.55em .9em;
+    width:92%;
+    margin:0 auto;
+    align-items:start;
+  }
+  .ov-head{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:subgrid;
+    background:linear-gradient(135deg,rgba(60,110,150,.55),rgba(30,55,85,.55));
+    border:1px solid rgba(120,190,240,.55);
+    padding:.55em .75em;
+    border-radius:12px;
+    font-weight:600;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    font-size:.9em;
+    box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+  }
+  .ov-head .ov-h{padding:.15em .35em;}
+  .ov-row{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:subgrid;
+    position:relative;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.13);
+    padding:.65em .75em .65em .75em;
+    border-radius:10px;
+    line-height:1.25;
+    backdrop-filter:blur(2px);
+    transition:.3s background,.3s border-color, .3s transform;
+  }
+  .ov-row:hover{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,255,255,.22);
+    transform:translateY(-2px);
+  }
+  .ov-cell{padding:0 .2em; display:flex; align-items:flex-start; gap:.4em;}
+  .badge-ch{
+    min-width:1.55em;
+    height:1.55em;
+    border-radius:50%;
+    background:linear-gradient(135deg,#1a6d9b,#42affa);
+    color:#062031;
+    font-weight:600;
+    font-size:.85em;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 0 2px rgba(10,45,70,.55),0 2px 5px rgba(0,0,0,.4);
+    letter-spacing:.3px;
+    flex-shrink:0;
+  }
+  .badge-llm{
+    background:#42affa;
+    color:#07324a;
+    font-weight:600;
+    padding:.18em .55em .22em;
+    border-radius:999px;
+    font-size:.75em;
+    letter-spacing:.4px;
+    box-shadow:0 2px 6px rgba(0,0,0,.35);
+    white-space:nowrap;
+  }
+  .ov-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.3em .4em;
+  }
+  .tag{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    padding:.15em .45em .2em;
+    border-radius:6px;
+    font-size:.65em;
+    letter-spacing:.3px;
+    line-height:1.1;
+    font-weight:500;
+    white-space:nowrap;
+  }
+  .tag.method{border-color:rgba(66,175,250,.5);background:rgba(66,175,250,.12)}
+  .tag.topic{border-color:rgba(180,140,255,.45);background:rgba(180,140,255,.12)}
+  .tag.desc{border-color:rgba(255,200,120,.45);background:rgba(255,200,120,.12)}
+  .ov-cell.emp, .ov-cell.txt{flex-direction:column;}
+  .ov-note{
+    grid-column:1/-1;
+    font-size:.55em;
+    opacity:.65;
+    margin:.4em .25em 0;
+    letter-spacing:.4px;
+  }
+  /* Responsive: stack rows as cards */
+  @media (max-width:950px){
+    .overview-grid{
+      grid-template-columns:1fr;
+      gap:.65em;
+    }
+    .ov-head{display:none}
+    .ov-row{
+      grid-template-columns:1fr;
+      padding:.75em .85em .8em;
+    }
+    .ov-cell{padding:0}
+    .ov-cell:not(:first-child){margin-top:.45em}
+    .ov-cell::before{
+      content:attr(data-label);
+      font-size:.68em;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      color:#9eb6c5;
+      display:block;
+      margin-bottom:.15em;
+    }
+  }
+  @media (max-height:650px){
+    .methods-overview{--ov-font:.58em;}
+  }
+  @media (max-height:560px){
+    .methods-overview{--ov-font:.54em;}
+  }
+
+  /* Chapter badges for Theory Contributions */
+  .intro-slide.theory-tight .theory-item .ch-badge{
+    position:absolute;
+    top:.48em;
+    right:.6em;
+    background:linear-gradient(135deg,#173650,#1a6d9b);
+    border:1px solid rgba(255,255,255,.22);
+    color:#e5f6ff;
+    font-size:.55em;
+    padding:.28em .65em .32em;
+    border-radius:999px;
+    font-weight:600;
+    letter-spacing:.55px;
+    text-transform:uppercase;
+    box-shadow:0 2px 6px rgba(0,0,0,.38),0 0 0 2px rgba(10,40,60,.45);
+    pointer-events:none;
+  }
+  .intro-slide.theory-tight .theory-item .ch-badge.ch2{
+    background:linear-gradient(135deg,#173650,#1a6d9b);
+  }
+  .intro-slide.theory-tight .theory-item .ch-badge.ch3{
+    background:linear-gradient(135deg,#0f4d37,#28b487);
+    box-shadow:0 2px 6px rgba(0,0,0,.38),0 0 0 2px rgba(5,55,40,.45);
+  }
+  .intro-slide.theory-tight .theory-item .ch-badge.ch4{
+    background:linear-gradient(135deg,#6a3a00,#ffb347);
+    color:#1e1200;
+    box-shadow:0 2px 6px rgba(0,0,0,.38),0 0 0 2px rgba(70,45,0,.45);
+  }
+  @media (max-height:650px){
+    .intro-slide.theory-tight .theory-item .ch-badge{font-size:.5em;top:.42em;}
+  }
+
+  /* Multi‑badge group + all‑chapters variant (new) */
+  .intro-slide.theory-tight .theory-item .badge-group{
+    position:absolute;
+    top:.48em;
+    right:.6em;
+    display:flex;
+    gap:.35em;
+  }
+  /* Extra space for list items that contain multiple chapter badges */
+  .intro-slide.theory-tight .theory-item.has-multi-badges{
+    padding-right:5.2em; /* prevents text underlapping two badges */
+  }
+  .intro-slide.theory-tight .theory-item .badge-group .ch-badge{
+    position:static;
+    box-shadow:0 2px 6px rgba(0,0,0,.38),0 0 0 2px rgba(10,40,60,.45);
+  }
+
+  /* Embedded site overlay (triggered from bullet) */
+  .embed-site-overlay{
+    position:fixed;
+    inset:0;
+    z-index:1200;
+    background:radial-gradient(circle at 25% 20%,rgba(15,40,60,.92),rgba(5,15,25,.94));
+    backdrop-filter:blur(6px);
+    display:none;
+    flex-direction:column;
+  }
+  .embed-site-overlay.visible{display:flex;}
+  .embed-site-toolbar{
+    display:flex;
+    gap:.6rem;
+    align-items:center;
+    justify-content:space-between;
+    padding:.55rem .85rem;
+    background:linear-gradient(135deg,#12354d,#185b82);
+    border-bottom:1px solid rgba(255,255,255,.18);
+    box-shadow:0 4px 14px -6px rgba(0,0,0,.6);
+  }
+  .embed-site-toolbar .left,
+  .embed-site-toolbar .right{display:flex;gap:.5rem;align-items:center;}
+  .embed-site-toolbar button,
+  .embed-site-toolbar a.action{
+    font-size:.58rem;
+    letter-spacing:.55px;
+    font-weight:600;
+    text-transform:uppercase;
+    background:rgba(255,255,255,.12);
+    color:#eef6fa;
+    border:1px solid rgba(255,255,255,.25);
+    padding:.45rem .75rem .48rem;
+    border-radius:6px;
+    cursor:pointer;
+    text-decoration:none;
+    transition:.25s background,.25s color;
+  }
+  .embed-site-toolbar button:hover,
+  .embed-site-toolbar a.action:hover{
+    background:#42affa;
+    color:#08202c;
+  }
+  .embed-site-toolbar .title{
+    font-size:.62rem;
+    letter-spacing:.6px;
+    font-weight:600;
+    opacity:.85;
+  }
+  .embed-site-frame{
+    flex:1;
+    width:100%;
+    border:0;
+    background:#fff;
+  }
+  a.embed-site-link{
+    color:#42affa;
+    text-decoration:none;
+    position:relative;
+  }
+  a.embed-site-link:hover{text-decoration:underline;color:#6bc8ff;}
+
+    /* Compact citation box styling */
+    .pub-citation{
+      display:inline-block;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.22);
+      border-left:4px solid rgba(170,180,190,.55);
+      padding:.45em .70em .5em;
+      font-size:.42em;
+      line-height:1.25;
+      color:#c8d0d6;
+      border-radius:9px;
+      max-width:880px;
+      margin:.35rem auto 0;
+      box-shadow:0 4px 12px -5px rgba(0,0,0,.55);
+      text-align:center;
+    }
+    .pub-citation i{color:#e2e6e9;}
+    .pub-citation a{
+      color:#9fc6dc;
+      text-decoration:none;
+      border-bottom:1px dotted rgba(155,185,205,.55);
+      padding-bottom:1px;
+      transition:.25s color,.25s border-color;
+    }
+    .pub-citation a:hover{
+      color:#d2eefb;
+      border-color:rgba(210,235,250,.85);
+    }
+    @media (max-height:700px){
+      .pub-citation{font-size:.40em;padding:.42em .65em .47em;}
+    }
+    @media (max-height:620px){
+      .pub-citation{font-size:.38em;}
+    }
+    @media (max-height:560px){
+      .pub-citation{font-size:.36em;}
+    }
+  /* --- Chapter 4 missing styles --- */
+.ch4-extra {
+  max-width: 1100px;
+  margin: 0 auto 2.5rem;
+  padding: 0 1.2rem;
+}
+.ch4-grid, .contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem 1.4rem;
+  margin: 1.2rem 0 0;
+}
+.regime-box, .contrib-box {
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 12px;
+  padding: .85em 1em .95em;
+  box-shadow: 0 4px 14px -6px rgba(0,0,0,.45);
+  font-size: .95em;
+  line-height: 1.32;
+  position: relative;
+  transition: .3s background, .3s transform;
+}
+.regime-box h4, .contrib-box h4 {
+  margin: .1em 0 .5em;
+  font-size: .95em;
+  font-weight: 600;
+  letter-spacing: .5px;
+  color: #42affa;
+}
+.stat-bar {
+  display: flex;
+  gap: 2.2rem;
+  margin: 1.2rem 0 0;
+  justify-content: center;
+}
+.stat {
+  background: rgba(66,175,250,.08);
+  border-radius: 8px;
+  padding: .5em 1.2em;
+  font-size: 1.1em;
+  color: #e4f6ff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(66,175,250,.12);
+}
+.stat .num {
+  font-size: 1.3em;
+  color: #42affa;
+  font-weight: 700;
+  margin-right: .3em;
+}
+.bottom-line, .finding-note, .key-point {
+  background: linear-gradient(90deg,#42affa22,#ffb74d22);
+  border-radius: 10px;
+  padding: .7em 1.2em;
+  margin-top: 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  color: #e4f6ff;
+  box-shadow: 0 2px 8px rgba(66,175,250,.12);
+}
+@media (max-width:900px){
+  .ch4-grid, .contrib-grid { grid-template-columns: 1fr; }
+  .stat-bar { flex-direction: column; gap: .8rem; }
+}
+    /* === Conclusion (Chapter 5) redesigned slides === */
+    .conclusion-set .card{
+      background:rgba(255,255,255,.045);
+      color:#e4e9ef;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      padding:1.65rem 1.9rem 1.85rem;
+      box-shadow:0 10px 28px -10px rgba(0,0,0,.6);
+      font-size:.60em;
+      line-height:1.38;
+      backdrop-filter:blur(2px);
+    }
+    .conclusion-set h2.main{
+      font-size:1.05em;
+      margin:0 0 .9rem;
+      padding:0 0 .55rem;
+      border-bottom:2px solid #42affa;
+      color:#fff;
+      letter-spacing:.6px;
+      font-weight:600;
+    }
+    .conclusion-set h2.main .emoji{
+      font-size:.9em;
+      filter:none;
+      opacity:.9;
+    }
+    .conclusion-set h3{
+      font-size:.85em;
+      margin:1.15rem 0 .55rem;
+      font-weight:600;
+      color:#cfe8f8;
+      letter-spacing:.5px;
+    }
+    .conclusion-set h3::before{
+      content:"";
+      width:.55em;
+      height:.55em;
+      border-radius:50%;
+      background:#42affa;
+      box-shadow:0 0 0 2px rgba(66,175,250,.25);
+    }
+    .conclusion-set ul{margin:.15rem 0 0;padding:0;list-style:none;}
+    .conclusion-set li{
+      position:relative;
+      padding:.38rem 0 .38rem 1.05rem;
+      font-size:1em;
+    }
+    .conclusion-set li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      top:.2rem;
+      font-size:1.15em;
+      line-height:1;
+      color:#42affa;
+      font-weight:700;
+      text-shadow:0 0 6px rgba(66,175,250,.45);
+    }
+    .conclusion-set .key-box{
+      background:linear-gradient(135deg,rgba(66,175,250,.12),rgba(20,70,105,.35));
+      border:1px solid rgba(66,175,250,.45);
+      border-left:5px solid #42affa;
+      border-radius:12px;
+      padding:.75rem 1rem .8rem;
+      font-size:.95em;
+      color:#daf1ff;
+      box-shadow:0 4px 16px -6px rgba(0,0,0,.55);
+    }
+    .conclusion-set .key-box strong{color:#42affa;}
+    .conclusion-set .highlight{
+      background:linear-gradient(135deg,#ffb74d,#ffcc80);
+      color:#2a1a00;
+      padding:0 .4em .05em;
+      border-radius:6px;
+      font-weight:600;
+      box-shadow:0 0 0 1px rgba(90,55,0,.35),0 2px 6px rgba(0,0,0,.35);
+    }
+    .conclusion-set .emphasis{color:#42affa;font-weight:600;}
+    .conclusion-set .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:.9rem 1rem;
+      margin:.8rem 0 .25rem;
+    }
+    .conclusion-set .grid-item{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;
+      padding:.75rem .85rem .85rem;
+      font-size:.9em;
+      line-height:1.32;
+      position:relative;
+      transition:.3s background,.3s transform;
+    }
+    .conclusion-set .grid-item:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-3px);
+    }
+    .conclusion-set .grid-item h4{
+      margin:.1rem 0 .45rem;
+      font-size:.95em;
+      color:#42affa;
+      font-weight:600;
+      letter-spacing:.4px;
+    }
+    .conclusion-set .conclusion-box{
+      background:linear-gradient(135deg,#1a6d9b,#42affa);
+      color:#082433;
+      border:1px solid #42affa;
+      border-radius:14px;
+      padding:1.05rem 1.2rem 1.1rem;
+      font-size:.95em;
+      line-height:1.35;
+      box-shadow:0 6px 24px -8px rgba(0,0,0,.65),0 0 0 1px rgba(66,175,250,.55);
+      font-weight:500;
+    }
+    .conclusion-set .conclusion-box strong{color:#032635;}
+    .conclusion-set code{
+      background:rgba(255,255,255,.08);
+      color:#e4f7ff;
+      padding:.15em .45em .2em;
+      border-radius:5px;
+      font-size:.85em;
+      border:1px solid rgba(255,255,255,.15);
+    }
+    /* Height / small-screen adjustments */
+    @media (max-height:760px){
+      .conclusion-set .card{font-size:.56em;padding:1.45rem 1.55rem 1.55rem;}
+    }
+    @media (max-height:660px){
+      .conclusion-set .card{font-size:.52em;padding:1.3rem 1.35rem 1.35rem;}
+    }
+    @media (max-height:600px){
+      .conclusion-set h2.main{font-size:1.0em;}
+    }
+    @media (max-width:880px){
+      .conclusion-set .card{font-size:.64em;}
+    }
+
+    /* === Ch3 Theory replacement styling === */
+    .ch3-block{
+      max-width:980px;margin:0 auto;font-size:.62em;line-height:1.35;
+      display:flex;flex-direction:column;gap:1.15rem;
+    }
+    .ch3-block .pill-title{
+      font-size:1.05em;font-weight:600;letter-spacing:.6px;
+      display:inline-block;padding:.45em .95em .5em;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;color:#e8f6ff;box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+    }
+    .ch3-block .key-box{
+      background:linear-gradient(135deg,rgba(66,175,250,.15),rgba(20,70,105,.35));
+      border:1px solid rgba(66,175,250,.5);border-left:5px solid #42affa;
+      border-radius:12px;padding:.9em 1.1em .95em;color:#d5ecfa;font-size:.95em;
+      box-shadow:0 4px 16px -6px rgba(0,0,0,.6);
+    }
+    .ch3-block .rq-box{
+      background:linear-gradient(135deg,#124465,#1b6aa0);
+      border:1px solid #42affa;border-radius:14px;
+      padding:1.05em 1.2em 1.1em;color:#e9f7ff;font-weight:500;
+      box-shadow:0 6px 22px -8px rgba(0,0,0,.65),0 0 0 1px rgba(66,175,250,.5);
+      font-size:.95em;
+    }
+    .ch3-grid{display:grid;gap:1rem 1.2rem;grid-template-columns:1fr 1fr;}
+    @media (max-width:900px){.ch3-grid{grid-template-columns:1fr;}}
+    .ch3-card{
+      background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;padding:.85em 1em .95em;position:relative;
+      box-shadow:0 4px 14px -6px rgba(0,0,0,.55);font-size:.9em;
+      transition:.3s background,.3s transform;
+    }
+    .ch3-card:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);}
+    .ch3-card h4{
+      margin:.1em 0 .5em;font-size:.95em;font-weight:600;
+      letter-spacing:.5px;color:#42affa;
+    }
+    .hypo-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+    .hypo{
+      background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.18);border-left:5px solid #42affa;
+      padding:.8em .9em .85em;border-radius:12px;box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+      font-size:.9em;line-height:1.3;position:relative;
+    }
+    .hypo h5{margin:0 0 .45em;font-size:.8em;letter-spacing:.6px;text-transform:uppercase;color:#9fd9ff;}
+    .hypo .logic{font-size:.72em;opacity:.75;margin-top:.45em;font-style:italic;}
+    .ch3-btm{
+      background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.14);
+      border-radius:12px;padding:.85em 1em .95em;font-size:.85em;
+    }
+    .ch3-btm strong{color:#42affa;}
+    .ch3-list{list-style:none;margin:.2em 0 0;padding:0;}
+    .ch3-list li{padding:.3em 0 .3em 1.05em;position:relative;}
+    .ch3-list li:before{
+      content:"•";position:absolute;left:0;top:.15em;font-size:1.1em;
+      color:#42affa;font-weight:700;
+    }
+
+    /* === Ch3 Heterogeneous Effects slide additions === */
+    .het-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:start;font-size:.72em;line-height:1.3;max-width:1050px;margin:.6rem auto 0;}
+    @media (max-width:900px){.het-grid{grid-template-columns:1fr;}}
+    .het-col h4{margin:.15rem 0 .55rem;font-size:.9em;letter-spacing:.5px;text-transform:uppercase;color:#9fd9ff;}
+    .het-box{
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.14);
+      border-left:5px solid #42affa;
+      padding:.65em .75em .7em;
+      border-radius:10px;
+      box-shadow:0 3px 10px -4px rgba(0,0,0,.55);
+      margin:.55em 0;
+      position:relative;
+      transition:.3s background,.3s transform;
+    }
+    .het-box:hover{background:rgba(255,255,255,.08);transform:translateY(-3px);}
+    .het-box h5{margin:0 0 .25em;font-size:.78em;letter-spacing:.55px;font-weight:600;color:#42affa;display:flex;align-items:center;gap:.4em;}
+    .het-box p{margin:0;font-size:.78em;opacity:.85;}
+    .het-box.alt{border-left-color:#ffb74d;}
+    .het-box.issue{border-left-color:#ff6b6b;}
+    .het-badge{font-size:.65em;font-weight:600;padding:.15em .5em .2em;border-radius:6px;background:#1b5d85;color:#e3f6ff;letter-spacing:.5px;}
+    .inc{color:#ff6666;font-weight:700;}
+    .dec{color:#28cf98;font-weight:700;}
+    .stable{color:#7d89ff;font-weight:700;}
+    .het-key{
+      background:linear-gradient(135deg,#124465,#1b6aa0);
+      border:1px solid #42affa;
+      border-radius:14px;
+      padding:.9em 1.1em 1em;
+      font-size:.74em;
+      line-height:1.35;
+      color:#e4f6ff;
+      box-shadow:0 6px 18px -8px rgba(0,0,0,.6),0 0 0 1px rgba(66,175,250,.45);
+      max-width:1050px;
+      margin:1.1rem auto 0;
+    }
+    .het-key .highlight{
+      background:rgba(255,183,77,.18);
+      padding:0 .35em .1em;
+      border-radius:6px;
+      color:#ffcc80;
+      font-weight:600;
+      box-shadow:0 0 0 1px rgba(255,183,77,.35);
+    }
+
+  /* Ch3 figure slides: tighter headings & image scaling */
+  .ch3-fig-slide h3{
+    font-size:.66em;              /* was .78em */
+    margin:.08em 0 .3em;
+    letter-spacing:.4px;
+    font-weight:600;
+  }
+  .ch3-fig-slide img{
+    max-height:65vh;              /* was 70–75vh inline */
+    width:auto;
+    max-width:100%;
+    object-fit:contain;
+    margin:0 auto;
+    display:block;
+  }
+  .ch3-fig-slide.fig-pressure img{max-height:58vh;} /* most constrained */
+  /* Progressive shrink on short viewports */
+  @media (max-height:780px){
+    .ch3-fig-slide img{max-height:55vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:49vh;}
+  }
+  @media (max-height:700px){
+    .ch3-fig-slide img{max-height:51vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:46vh;}
+  }
+  @media (max-height:640px){
+    .ch3-fig-slide img{max-height:45vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:42vh;}
+  }
+  @media (max-height:580px){
+    .ch3-fig-slide img{max-height:35vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:40vh;}
+  }
+  @media (max-height:520px){
+    .ch3-fig-slide img{max-height:34vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:38vh;}
+  }
+
+  /* Larger images for selected Ch3 slides */
+  .ch3-fig-slide.bigger img{max-height:72vh;}
+  .ch3-fig-slide.bigger.fig-pressure img{max-height:65vh;}
+
+  /* REMOVE old .view-badges badge styling block and replace with richer comparison layout */
+  /* Argument slide: Standard vs Thesis comparison */
+  .argument-contrast .contrast-wrap{
+    display:flex;
+    align-items:stretch;
+    gap:1.1rem;
+    flex-wrap:nowrap;
+  }
+  .argument-contrast .contrast-box{
+    flex:1 1 0;
+    position:relative;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:14px;
+    padding:.85em 1em .9em;
+    line-height:1.25;
+    font-size:.62em;
+    backdrop-filter:blur(2px);
+    display:flex;
+    flex-direction:column;
+    gap:.35em;
+    transition:border-color .35s, background .35s, transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .argument-contrast .contrast-box.std{
+    background:linear-gradient(135deg,rgba(120,130,140,.08),rgba(70,80,95,.10));
+  }
+  .argument-contrast .contrast-box.thesis{
+    background:linear-gradient(135deg,rgba(32,110,155,.22),rgba(25,75,115,.28));
+    border-color:rgba(66,175,250,.55);
+    box-shadow:0 0 0 1px rgba(66,175,250,.55),0 6px 18px -4px rgba(0,0,0,.55);
+  }
+  .argument-contrast.fragment.visible .contrast-box.thesis{
+    transform:translateY(-2px);
+    box-shadow:0 0 0 1px rgba(66,175,250,.7),0 10px 26px -6px rgba(0,0,0,.6);
+  }
+  .argument-contrast .contrast-label{
+    font-size:.75em;
+    font-weight:600;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    opacity:.9;
+    display:flex;
+    align-items:center;
+    gap:.4em;
+  }
+  .argument-contrast .contrast-label::before{
+    content:"";
+    width:.65em;
+    height:.65em;
+    border-radius:50%;
+    background:currentColor;
+    filter:brightness(1.3);
+    opacity:.8;
+  }
+
+    /* ADDED: compact styling for the Ch4 trends image (was missing, so no visual change previously) */
+    .ch4-trend-small{
+      display:block;
+      margin:.4rem auto .3rem;
+      width:30%;
+      max-width:360px;
+      max-height:30vh;
+      object-fit:contain;
+      border-radius:10px;
+      box-shadow:0 4px 12px -4px rgba(0,0,0,.55);
+      transition:transform .3s ease;
+    }
+    .ch4-trend-small:hover{
+      transform:scale(1.04);
+    }
+    @media (max-width:1100px){
+      .ch4-trend-small{width:42%;max-height:28vh;}
+    }
+    @media (max-width:800px){
+      .ch4-trend-small{width:55%;max-height:26vh;}
+    }
+    @media (max-width:600px){
+      .ch4-trend-small{width:65%;max-height:24vh;}
+    }
+    @media (max-height:600px){
+      .ch4-trend-small{max-height:22vh;}
+    }
+    @media (max-height:520px){
+      .ch4-trend-small{max-height:20vh;}
+    }
+
+    /* NEW arrow color conventions: red = increase (up), green = decrease (down) */
+    .arrow-up{color:#ff5252;font-weight:700;}
+    .arrow-down{color:#28cf98;font-weight:700;}
+
+    /* Two‑column layout for Ch4 combined findings slide */
+    .ch4-findings-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.4rem;
+      align-items:start;
+      margin-top:.2rem;
+    }
+    .ch4-findings-grid .trend-col{
+      text-align:center;
+    }
+    .ch4-findings-grid .trend-col h2{margin-top:0;}
+    /* Enlarge the trend image within the side-by-side layout but keep compact look */
+    .ch4-findings-grid .ch4-trend-small{
+      width:95%;
+      max-width:460px;
+      max-height:42vh;
+    }
+    @media (max-width:1100px){
+      .ch4-findings-grid{grid-template-columns:1fr;gap:1.1rem;}
+      .ch4-findings-grid .ch4-trend-small{max-height:38vh;}
+    }
+
+    /* NEW: Ch4 methods slide compact side-by-side layout */
+    .ch4-method-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.4rem;
+      align-items:start;
+      margin-top:.2rem;
+    }
+    .ch4-method-grid .pipeline-col h2,
+    .ch4-method-grid .validation-col h2{margin-top:0;}
+    .ch4-method-grid .pipeline-col img{
+      width:100%;
+      max-width:520px;
+      max-height:42vh;
+      object-fit:contain;
+      border-radius:12px;
+      box-shadow:0 4px 16px -6px rgba(0,0,0,.55);
+      display:block;
+      margin:.35rem auto 0;
+    }
+    @media (max-width:1100px){
+      .ch4-method-grid{grid-template-columns:1fr;gap:1.1rem;}
+      .ch4-method-grid .pipeline-col img{max-height:38vh;}
+    }
+
+    /* === Override: Larger Ch3 figure images === */
+    .ch3-fig-slide img{max-height:65vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:58vh;}
+    @media (max-height:780px){
+      .ch3-fig-slide img{max-height:55vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:49vh;}
+    }
+    @media (max-height:700px){
+      .ch3-fig-slide img{max-height:51vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:46vh;}
+    }
+    @media (max-height:640px){
+      .ch3-fig-slide img{max-height:45vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:42vh;}
+    }
+    @media (max-height:580px){
+      .ch3-fig-slide img{max-height:35vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:40vh;}
+    }
+    @media (max-height:520px){
+      .ch3-fig-slide img{max-height:34vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:38vh;}
+    }
+
+    /* Make Chapter 4 font size much smaller */
+    .ch4-small {
+      font-size: inherit !important;
+    }
+    .ch4-small h2,
+    .ch4-small h3,
+    .ch4-small h4 {
+      font-size: inherit !important;
+    }
+    .ch4-small .regime-box,
+    .ch4-small .contrib-box,
+    .ch4-small .stat,
+    .ch4-small .bottom-line,
+    .ch4-small .finding-note,
+    .ch4-small .key-point,
+    .ch4-small .gr-panel,
+    .ch4-small .gr-option,
+    .ch4-small .gr-result,
+    .ch4-small .ch4-extra,
+    .ch4-small .ch4-grid,
+    .ch4-small .ch4-method-grid,
+    .ch4-small .ch4-findings-grid {
+      font-size: 0.82em !important;
+    }
+    /* Make bottom line even smaller for better fit */
+    .ch4-small .bottom-line {
+      font-size: 0.75em !important;
+      padding: .6em 1em .65em !important;
+      margin-top: 1rem !important;
+    }
+    /* Optionally shrink paragraph and list text further */
+    .ch4-small p,
+    .ch4-small ul,
+    .ch4-small li,
+    .ch4-small .variation-col,
+    .ch4-small .trend-col {
+      font-size: 0.82em !important;
+    }
+    /* Make contributions and future use cases even smaller */
+    .ch4-small .contrib-grid,
+    .ch4-small .ch4-grid.future-use {
+      font-size: 0.72em !important;
+    }
+    /* Make cross-country variation points larger */
+    .ch4-small .variation-col .regime-box {
+      font-size: 0.95em !important;
+    }
+    /* Guess the Regime formatting improvements */
+    .ch4-small .gr-panel {
+      font-size: 0.88em !important;
+      padding: 1.2rem 1.6rem 1.3rem;
+      max-width: 900px;
+    }
+    .ch4-small .gr-options {
+      gap: .65rem .85rem;
+      margin-bottom: 1rem;
+    }
+    .ch4-small .gr-option {
+      font-size: 0.78em !important;
+      padding: .65rem 1rem .65rem .85rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,.09);
+      border: 1.5px solid rgba(255,255,255,.22);
+      transition: .22s background, .22s border-color, .22s box-shadow;
+    }
+    .ch4-small .gr-option .gr-key {
+      font-size: 1.1em;
+      min-width: 2.1rem;
+      padding: .28rem .65rem;
+    }
+    .ch4-small .gr-option .gr-label {
+      font-size: 1em;
+      font-weight: 500;
+      color: #e4e9ef;
+    }
+    .ch4-small .gr-result {
+      font-size: 0.85em !important;
+      margin-top: 1.1rem;
+      min-height: 2em;
+    }
+    .ch4-small .gr-meta {
+      font-size: 0.65em !important;
+      margin-top: .8rem;
+    }
+    /* Chapter 2 professional contributions styling */
+    .c2-contrib-wrap{
+      max-width:980px;
+      margin:0 auto;
+      font-size:.60em;
+      line-height:1.32;
+      display:flex;
+      flex-direction:column;
+      gap:1.15rem;
+    }
+    .c2-section-title{
+      font-size:1.05em;
+      font-weight:600;
+      letter-spacing:.55px;
+      margin:0 0 .2rem;
+      text-transform:uppercase;
+      color:#e8f6ff;
+    }
+    .c2-grid{
+      display:grid;
+      gap:.9rem 1.1rem;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+    .c2-card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:14px;
+      padding:.85em 1em .95em;
+      box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+      position:relative;
+      transition:.3s background,.3s transform;
+    }
+    .c2-card:hover{background:rgba(255,255,255,.075);transform:translateY(-3px);}
+    .c2-card h4{
+      margin:.05em 0 .55em;
+      font-size:.9em;
+      font-weight:600;
+      letter-spacing:.5px;
+      color:#42affa;
+      text-transform:uppercase;
+    }
+    .c2-list{
+      margin:0;
+            
+    }
+
+    .c2-list li:before{
+      content:"•";
+                                                                                 position:absolute;left:0;top:.18em;
+      font-weight:700;
+      color:#42affa;
+      font-size:1.1em;
+      line-height:1;
+    }
+    .c2-pill{
+      display:inline-block;
+      background:linear-gradient(135deg,#1a6d9b,#42affa);
+      color:#0d2a3b;
+      font-weight:600;
+      letter-spacing:.55px;
+      padding:.42em .9em .48em;
+      border-radius:999px;
+      font-size:.78em;
+      box-shadow:0 2px 8px -2px rgba(0,0,0,.55),0 0 0 1px rgba(66,175,250,.55);
+    }
+    .c2-note{
+      background:linear-gradient(135deg,rgba(255,183,77,.15),rgba(120,70,0,.35));
+      border:1px solid rgba(255,183,77,.55);
+      border-left:5px solid #ffb74d;
+      border-radius:12px;
+      padding:.75em 1em .85em;
+      font-size:.85em;
+      box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+    }
+    .c2-robust{
+      background:linear-gradient(135deg,rgba(40,150,100,.18),rgba(20,70,50,.35));
+      border:1px solid rgba(70,205,130,.55);
+      border-left:5px solid #28b487;
+      border-radius:12px;
+      padding:.75em 1em .85em;
+      font-size:.78em;
+      line-height:1.28;
+      box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+    }
+    .c2-robust strong{color:#5ad27d;}
+    .c2-divider{
+      height:1px;
+      background:linear-gradient(90deg,rgba(255,255,255,0),rgba(120,160,190,.55),rgba(255,255,255,0));
+      margin:.2rem 0 .4rem;
+      border:0;
+    }
+    @media (max-height:640px){
+      .c2-contrib-wrap{font-size:.56em;}
+    }
+
+  /* REMOVE old Chapter 2 professional contributions block (.c2-contrib-wrap, .c2-card, etc.) */
+  /* New lightweight Chapter 2 final slide helpers (re-using Ch4 styles) */
+  .c2-final h2{margin-bottom:1.1rem;}
+  .c2-final .contrib-box h4,
+  .c2-final .regime-box h4{font-size:.9em;}
+  .robust-box{
+    background:linear-gradient(135deg,rgba(40,150,100,.18),rgba(20,70,50,.35));
+    border:1px solid rgba(70,205,130,.55);
+    border-left:5px solid #28b487;
+    border-radius:12px;
+    padding:.75em 1em .85em;
+    font-size:.78em;
+    line-height:1.28;
+    box-shadow:0 4px 14px -6px rgba(0,0,0,.55);
+    margin-top:1.1rem;
+  }
+  .scope-note{
+    background:linear-gradient(135deg,rgba(255,183,77,.15),rgba(120,70,0,.35));
+    border:1px solid rgba(255,183,77,.55);
+    border-left:5px solid #ffb74d;
+    border-radius:12px;
+    padding:.7em 1em .8em;
+    font-size:.74em;
+    line-height:1.3;
+    box-shadow:0 4px 12px -6px rgba(0,0,0,.5);
+    margin-top:.9rem;
+  }
+  @media (max-height:640px){
+    .c2-final{font-size:.9em;}
+    .robust-box,.scope-note{font-size:.7em;}
+  }
+  /* Chapter 2 Contributions & Implications sizing overrides (scoped) */
+  .ch2-final h2{
+    font-size:1.0em;
+    margin:.15rem 0 .85rem;
+    letter-spacing:.5px;
+  }
+  .ch2-final .contrib-grid,
+  .ch2-final .ch4-grid{
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:.9rem 1.1rem;
+    margin-top:.4rem;
+  }
+  .ch2-final .contrib-box,
+  .ch2-final .regime-box{
+    font-size:.78em;
+    padding:.7em .85em .8em;
+    line-height:1.28;
+  }
+  .ch2-final .contrib-box h4,
+  .ch2-final .regime-box h4{
+    font-size:.82em;
+    margin:.05em 0 .45em;
+    letter-spacing:.4px;
+  }
+  .ch2-final .key-box{
+    font-size:.78em !important;
+    padding:.65em .85em .7em !important;
+    line-height:1.3;
+  }
+  .ch2-final .ch3-card{
+    font-size:.7em;
+    padding:.65em .85em .7em;
+  }
+  .ch2-final .bottom-line,
+  .ch2-final .finding-note,
+  .ch2-final .robust-box{
+    font-size:.75em;
+    padding:.65em .85em .7em;
+  }
+  @media (max-height:700px){
+    .ch2-final .contrib-box,
+    .ch2-final .regime-box{font-size:.72em;}
+    .ch2-final h2{font-size:.95em;margin-bottom:.7rem;}
+  }
+  @media (max-height:640px){
+    .ch2-final .contrib-box,
+    .ch2-final .regime-box{font-size:.68em;}
+  }
+  @media (max-height:580px){
+    .ch2-final .contrib-box,
+    .ch2-final .regime-box{font-size:.64em;padding:.55em .7em .6em;}
+    .ch2-final h2{font-size:.9em;}
+  }
+
+  /* === Moderate sizing for Chapter 2 Contributions slide (matching other chapters) === */
+  .ch2-final{
+    font-size:.58em !important;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  @media (max-height:760px){ .ch2-final{font-size:.54em !important;} }
+  @media (max-height:700px){ .ch2-final{font-size:.52em !important;} }
+  @media (max-height:640px){ .ch2-final{font-size:.48em !important;} }
+  @media (max-height:590px){ .ch2-final{font-size:.46em !important;} }
+  @media (max-height:540px){ .ch2-final{font-size:.44em !important;} }
+
+  .ch2-final h2{
+    font-size:1.05em !important;
+    margin:.1rem 0 .6rem !important;
+    line-height:1.1;
+    letter-spacing:.5px;
+  }
+
+  .ch2-final .contrib-grid,
+  .ch2-final .ch4-grid{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) !important;
+    gap:.7rem .9rem !important;
+    margin:.3rem 0 .8rem !important;
+  }
+
+  .ch2-final .contrib-box,
+  .ch2-final .regime-box{
+    padding:.65em .75em .7em !important;
+    font-size:.95em !important;
+    line-height:1.28 !important;
+    box-shadow:0 4px 12px -5px rgba(0,0,0,.45) !important;
+    border-radius:10px !important;
+  }
+  .ch2-final .contrib-box h4,
+  .ch2-final .regime-box h4{
+    font-size:.9em !important;
+    margin:.08em 0 .4em !important;
+    letter-spacing:.4px;
+  }
+
+  /* Reduce horizontal overflow on narrow screens */
+  @media (max-width:520px){
+    .ch2-final .contrib-grid,
+    .ch2-final .ch4-grid{
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) !important;
+    }
+  }
+
+  /* Make GFC image much smaller - fix selector to match actual HTML structure */
+  .ch3-block .ch3-card.gfc-smaller img {
+    max-height: 25vh !important;
+    width: auto !important;
+    max-width: 70% !important;
+  }
+  @media (max-height:760px){
+    .ch3-block .ch3-card.gfc-smaller img{max-height:22vh !important;}
+  }
+  @media (max-height:680px){
+    .ch3-block .ch3-card.gfc-smaller img{max-height:20vh !important;}
+  }
+  @media (max-height:620px){
+    .ch3-block .ch3-card.gfc-smaller img{max-height:18vh !important;}
+  }
+  @media (max-height:560px){
+    .ch3-block .ch3-card.gfc-smaller img{max-height:16vh !important;}
+  }
+  @media (max-height:500px){
+    .ch3-block .ch3-card.gfc-smaller img{max-height:14vh !important;}
+  }
+
+  /* NEW: Contemporary relevance box styling */
+.contemporary-box {
+  background: linear-gradient(135deg,#ffb74d22,#42affa22);
+  border: 2px solid #ffb74d;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px -6px rgba(0,0,0,.45);
+  padding: 1rem 1.2rem 1.1rem;
+  font-size: 1em;
+  color: #fff; /* Make text white */
+  font-weight: 500;
+  margin-top: .15rem;
+  /* Make it span two columns in the grid */
+  grid-column: span 2;
+}
+.contemporary-box h4 {
+  color: #fff; /* Heading white */
+  margin: .1rem 0 .5rem;
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.contemporary-box ul {
+  margin: .2rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: .98em;
+  line-height: 1.3;
+}
+.contemporary-box li {
+  position: relative;
+  padding: .25rem 0 .25rem 1em;
+  color: #fff; /* List text white */
+}
+.contemporary-box li span {
+  position: absolute;
+  left: 0;
+  color: #ffb74d; /* Bullet color for contrast */
+}
+/* Responsive: on small screens, span only one column */
+@media (max-width: 900px) {
+  .contemporary-box {
+    grid-column: span 1;
+  }
+}
   </style>
 </head>
 <body>
@@ -341,59 +1950,27 @@
       if(!clock || !bar) return;
       const elapsedMin = startTime ? (Date.now()-startTime)/60000 : 0;
       const remaining = Math.max(0, MAX_MIN - elapsedMin);
-      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : '⏱ Time!';
-      if (remaining <= 5){
-        bar.style.background = '#ff3b30'; clock.style.borderColor='#ff3b30';
-      } else if (remaining <= 10){
-        bar.style.background = '#ffa726'; clock.style.borderColor='#ffa726';
-      } else {
-        bar.style.background = '#42affa'; clock.style.borderColor='#42affa';
+      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : '
+        ⏱ Time's up!';
+      bar.style.width = (remaining/MAX_MIN*100)+'%';
+      if(remaining===0){
+        clearInterval(timerInterval);
+        setTimeout(()=>{ bar.style.width='100%'; },50);
+        setTimeout(()=>{ document.getElementById('timeup-sound').play(); },350);
       }
-      bar.style.width = Math.min(100,(elapsedMin/MAX_MIN)*100)+'%';
     }
     function startTimer(){
       if(startTime) return;
       startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 100);
       updateTimer();
-      timerInterval = setInterval(updateTimer,1000);
     }
-    function positionClock(){
-      const nav = document.querySelector('.mini-nav');
-      const clock = document.getElementById('clock');
-      if(!clock) return;
-      if(nav && nav.classList.contains('visible')){
-        const r = nav.getBoundingClientRect();
-        clock.style.top = (r.bottom + 8)+'px';
-        clock.style.left = r.left+'px';
-      } else {
-        clock.style.top = '10px';
-        clock.style.left = '12px';
-      }
-    }
-    window.addEventListener('resize', positionClock);
-    updateTimer(); // initial paint
+    document.addEventListener('visibilitychange', () => {
+      if(document.hidden) clearInterval(timerInterval);
+      else updateTimer();
+    });
   </script>
-
-  <!-- Spotlight logic: press 'L' to toggle -->
-  <script>
-    (function(){
-      const spot = document.querySelector('.spot');
-      let active = false;
-      document.addEventListener('keydown', e=>{
-        if(e.key && e.key.toLowerCase()==='l'){
-          active = !active;
-            spot.style.display = active ? 'block':'none';
-            document.body.classList.toggle('spotlight-cursor', active);
-        }
-      });
-      document.addEventListener('mousemove', e=>{
-        if(active){
-          spot.style.setProperty('--x', e.clientX+'px');
-          spot.style.setProperty('--y', e.clientY+'px');
-        }
-      });
-    })();
-  </script>
+  <audio id="timeup-sound" src="timeup.mp3" preload="auto"></audio>
 
   <div class="reveal"><div class="slides">
 
@@ -402,7 +1979,7 @@
       <h2 style="font-size:1.35em">The Rise of Central Bank Talk:<br><span style="font-weight:300;font-size:.6em">Essays in Central Bank Communication and Independence</span></h2>
       <p style="font-size:.8em">Thesis Defense →</p><p style="font-size:.6em">Lauren Leek</p>
       <div class="fragment" style="margin-top:10px;font-size:.4em;color:#a1a1a1">
-        <p style="font-size:1.2em;margin-bottom:5px"><strong>August 5, 2025</strong></p>
+        <p style="font-size:1.2em;margin-bottom:5px"><strong>7 October, 2025</strong></p>
         <h4 style="font-size:1.4em;margin-bottom:3px;color:#2e82b9">Thesis Committee</h4>
         <p><strong>Prof. Simon Hix</strong> – European University Institute (supervisor)</p>
         <p><strong>Prof. Waltraud Schelkle</strong> – European University Institute (co-supervisor)</p>
@@ -412,19 +1989,24 @@
     </section>
 
 
-        <!-- NEWS CONTEXT -->
+        <!-- NEWS CONTEXT (now a vertical stack) -->
     <section>
-      <h2>Central Banks in the Headlines</h2>
-
-      <!-- FT Headlines collage -->
-      <div class="headlines-collage">
-        <img src="headline_bitcoin.jpg" alt="FT headline on Bitcoin/digital currency" class="headline-card fragment pop-headline card-1" data-fragment-index="4" style="--base: rotate(-5deg)">
-        <img src="headline_cbdc.jpg" alt="FT headline on CBDC" class="headline-card fragment pop-headline card-2" data-fragment-index="5" style="--base: rotate(5deg)">
-        <img src="headline_climate.jpg" alt="FT headline on climate and central banks" class="headline-card fragment pop-headline card-3" data-fragment-index="6" style="--base: rotate(1deg)">
+      <section>
+        <h2>In the headlines</h2>
+        <div class="headlines-collage">
+          <img src="headline_bitcoin.jpg" alt="FT headline on Bitcoin/digital currency" class="headline-card fragment pop-headline card-1" data-fragment-index="4" style="--base: rotate(-5deg)">
+          <img src="headline_cbdc.jpg" alt="FT headline on CBDC" class="headline-card fragment pop-headline card-2" data-fragment-index="5" style="--base: rotate(5deg)">
+          <img src="headline_climate.jpg" alt="FT headline on climate and central banks" class="headline-card fragment pop-headline card-3" data-fragment-index="6" style="--base: rotate(1deg)">
   <img src="econ_energy.jpg" alt="Economist headline on energy" class="headline-card fragment pop-headline card-4" data-fragment-index="7" style="--base: rotate(-2deg)">
   <img src="econ_mission.jpg" alt="Economist headline on mission" class="headline-card fragment pop-headline card-5" data-fragment-index="8" style="--base: rotate(3deg)">
   <img src="bloomberg_saving.jpg" alt="Bloomberg headline on saving" class="headline-card fragment pop-headline card-6" data-fragment-index="9" style="--base: rotate(-4deg)">
-      </div>
+        </div>
+      </section>
+      <section>
+        <h2> & beyond the headlines</h2>
+        <img src="frankfurt_sky.jpg" alt="Frankfurt skyline"
+             style="width:100%;height:auto;max-height:80vh;object-fit:contain;">
+      </section>
     </section>
 
     <!-- PUZZLE -->
@@ -451,316 +2033,671 @@
 
 
 
-    <!-- INTRODUCTION -->
-  <section class="intro-slide" data-section="intro">
-      <h2>Argument</h2>
-      <div id="argument-text">
-        <ul class="spotlight">
-          <li class="fragment" data-fragment-index="0">Thesis view: communication is not merely a neutral tool for information transmission; it is <strong>dynamically</strong> shaped by &amp; employed to address challenges to their independence.</li>
-          <li class="fragment" data-fragment-index="1">Independence ≠ one‑off grant; requires continuous <em>responsiveness and therefore they actively seek public support and macro-economic coordination</em>.</li>
-          <li class="fragment" data-fragment-index="2">Specifically, they respond to a limited degree to societal &amp; financial &amp; fiscal pressures, not just inflation to fulfil their mandates.</li>
-          <li class="fragment" data-fragment-index="3">This is not limited to central banks embedded in advanced democracies.</li>
-        </ul>
+    <!-- INTRODUCTION as a vertical stack: Argument + Theory contributions -->
+<section data-section="intro">
+  <!-- MOVED UP: Argument slide now first -->
+  <section class="intro-slide">
+    <h2>Argument</h2>
+    <div id="argument-text">
+      <div class="argument-block">
+        <div class="fragment premise-def" data-fragment-index="0">
+          Independence ≠ one‑off grant; requires <em>continuous</em> <strong style="color:#42affa">responsiveness</strong> and coordination.
+        </div>
+        <div class="fragment argument-contrast" data-fragment-index="1">
+          <div class="contrast-wrap">
+            <div class="contrast-box std">
+              <div class="contrast-label">Standard view</div>
+              <div class="contrast-text">Communication = neutral instrument for information transmission and accountability (e.g., Woodford, Geraats, etc.).</div>
+            </div>
+            <div class="contrast-arrow">⇛</div>
+            <div class="contrast-box thesis">
+              <div class="contrast-label">Thesis view</div>
+              <div class="contrast-text">Communication is <span class="emph">dynamically shaped</span> &amp; deployed to address perceived challenges to independence.</div>
+            </div>
+          </div>
+        </div>
+        <div class="fragment argument-remark" data-fragment-index="2">
+          <span class="remark-label">Addition</span>
+          <strong style="color:#ffb74d">Not only</strong> central banks embedded in <strong style="color:#42affa">advanced democracies</strong>. (Some central banks in advanced economies seem to be experiencing emerging central bank problems).
+        </div>
       </div>
-      <img id="core-arg-img" class="fragment" data-fragment-index="4"
-           src="core_arg.png" alt="Core argument schematic"
-           style="display:none;width:90%;max-width:900px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.4);margin-top:1.2rem">
+    </div>
   </section>
 
+  <!-- NOW SECOND: Analytical framework slide -->
+  <section class="intro-slide">
+    <h2>Analytical framework</h2>
+    <img src="core_arg.png" alt="Core argument schematic"
+         style="width:90%;max-width:900px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.4);margin-top:.5rem">
+  </section>
+
+  <!-- Contributions slide unchanged -->
+  <section class="intro-slide theory-tight">
+    <h2>Contributions to Theory</h2>
+    <ul class="theory-list">
+      <li class="theory-item">
+        <span class="ch-badge ch2" aria-label="Chapter 2">Ch 2</span>
+        <span class="theory-check">&#10003;</span>
+        <span>Financial instability as a persistent challenge for central bank independence - beyond macroprudential turn literature</span>
+      </li>
+      <li class="theory-item">
+        <span class="ch-badge ch3" aria-label="Chapter 3">Ch 3</span>
+        <span class="theory-check">&#10003;</span>
+        <span>Even/especially the most independent central banks are responsive - beyond Cukierman</span>
+      </li>
+      <li class="theory-item pad-right">
+        <span class="ch-badge ch4" aria-label="Chapter 4">Ch 4</span>
+        <span class="theory-check">&#10003;</span>
+        <span>Fiscal and financial pressures through either coordination or dominance (policy‑linkages) - beyond Sargent and Wallace</span>
+      </li>
+      <li class="theory-item note">
+        <span class="theory-check theory-warn" title="Limitation">&#9888;</span>
+        <span class="theory-note"><em>Note:</em> <strong style="color:#c91c1c">not </strong> a test of the intentions of governors behind communicating</span>
+      </li>
+    </ul>
+  </section>
+</section> <!-- end of intro (Argument + Contributions to Theory stack) -->
+
+    <!-- METHODS vertical stack -->
+    <section>
       <section class="intro-slide">
-      <h2>Methods & data</h2>
-      <div class="methods-grid">
-        <img src="coverage_map.jpg" alt="Global coverage map" class="methods-img fragment" data-fragment-index="1">
-        <img src="text_as_data.jpg" alt="Text as data overview" class="methods-img fragment" data-fragment-index="2">
+        <h2>Methods &amp; data</h2>
+        <div class="methods-grid">
+          <img src="coverage_map.jpg" alt="Global coverage map" class="methods-img fragment" data-fragment-index="1">
+          <img src="text_as_data.jpg" alt="Text as data overview" class="methods-img fragment" data-fragment-index="2">
+        </div>
+      </section>
+
+      <section class="intro-slide methods-overview">
+        <h2>Overview of Chapters &amp; Methods</h2>
+        <div class="overview-grid" role="table" aria-label="Chapters and methods overview">
+          <div class="ov-head" role="row">
+            <span class="ov-h">Chapter</span>
+            <span class="ov-h">Data</span>
+            <span class="ov-h">Empirical Method</span>
+            <span class="ov-h">Text-as-Data</span>
+          </div>
+
+          <div class="ov-row" role="row">
+            <div class="ov-cell ch" data-label="Chapter">
+              <span class="badge-ch">2</span>
+              <span>Independence → Communication</span>
+            </div>
+            <div class="ov-cell data" data-label="Data">
+              All speeches (1997–2023)
+            </div>
+            <div class="ov-cell emp" data-label="Empirical Method">
+              <div class="ov-tags">
+                <span class="tag method" title="Staggered Difference-in-Differences">Staggered DiD</span>
+                <span class="tag method" title="Instrumental Variables">Instrumental Variable</span>
+              </div>
+            </div>
+            <div class="ov-cell txt" data-label="Text-as-Data">
+              <span class="badge-llm" title="Google Gemini">Gemini</span>
+              <div class="ov-tags">
+                <span class="tag topic" title="Sentence classification of pressures">Sentence cls.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ov-row" role="row">
+            <div class="ov-cell ch" data-label="Chapter">
+              <span class="badge-ch">3</span>
+              <span>NCB Agenda Influence</span>
+            </div>
+            <div class="ov-cell data" data-label="Data">
+              NCB + ECB speeches (1997–2023)
+            </div>
+            <div class="ov-cell emp" data-label="Empirical Method">
+              <div class="ov-tags">
+                <span class="tag method" title="Sequence / Markov chain analysis">Sequence / Markov</span>
+                <span class="tag method" title="Cross-sectional time series models">Cross-Sectional Timeseries</span>
+              </div>
+            </div>
+            <div class="ov-cell txt" data-label="Text-as-Data">
+              <span class="badge-llm" title="BERTopic topic modelling">BERTopic</span>
+              <div class="ov-tags">
+                <span class="tag topic" title="Topic discovery & temporal diffusion">Topics & diffusion</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ov-row" role="row">
+            <div class="ov-cell ch" data-label="Chapter">
+              <span class="badge-ch">4</span>
+              <span>Policy Linkages</span>
+            </div>
+            <div class="ov-cell data" data-label="Data">
+              All speeches (1997–mid‑2023)
+            </div>
+            <div class="ov-cell emp" data-label="Empirical Method">
+              <div class="ov-tags">
+                <span class="tag desc" title="Descriptive / exploratory analysis">Descriptive</span>
+              </div>
+            </div>
+            <div class="ov-cell txt" data-label="Text-as-Data">
+              <span class="badge-llm" title="GPT‑3.5 multi-stage prompting">GPT‑3.5</span>
+              <div class="ov-tags">
+                <span class="tag topic" title="Regime multi-class classification (coordination / dominance)">Regime cls.</span>
+                <span class="tag topic" title="Validation against human gold set">Validation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REPLACED: old free-form list -> unified boxed numbered style -->
+      <section class="intro-slide theory-tight">
+        <h2>Methods &amp; Data Contributions</h2>
+        <ul class="theory-list">
+          <li class="theory-item has-multi-badges">
+            <span class="badge-group">
+              <span class="ch-badge ch2" aria-label="Chapter 2">Ch 2</span>
+              <span class="ch-badge ch4" aria-label="Chapter 4">Ch 4</span>
+            </span>
+            <span class="theory-check">&#10003;</span>
+            <span><strong>Novel LLM-based methods</strong> for detecting policy pressures in central bank communication</span>
+          </li>
+          <li class="theory-item">
+            <span class="ch-badge all" aria-label="Chapters 2 to 4">Ch 2–4</span>
+            <span class="theory-check">&#10003;</span>
+            <span><strong>Comprehensive dataset</strong> with enriched meta-data (retrieved via LLMs)</span>
+          </li>
+            <li class="theory-item">
+              <span class="ch-badge ch3" aria-label="Chapter 3">Ch 3</span>
+              <span class="theory-check">&#10003;</span>
+              <span><strong>New measure of responsiveness</strong> for central banks</span>
+            </li>
+          <li class="theory-item">
+            <span class="ch-badge all" aria-label="Chapters 2 to 4">Ch 2–4</span>
+            <span class="theory-check">&#10003;</span>
+            <span><strong><a href="https://centralbanktalk.eu/" class="embed-site-link" data-embed-site>Interactive website</a></strong> with dashboards and insights</span>
+          </li>
+        </ul>
+      </section>
+    </section>
+<!-- CHAPTER 2 -->
+<section data-section="ch2">
+  <section>
+    <div class="chapter-title-block">
+      <h2>Chapter&nbsp;2<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
+      <p style="font-size:0.7em; line-height:1.2;">How Central Bank Independence Shapes Monetary Policy Communication:<br>A Large Language Model Application</p>
+    </div>
+    <div class="fragment" data-fragment-index="2">
+      <div class="rq-container">
+        <div class="question-icon">?</div>
+        <p>Does central bank independence change how CBs communicate about monetary policy?</p>
+      </div>
+    </div>
+    <div class="pub-citation fragment" data-fragment-index="3">
+      * Published as: Leek, L., &amp; Bischl, S. (2025). How central bank independence shapes monetary policy communication.
+      <i>European Journal of Political Economy, 87</i>, 102668.
+      <a href="https://doi.org/10.1016/j.ejpoleco.2025.102668" target="_blank" rel="noopener">doi.org/10.1016/j.ejpoleco.2025.102668</a>
+    </div>
+  </section>
+
+  <!-- Reformatted Theory slide -->
+  <section>
+    <div class="ch3-block">
+      <span class="pill-title">Theory</span>
+      <div class="ch3-card" style="padding:0;background:transparent;box-shadow:none;border:none;">
+        <ul class="spotlight">
+          <li class="fragment"><strong>Central banks use communication as a monetary policy tool and for public support/reputation.</strong></li>
+          <li class="fragment" style="list-style:none; padding-left:0; margin-left:0;">
+            <img src="main_channels_r.png" alt="Main channels diagram" style="width: 90%; max-width: 700px; height: auto; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.3); margin: 1rem 0;">
+          </li>
+          <li class="fragment" style="list-style:none; padding-left:0; margin-left:0;">
+            <div class="key-box" style="margin-top:.5em;">
+              <strong>Hypothesis:</strong> As independence ↑, communication shifts from narrow, technical justifications (price stability) to broader topics (financial stability) to build public legitimacy.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reformatted Methods slide -->
+  <section>
+    <div class="ch3-block">
+      <span class="pill-title">Methods</span>
+      <div class="ch3-grid">
+        <div class="ch3-card">
+          <ul class="spotlight" style="margin:0;">
+            <li class="fragment">Google Gemini sentence classification (monetary vs. financial pressures)</li>
+            <li class="fragment">Staggered DiD on 100 CBs (1997‑2023) & augmented event study + Instrumental Variable (inverse distance-weighted measure of the lagged world CBI)</li>
+          </ul>
+        </div>
+        <div class="ch3-card fragment" data-fragment-index="2" style="display:flex;align-items:center;justify-content:center;">
+          <img src="workflow.jpg" alt="Workflow diagram" class="methods-img" style="margin-top:.2rem;max-width:900px;width:90%">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reformatted Findings (main results) -->
+  <section>
+    <div class="ch3-block">
+      <span class="pill-title">Findings</span>
+      <div class="ch3-grid">
+        <div class="ch3-card">
+          <ul style="margin:0;">
+            <li>
+              <span class="arrow-up">↑</span> Independence ⇒
+              <span class="arrow-down">↓</span> price‑stability talk;
+              <span class="arrow-up">↑</span> financial‑stability talk.
+            </li>
+            <li>Effect strongest in advanced democracies; robust to crises controls.</li>
+          </ul>
+        </div>
+        <div class="ch3-card fragment" data-fragment-index="1" style="display:flex;align-items:center;justify-content:center;">
+          <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain;margin-top:.2rem;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reformatted Findings (mechanisms) -->
+  <section>
+    <div class="ch3-block">
+      <span class="pill-title">Mechanisms</span>
+      <div class="ch3-grid">
+        <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+          <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:70vh;">
+        </div>
+        <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+          <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:70vh;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reformatted Findings (crisis case) -->
+  <section>
+    <div class="ch3-block">
+      <span class="pill-title">It is not the GFC</span>
+      <div class="ch3-card gfc-smaller" style="display:flex;align-items:center;justify-content:center;padding:0;background:transparent;box-shadow:none;border:none;">
+        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:18vh;width:auto;max-width:55%;">
+      </div>
+      <div class="ch3-card" style="border-left:5px solid #28b487;">
+        <strong>Robust to:</strong> Alternative CBI measures| Independence precedent | Audiences | Financial supervision mandates | Excluding Euro area | Multiple estimators | Placebo tests | Sample construction | Event study indicator
+      </div>
+        <div class="ch3-card" style="border-left:5px solid #28b487;">
+          Independence paradox: free from government ≠ free from markets
+        </div>
+    </div>
+  </section>
+
+  <!-- MOVED IN: Chapter 2 Contributions & Implications (was wrongly inside an early ch3 section) -->
+  
+  
+  
+</section> <!-- end Chapter 2 stack -->
+<!-- CHAPTER 3 -->
+<section data-section="ch3">
+  <!-- Chapter 3 title slide (now correctly inside ch3) -->
+  <section>
+    <div class="chapter-title-block">
+      <h2>Chapter&nbsp;3</h2>
+      <p style="font-size:0.7em;line-height:1.2;">Who Sets the Agenda? The Role of National Central Banks in the Eurosystem*</p>
+    </div>
+    <div class="rq-container fragment" data-fragment-index="1">
+      <div class="question-icon">?</div>
+      <p>What is the role of NCBs in setting the ECB agenda?</p>
+    </div>
+    <div class="pub-citation fragment" data-fragment-index="3">
+      * R&amp;R at Journal of European Public Policy.
+    </div>
+  </section>
+
+  <!-- Framework + Hypotheses -->
+  <section>
+    <div class="ch3-block">
+      <span class="pill-title">Framework</span>
+      <div class="key-box fragment" data-fragment-index="1">
+        Issue‑responsiveness as a functional tool: the ECB preserves legitimacy under expanding expectations while retaining formal autonomy.
+      </div>
+      <h3 class="fragment" data-fragment-index="2" style="font-size:.9em;letter-spacing:.5px;color:#cfe8f8;margin:.15rem 0 .35rem;">Hypotheses</h3>
+      <div class="hypo-grid fragment" data-fragment-index="3">
+        <div class="hypo"><h5>H1 First Movers</h5><strong>NCBs introduce novel topics first</strong></div>
+        <div class="hypo"><h5>H2 Public Salience</h5><strong>ECB uptake ↑ with national salience</strong></div>
+        <div class="hypo"><h5>H3 Economic Pressure</h5><strong>Responsiveness ↑ with asymmetric pressures</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Figure slides -->
+  <section class="ch3-fig-slide"><h3>NCBs first movers</h3><img src="first_movers.jpg" alt="First Movers"></section>
+  <section class="ch3-fig-slide"><h3>ECB direct responsive</h3><img src="topic_transitions.jpg" alt="Topic Transitions"></section>
+  <section class="ch3-fig-slide"><h3>NCBs lead 3 month lags</h3><img src="coefficient_plot.jpg" alt="Coefficient Plot"></section>
+  <section class="ch3-fig-slide fig-pressure"><h3>ECB not extra responsive under pressure</h3><img src="interaction_grid.jpg" alt="Interaction Grid"></section>
+
+  <!-- Heterogeneity / scope conditions -->
+  <section>
+    <div class="het-grid">
+      <div class="het-pair fragment" data-fragment-index="0" style="display:contents;">
+        <div class="het-col">
+          <h4>Scope conditions</h4>
+          <div class="het-box"><h5>🔴 Crisis <span class="inc">↑ responsiveness</span></h5><p>Racts to Germany (austerity) &amp; Italy (flexibility)</p></div>
+          <div class="het-box"><h5>👥 Coalitions <span class="inc">↑ stronger</span></h5><p>Hawk bloc (DE/NL) vs. Dove bloc (FR/IT/ES) > isolated NCB speeches.</p></div>
+          <div class="het-box"><h5>📍 Post‑Sintra <span class="dec">↓ reduced</span></h5><p>Coordination partly substitutes ad‑hoc speech responsiveness.</p></div>
+        </div>
+        <div class="het-col">
+          <h4>Alternative Explanations</h4>
+          <div class="het-box issue"><h5>❌ Issue Linkage</h5><p>No systematic cross‑topic cascade (e.g. climate → monetary) detected.</p></div>
+          <div class="het-box alt"><h5>✓ Within‑Topic Variance</h5><p><strong>Monetary:</strong> Disagreement <span class="dec">↓</span><br><strong>Climate:</strong> Disagreement <span class="stable">→</span></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="het-key fragment" data-fragment-index="1">
+      <strong>Key Insight:</strong> ECB responsiveness is <span class="highlight">conditional</span> and topic audience dictates desired unity.
+    </div>
+  </section>
+  <!-- New: Contributions moved to last slide of chapter 3 -->
+
+</section> <!-- end Chapter 3 stack -->
+
+<!-- CHAPTER 4 -->
+<section data-section="ch4" class="ch4-small">
+  <!-- Title / RQ slide -->
+  <section>
+    <div class="chapter-title-block">
+      <h2>Chapter&nbsp;4</h2>
+      <p style="font-size:0.7em; line-height:1.2;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT‑3.5</p>
+    </div>
+    <div class="rq-container fragment" data-fragment-index="1">
+      <div class="question-icon">?</div>
+      <p>How good are LLMs at detecting shifts toward dominance or coordination across policy domains?</p>
+    </div>
+  </section>
+
+
+
+
+  <!-- === NEW Ch4 Slide 1: Introduction & Regimes === -->
+  <section>
+    <div class="ch4-extra">
+
+      <h2 class="fragment" data-fragment-index="1" style="margin-bottom:1.2rem;">Policy Regimes</h2>
+      <div class="ch4-grid" style="margin-bottom:1.2rem;">
+        <div class="regime-box fragment" data-fragment-index="1">
+          <h4>💪 Monetary Dominance</h4>
+          CB prioritises price stability over other aims.
+        </div>
+        <div class="regime-box dom-fiscal fragment" data-fragment-index="1">
+          <h4>🏛 Fiscal Dominance</h4>
+          Accommodation of debt/deficits constrains policy.
+        </div>
+        <div class="regime-box dom-fin fragment" data-fragment-index="1">
+          <h4>💼 Financial Dominance</h4>
+          Stability/market functioning overrides price mandate.
+        </div>
+        <div class="regime-box coord-fisc fragment" data-fragment-index="1">
+          <h4>🤝 Monetary–Fiscal Coordination</h4>
+          Symmetric joint calibration.
+        </div>
+        <div class="regime-box coord-fin fragment" data-fragment-index="1">
+          <h4>🤝 Monetary–Financial Coordination</h4>
+          Liquidity + prudential signaling alignment.
+        </div>
       </div>
 
-    </section>
+    </div>
+  </section>
 
 
-    <!-- CHAPTER 2 -->
-    <section data-section="ch2">
+  <!-- Guess the Regime (interactive) -->
+  <section>
+    <h3 style="margin-bottom:1.2rem;">Guess the Regime</h3>
+    <div class="gr-panel" style="margin-bottom:1.2rem;">
+      <p id="gr-text" style="font-style:italic;margin:0 0 .9rem">Loading example…</p>
+      <div class="gr-options" id="gr-options" style="margin-bottom:.8rem;">
+        <div class="gr-option" data-key="A"><span class="gr-key">A</span><span class="gr-label">Monetary Independence</span></div>
+        <div class="gr-option" data-key="B"><span class="gr-key">B</span><span class="gr-label">Monetary → Fiscal Coordination</span></div>
+        <div class="gr-option" data-key="C"><span class="gr-key">C</span><span class="gr-label">Fiscal Dominance</span></div>
+        <div class="gr-option" data-key="D"><span class="gr-key">D</span><span class="gr-label">Financial Coordination</span></div>
+        <div class="gr-option" data-key="E"><span class="gr-key">E</span><span class="gr-label">Financial Dominance</span></div>
+        <div class="gr-option" data-key="F"><span class="gr-key">F</span><span class="gr-label">Other / Neutral</span></div>
+      </div>
+      <div id="gr-result" class="gr-result"></div>
+      <div class="gr-meta" style="margin-top:.6rem;">
+        <span><code>A–F</code> classify</span>
+        <span><code>N</code> next &nbsp;|&nbsp; <code>L</code> spotlight</span>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const dataset = [
+          { t:"“We stand ready to adjust the pace of purchases to preserve transmission.”", gold:'D', note:'Financial coordination (backstop language)' },
+          { t:"“Budgetary support must be calibrated to avoid adding to inflationary pressures.”", gold:'B', note:'Monetary→Fiscal coordination guidance' },
+          { t:"“Debt sustainability considerations limit our room for manoeuvre.”", gold:'C', note:'Fiscal dominance cue' },
+          { t:"“We will maintain an adequate liquidity stance while monitoring market functioning.”", gold:'D', note:'Financial coordination / liquidity assurance' },
+          { t:"“Further rate moves will depend on data, not political timelines.”", gold:'A', note:'Monetary independence assertion' }
+        ];
+        const textEl = document.getElementById('gr-text');
+        const resultEl = document.getElementById('gr-result');
+        const optionEls = Array.from(document.querySelectorAll('.gr-option'));
+        let idx = 0, answered = false;
+        function clearState(){
+          optionEls.forEach(o=>o.classList.remove('chosen','correct','wrong'));
+          resultEl.textContent=''; resultEl.style.color=''; answered=false;
+        }
+        function show(){ clearState(); textEl.textContent = dataset[idx].t; }
+        function grade(k){
+          const opt = optionEls.find(o=>o.dataset.key===k); if(!opt) return;
+          optionEls.forEach(o=>o.classList.remove('chosen')); opt.classList.add('chosen');
+          if(answered) optionEls.forEach(o=>o.classList.remove('correct','wrong'));
+          const correct = (k===dataset[idx].gold);
+          opt.classList.add(correct?'correct':'wrong');
+          resultEl.innerHTML = (correct?'✅ Correct':'❌ We coded: <strong>'+dataset[idx].gold+'</strong>')+' — <em>'+dataset[idx].note+'</em>';
+          resultEl.style.color = correct ? '#5ad27d' : '#ff736a';
+          answered = true;
+        }
+        document.addEventListener('keydown', e=>{
+          if(!Reveal.isFocused()) return;
+          const k = e.key.toUpperCase();
+          if('ABCDEF'.includes(k)) grade(k);
+          else if(k==='N'){ idx = (idx+1)%dataset.length; show(); }
+        });
+        optionEls.forEach(o=>o.addEventListener('click', ()=>grade(o.dataset.key)));
+        show();
+      })();
+    </script>
+  </section>
+
+
+
+
+  <!-- === NEW Ch4 Slide 2: Methodology (compact side-by-side) === -->
+  <section>
+    <div class="ch4-extra">
+      <div class="ch4-method-grid" style="margin-bottom:1.2rem;">
+        <div class="pipeline-col">
+          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Classification Pipeline</h2>
+          <img src="coding_scheme.jpg"
+               alt="Three-stage classification pipeline schematic"
+               class="fragment"
+               data-fragment-index="1"
+               style="margin-bottom:.8rem;">
+        </div>
+        <div class="validation-col">
+          <h2 class="fragment" data-fragment-index="2" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
+          <div class="ch4-grid fragment" data-fragment-index="3" style="margin-bottom:.8rem;">
+            <div class="regime-box" style="border-left-color:#28b487">
+              <h4>Manual Validation</h4>
+              1k sentences / 3 coders (IRR 76–84%). Accuracy 62–85%; high macro F1 (.36–.83).
+            </div>
+            <div class="regime-box" style="border-left-color:#ffb74d">
+              <h4>Prompt Choices</h4>
+              Temp=0; 10 sentences/prompt; context window for disambiguation.
+            </div>
+            <div class="regime-box" style="border-left-color:#ff5252">
+              <h4>Compute / Tokens</h4>
+              Efficient token usuage ; GPT‑4 & Gemini benchmarking checks.
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- === NEW Ch4 Slide 3: Key Findings (grouped cross-country boxes) === -->
+  <section>
+    <div class="ch4-extra">
+      <div class="ch4-findings-grid" style="margin-bottom:1.2rem;">
+        <div class="trend-col">
+          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Dominance / Coordination Over Time</h2>
+          <img src="dominance_trends.jpg"
+               alt="Trends in monetary dominance, fiscal/financial coordination and dominance over time"
+               class="fragment ch4-trend-small"
+               data-fragment-index="1"
+               style="margin-bottom:.8rem;">
+        </div>
+        <div class="variation-col">
+          <h2 class="fragment" data-fragment-index="2" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
+          <div class="ch4-grid fragment" data-fragment-index="3" style="margin-bottom:.8rem;">
+            <div class="regime-box" style="border-left-color:#42affa">
+              <h4>Advanced vs Emerging</h4>
+              Advanced: more monetary talk; Emerging: more financial (risk management).
+            </div>
+            <div class="regime-box" style="border-left-color:#ffb74d">
+              <h4>Democracy vs Autocracy</h4>
+              Democracies stress monetary dominance; autocracies higher financial dominance.
+            </div>
+            <div class="regime-box" style="border-left-color:#28b487">
+              <h4>Crisis Effects</h4>
+              Fiscal stress → ↑ fiscal dominance rhetoric; inflation → ↑ dominance + coordination.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- === NEW Ch4 Slide 4: Contributions & Applications (grouped fragments) === -->
+  <section>
+    <div class="ch4-extra">
+      <div class="contrib-grid fragment" data-fragment-index="1" style="margin-bottom:1.2rem;">
+       
+     
+       
+      
+      </div>
+
+      <h2 class="fragment" data-fragment-index="2" style="margin-bottom:1.2rem;">Future Uses</h2>
+      <div class="ch4-grid fragment" data-fragment-index="3" style="margin-bottom:1.2rem;">
+        <div class="regime-box" style="border-left-color:#9d7dff">
+          <h4>Political Economy</h4>
+          <p>Track regime change & politicisation.</p>
+        </div>
+        <div class="regime-box" style="border-left-color:#ff5252">
+          <h4>Model Validation</h4>
+          <p>Compare rhetorical vs structural constraints.</p>
+        </div>
+        <div class="regime-box" style="border-left-color:#28b487">
+          <h4>Real‑Time Signals</h4>
+          <p>Monitor shifts toward dominance pressure.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  </section> <!-- end Ch4 -->
+    <!-- CHAPTER 5 / CONCLUSION (replaced) -->
+    <section data-section="conclusion" class="conclusion-set">
+      <!-- Slide 1: Main Thesis & Key Insight -->
       <section>
+        <!-- New chapter-style title block -->
         <div class="chapter-title-block">
-          <h2>Chapter 2<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
-          <p style="font-size:0.7em; line-height:1.2;">How Central Bank Independence Shapes Monetary Policy Communication:<br>A Large Language Model Application</p>
+          <h2>Chapter&nbsp;5<br><small>Conclusion</small></h2>
         </div>
-        <div class="fragment" data-fragment-index="2">
-          <div class="rq-container">
-            <div class="question-icon">?</div>
-            <p>Does the way in which central banks communicate about monetary policy change with increases in independence?</p>
-          </div>
-        </div>
-        <div class="fragment" data-fragment-index="1" style="position:absolute;bottom:-90px;left:calc(-50vw + 50% + 20px);font-size:0.4em;text-align:left;max-width:95%;color:#a1a1a1;">
-          * Published as: Leek, L., & Bischl, S. (2025). How central bank independence shapes monetary policy communication. <i>European Journal of Political Economy, 87</i>, 102668. <a href="https://doi.org/10.1016/j.ejpoleco.2025.102668" target="_blank" style="color:inherit">doi.org/10.1016/j.ejpoleco.2025.102668</a>
-        </div>
-      </section>
-      <section>
-        <h3>Theory</h3>
-        <ul class="spotlight">
-          <li class="fragment"><strong>Delegation Dilemma:</strong> Gov'ts delegate to ICBs for credibility, but this creates a democratic deficit.</li>
-          <li class="fragment"><strong>Communication as Legitimacy:</strong> ICBs use communication to bridge this gap, demonstrating accountability and managing expectations.</li>
-          <li class="fragment"><strong>Hypothesis:</strong> As independence ↑, communication shifts from narrow, technical justifications (price stability) to broader topics (financial stability) to build public legitimacy.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Methods</h3>
-        <ul class="spotlight">
-          <li class="fragment">Google Gemini sentence classification (monetary vs. financial pressures).</li>
-          <li class="fragment">Staggered DiD on 100 CBs (1997‑2023) + IV.</li>
-        </ul>
-        <img src="workflow.jpg" alt="Workflow diagram" class="methods-img fragment" data-fragment-index="1" style="margin-top:1.2rem;max-width:900px;width:90%">
-      </section>
-      <section style="overflow:hidden">
-        <h3>Findings</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;">
-          <div>
-            <ul>
-              <li><span style="color:green">↑</span> Independence ⇒ <span style="color:red">↓</span> price‑stability talk; <span style="color:green">↑</span> financial‑stability talk.</li>
-              <li>Effect strongest in advanced democracies; robust to crises controls.</li>
-            </ul>
-          </div>
-          <div>
-            <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img fragment" data-fragment-index="1" style="margin-top:1.2rem;width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain">
-          </div>
-        </div>
-      </section>
-      <section>
-        <h3>Findings</h3>
-        <div class="methods-grid">
-            <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height: 70vh;">
-            <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height: 70vh;">
-        </div>
-      </section>
-      <section>
-        <h3>Findings</h3>
-        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height: 75vh;">
-      </section>
-    </section>
+        <div class="concl-wrapper">
+          <div class="card">
 
-    <!-- CHAPTER 3 -->
-    <section data-section="ch3">
-      <section>
-        <div class="chapter-title-block">
-          <h2>Chapter 3<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
-          <p style="font-size:0.7em; line-height:1.2;">Who Sets the Agenda? The Role of National<br>Central Banks in the Eurosystem</p>
-        </div>
-        <div class="fragment" data-fragment-index="2">
-          <div class="rq-container">
-            <div class="question-icon">?</div>
-            <p>What drives the expansion of the ECB agenda and continued engagement with a variety of topics?</p>
-          </div>
-        </div>
-        <div class="fragment" data-fragment-index="1" style="position:absolute;bottom:-90px;left:calc(-50vw + 50% + 20px);font-size:0.4em;text-align:left;max-width:95%;color:#a1a1a1;">
-          * Revise & Resubmit at <i>Journal of European Public Policy</i> (JEPP).
-        </div>
-      </section>
-      <section>
-        <h3>Theory</h3>
-        <ul class="spotlight">
-          <li class="fragment"><strong>Agenda-Setting &amp; Policy Entrepreneurship:</strong> Actors (here, NCBs) can introduce new ideas into the policy debate.</li>
-          <li class="fragment"><strong>Bureaucratic Politics:</strong> Policy is an outcome of competition among organizations (NCBs vs ECB).</li>
-          <li class="fragment"><strong>Hypothesis:</strong> NCBs, closer to national concerns, act as policy entrepreneurs, introducing topics (e.g., climate) which the ECB later adopts to maintain relevance and control.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Methods</h3>
-        <ul class="spotlight">
-          <li class="fragment">BERTopic on 4 659 speeches (1997‑2024).</li>
-          <li class="fragment">First‑mover graphs &amp; Markov chains.</li>
-        </ul>
-        <div style="margin-top:1.5rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem;">
-          <img src="methods_ch3.png" alt="Methods CHR" style="width:90%;max-width:700px;height:auto;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.18);">
-          <img src="workflow_bert.jpg" alt="Workflow BERT" style="width:90%;max-width:700px;height:auto;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.18);">
-        </div>
-      </section>
-      <section>
-        <h3>Findings</h3>
-        <ul>
-          <li><strong>NCBs</strong> lead on climate &amp; supervision; ECB follows.</li>
-          <li>Coalition of NCBs ↑ probability topic diffuses to ECB.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Findings: NCBs first movers</h3>
-        <img src="first_movers.jpg" alt="First Movers" class="methods-img" style="max-height: 75vh;">
-      </section>
-      <section>
-        <h3>Findings: ECB direct responsive</h3>
-        <img src="topic_transitions.jpg" alt="Topic Transitions" class="methods-img" style="max-height: 75vh;">
-      </section>
-      <section>
-        <h3>Findings: NCBs lead 3 month lags </h3>
-        <img src="coefficient_plot.jpg" alt="Coefficient Plot" class="methods-img" style="max-height: 75vh;">
-      </section>
-      <section>
-        <h3>Findings: ECB not extra responsive under pressure </h3>
-        <img src="interaction_grid.jpg" alt="Interaction Grid" class="methods-img" style="max-height: 75vh;">
-      </section>
-    </section>
+            <h3>Key Insight</h3>
+            <div class="key-box">
+              Communication is not just information transmission - it helps address <strong>financial & societal pressures</strong> not foreseen at delegation - independence is <strong>dynamically maintained</strong>, not statically granted. Therefore, communication is more than "just talk".
+            </div>
 
-    <!-- CHAPTER 4 -->
-    <section data-section="ch4">
-      <section>
-        <div class="chapter-title-block">
-          <h2>Chapter 4</h2>
-          <p style="font-size:0.7em; line-height:1.2;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT-3.5</p>
-        </div>
-        <div class="fragment">
-          <div class="rq-container">
-            <div class="question-icon">?</div>
-            <p>How good are LLMs at detecting shifts toward dominance or coordination across policy domains?</p>
           </div>
         </div>
-      </section>
-      <section>
-        <h3>Theory</h3>
-        <ul class="spotlight">
-          <li class="fragment"><strong>Policy Dominance:</strong> One policy area (e.g., fiscal) can constrain another (monetary), threatening independence.</li>
-          <li class="fragment"><strong>Coordination vs. Dominance:</strong> A spectrum, not a binary choice. Central banks can coordinate with governments or be dominated by them.</li>
-          <li class="fragment"><strong>Hypothesis:</strong> LLMs can be trained to detect subtle linguistic cues in communication that signal shifts along the coordination-dominance spectrum.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Methods</h3>
-        <ul class="spotlight">
-          <li class="fragment">GPT‑3.5 multi‑stage prompting → 2 M sentences → 6 regimes.</li>
-          <li class="fragment">Validation vs. human gold set.</li>
-        </ul>
       </section>
 
-      <!-- REPLACED Guess the Regime slide -->
+          <!-- Slide 2: Limitations & Future Research -->
       <section>
-        <h3>Guess the Regime</h3>
-        <div class="gr-panel">
-          <p id="gr-text" style="font-style:italic;margin:0 0 .9rem">Loading example…</p>
-          <div class="gr-options" id="gr-options">
-            <div class="gr-option" data-key="A"><span class="gr-key">A</span><span class="gr-label">Monetary Independence</span></div>
-            <div class="gr-option" data-key="B"><span class="gr-key">B</span><span class="gr-label">Monetary → Fiscal Coordination</span></div>
-            <div class="gr-option" data-key="C"><span class="gr-key">C</span><span class="gr-label">Fiscal Dominance</span></div>
-            <div class="gr-option" data-key="D"><span class="gr-key">D</span><span class="gr-label">Financial Coordination</span></div>
-            <div class="gr-option" data-key="E"><span class="gr-key">E</span><span class="gr-label">Financial Dominance</span></div>
-            <div class="gr-option" data-key="F"><span class="gr-key">F</span><span class="gr-label">Other / Neutral</span></div>
-          </div>
-          <div id="gr-result" class="gr-result"></div>
-          <div class="gr-meta">
-            <span><code>A–F</code> classify</span>
-            <span><code>N</code> next example &nbsp;|&nbsp; <code>L</code> spotlight toggle</span>
-          </div>
-        </div>
-        <script>
-          (() => {
-            const dataset = [
-              { t:"“We stand ready to adjust the pace of purchases to preserve transmission.”", gold:'D', note:'Financial coordination (backstop language)' },
-              { t:"“Budgetary support must be calibrated to avoid adding to inflationary pressures.”", gold:'B', note:'Monetary→Fiscal coordination guidance' },
-              { t:"“Debt sustainability considerations limit our room for manoeuvre.”", gold:'C', note:'Fiscal dominance cue' },
-              { t:"“We will maintain an adequate liquidity stance while monitoring market functioning.”", gold:'D', note:'Financial coordination / liquidity assurance' },
-              { t:"“Further rate moves will depend on data, not political timelines.”", gold:'A', note:'Monetary independence assertion' }
-            ];
-            const textEl = document.getElementById('gr-text');
-            const resultEl = document.getElementById('gr-result');
-            const optionEls = Array.from(document.querySelectorAll('.gr-option'));
-            let idx = 0, answered = false;
+        <div class="concl-wrapper">
+          <div class="card">
+            <h2 class="main"> Limitations & Future Research</h2>
+              <ul>
+                <li><strong>Normative Gap:</strong> No benchmark for “optimal” responsiveness.</li>
+                <li><strong>Talk vs Action:</strong> Need tighter mapping to implementation.</li>
+                <li><strong>Multi‑level Complexity:</strong> Eurosystem internal dynamics underexplored.</li>
+                <li><strong>LLM Issues:</strong> Reproducibility, bias, environmental costs.</li>
+                <li><strong>Coverage:</strong> Sparse data for many emerging economies.</li>
+              </ul>
+            <h3>Future Research Priorities</h3>
+            <div class="grid">
+              <div class="grid-item">
+                <h4>Methodological</h4>
+                <p>• Open-source LLM pipelines<br>• Unified global speech corpora<br>• Reproducibility standards.</p>
+              </div>
+              <div class="grid-item">
+                <h4>Theoretical</h4>
+                <p>• Optimal responsiveness models<br>• Audience segmentation logic<br>• Structured coordination frameworks.</p>
+              </div>
+            </div>
 
-            function clearState(){
-              optionEls.forEach(o=>o.classList.remove('chosen','correct','wrong'));
-              resultEl.textContent='';
-              resultEl.style.color='';
-              answered = false;
-            }
-            function show(){
-              clearState();
-              textEl.textContent = dataset[idx].t;
-            }
-            function grade(k){
-              const opt = optionEls.find(o=>o.dataset.key===k);
-              if(!opt) return;
-              optionEls.forEach(o=>o.classList.remove('chosen'));
-              opt.classList.add('chosen');
-              if(answered){ // allow re-evaluate same sentence
-                optionEls.forEach(o=>o.classList.remove('correct','wrong'));
-              }
-              const correct = (k===dataset[idx].gold);
-              opt.classList.add(correct?'correct':'wrong');
-              resultEl.innerHTML = (correct? '✅ Correct':'❌ We coded: <strong>'+dataset[idx].gold+'</strong>')
-                                   +' — <em>'+dataset[idx].note+'</em>';
-              resultEl.style.color = correct ? '#5ad27d' : '#ff736a';
-              answered = true;
-            }
-
-            document.addEventListener('keydown', e=>{
-              if(!Reveal.isFocused()) return;
-              const k = e.key.toUpperCase();
-              if('ABCDEF'.includes(k)) grade(k);
-              else if(k==='N'){
-                idx = (idx + 1) % dataset.length;
-                show();
-              }
-            });
-
-            // Click support (optional)
-            optionEls.forEach(o=>{
-              o.addEventListener('click', ()=> grade(o.dataset.key));
-            });
-
-            show();
-          })();
-        </script>
-      </section>
-
-      <section>
-        <h3>Findings</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;">
-          <div>
-            <ul>
-              <li><span style="color:green">↑</span> Coordination talk ↑; <span style="color:red">↓</span> dominance talk.</li>
-              <li>Shift stronger in crises; robust to controls.</li>
-            </ul>
-          </div>
-          <div>
-            <img src="dominance_trends.jpg" alt="Dominance Trends" class="methods-img fragment" data-fragment-index="1" style="margin-top:1.2rem;width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain">
           </div>
         </div>
       </section>
-      <section>
-        <h3>Findings</h3>
-        <div class="methods-grid">
-            <img src="gpt_examples.jpg" alt="GPT Examples" class="methods-img" style="max-height: 70vh;">
-            <img src="gpt_results.jpg" alt="GPT Results" class="methods-img" style="max-height: 70vh;">
-        </div>
-      </section>
-    </section>
 
-    <!-- CHAPTER 5 / CONCLUSION -->
-    <section data-section="conclusion">
+      <!-- Slide 3: Four Broader Implications (Contemporary Relevance removed) -->
       <section>
-        <div class="chapter-title-block">
-          <h2>Chapter 5<br><small>Conclusion – More Than Talk?</small></h2>
-        </div>
-        <div class="fragment">
-          <div class="rq-container">
-            <div class="question-icon">?</div>
-            <p>How does communication safeguard legitimacy of autonomous central banks?</p>
+        <div class="concl-wrapper">
+          <div class="card">
+            <h2 class="main"> Four Broader Implications</h2>
+            <div class="grid">
+              <div class="grid-item">
+                <h4>1. Dynamic Independence</h4>
+                <p>CBI is an <strong>ongoing negotiation</strong>; erosion can occur despite robust statutes.</p>
+              </div>
+              <div class="grid-item">
+                <h4>2. Financial Expansion</h4>
+                <p>Post‑2008: broadened toward <strong>financial stability</strong>, increasing coordination needs.</p>
+              </div>
+              <div class="grid-item">
+                <h4>3. Geographic Heterogeneity</h4>
+                <p>Different mechanisms in emerging vs. advanced economies - <strong>context matters</strong>.</p>
+              </div>
+              <div class="grid-item">
+                <h4>4. Government Coordination</h4>
+                <p>Deeper fiscal interaction raises <strong>politicisation risks</strong>; balance is critical.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      <!-- Slide 4: Contemporary Relevance (only this content) -->
       <section>
-        <h3>Methods</h3>
-        <p class="fragment">Synthesis of empirical chapters + current‑affairs triangulation.</p>
-      </section>
-      <section>
-        <h3>Findings</h3>
-        <ul>
-          <li>Talk is an <strong>adaptive shield</strong>, not window‑dressing.</li>
-          <li>Transparency used strategically against evolving threats.</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Current Affairs (2025)</h3>
-        <ul>
-          <li>Fed vs. Treasury on digital dollar.</li>
-          <li>ECB embeds climate risk into collateral.</li>
-          <li>BoE independence politically reviewed.</li>
-        </ul>
+        <div class="concl-wrapper">
+          <div class="card">
+            <div class="contemporary-box fragment" data-fragment-index="0">
+              <h4>Contemporary Relevance</h4>
+              <ul>
+                <li><span>•</span> Political & populist pressures intensifying</li>
+                <li><span>•</span> Generalisable to other international organisations or non-majoritarian institutions?</li>
+              </ul>
+              <div class="grid" style="margin-top: 1rem; gap: 1rem;">
+                <img src="jerome.jpg" alt="Jerome Powell" style="width: 90%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
+                <img src="ios.png" alt="iOS logo" style="width: 90%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
+                <img src="supreme.jpg" alt="Supreme Court" style="width: 99%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </section>
 
@@ -885,7 +2822,35 @@
     // Initial state
     updateNav(Reveal.getIndices().indexh);
     positionClock();
+    console.log('Reveal initialized, slide count:',
+                document.querySelectorAll('.reveal .slides > section').length);
   </script>
+  <!-- Overlay (single, kept) -->
+  <div class="embed-site-overlay" id="embedSite" aria-hidden="true">
+    <div class="embed-site-toolbar">
+      <div class="left">
+        <span class="title">centralbanktalk.eu (embedded)</span>
+      </div>
+      <div class="right">
+        <a class="action" href="https://centralbanktalk.eu/" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <button type="button" id="siteContinue">Close & Continue ▶</button>
+        <button type="button" id="siteClose">Close ✕</button>
+      </div>
+    </div>
+    <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
+  </div>
+</body>
+</html>
+</html>
+      </div>
+      <div class="right">
+        <a class="action" href="https://centralbanktalk.eu/" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <button type="button" id="siteContinue">Close & Continue ▶</button>
+        <button type="button" id="siteClose">Close ✕</button>
+      </div>
+    </div>
+    <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
+  </div>
 </body>
 </html>
 
