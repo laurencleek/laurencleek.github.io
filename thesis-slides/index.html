@@ -1659,6 +1659,7 @@
     .c2-list{
       margin:0;
             
+            
     }
 
     .c2-list li:before{
@@ -2382,14 +2383,14 @@
       <div class="het-pair fragment" data-fragment-index="0" style="display:contents;">
         <div class="het-col">
           <h4>Scope conditions</h4>
-          <div class="het-box"><h5>🔴 Crisis <span class="inc">↑ responsiveness</span></h5><p>Racts to Germany (austerity) &amp; Italy (flexibility)</p></div>
-          <div class="het-box"><h5>👥 Coalitions <span class="inc">↑ stronger</span></h5><p>Hawk bloc (DE/NL) vs. Dove bloc (FR/IT/ES) > isolated NCB speeches.</p></div>
-          <div class="het-box"><h5>📍 Post‑Sintra <span class="dec">↓ reduced</span></h5><p>Coordination partly substitutes ad‑hoc speech responsiveness.</p></div>
+          <div class="het-box"><h5>🔴 Crisis <span class="inc">↑ responsiveness</span></h5></div>
+          <div class="het-box"><h5>👥 Coalitions <span class="inc">↑ stronger</span></h5><p></p></div>
+          <div class="het-box"><h5>📍 Post‑Sintra <span class="dec">↓ reduced</span></h5></div>
         </div>
         <div class="het-col">
           <h4>Alternative Explanations</h4>
-          <div class="het-box issue"><h5>❌ Issue Linkage</h5><p>No systematic cross‑topic cascade (e.g. climate → monetary) detected.</p></div>
-          <div class="het-box alt"><h5>✓ Within‑Topic Variance</h5><p><strong>Monetary:</strong> Disagreement <span class="dec">↓</span><br><strong>Climate:</strong> Disagreement <span class="stable">→</span></p></div>
+          <div class="het-box issue"><h5>❌ Issue Linkage</h5></div>
+          <div class="het-box alt"><h5>✓ Within‑Topic Variance</h5><p></div>
         </div>
       </div>
     </div>
@@ -2446,68 +2447,7 @@
     </div>
   </section>
 
-
-  <!-- Guess the Regime (interactive) -->
-  <section>
-    <h3 style="margin-bottom:1.2rem;">Guess the Regime</h3>
-    <div class="gr-panel" style="margin-bottom:1.2rem;">
-      <p id="gr-text" style="font-style:italic;margin:0 0 .9rem">Loading example…</p>
-      <div class="gr-options" id="gr-options" style="margin-bottom:.8rem;">
-        <div class="gr-option" data-key="A"><span class="gr-key">A</span><span class="gr-label">Monetary Independence</span></div>
-        <div class="gr-option" data-key="B"><span class="gr-key">B</span><span class="gr-label">Monetary → Fiscal Coordination</span></div>
-        <div class="gr-option" data-key="C"><span class="gr-key">C</span><span class="gr-label">Fiscal Dominance</span></div>
-        <div class="gr-option" data-key="D"><span class="gr-key">D</span><span class="gr-label">Financial Coordination</span></div>
-        <div class="gr-option" data-key="E"><span class="gr-key">E</span><span class="gr-label">Financial Dominance</span></div>
-        <div class="gr-option" data-key="F"><span class="gr-key">F</span><span class="gr-label">Other / Neutral</span></div>
-      </div>
-      <div id="gr-result" class="gr-result"></div>
-      <div class="gr-meta" style="margin-top:.6rem;">
-        <span><code>A–F</code> classify</span>
-        <span><code>N</code> next &nbsp;|&nbsp; <code>L</code> spotlight</span>
-      </div>
-    </div>
-    <script>
-      (() => {
-        const dataset = [
-          { t:"“We stand ready to adjust the pace of purchases to preserve transmission.”", gold:'D', note:'Financial coordination (backstop language)' },
-          { t:"“Budgetary support must be calibrated to avoid adding to inflationary pressures.”", gold:'B', note:'Monetary→Fiscal coordination guidance' },
-          { t:"“Debt sustainability considerations limit our room for manoeuvre.”", gold:'C', note:'Fiscal dominance cue' },
-          { t:"“We will maintain an adequate liquidity stance while monitoring market functioning.”", gold:'D', note:'Financial coordination / liquidity assurance' },
-          { t:"“Further rate moves will depend on data, not political timelines.”", gold:'A', note:'Monetary independence assertion' }
-        ];
-        const textEl = document.getElementById('gr-text');
-        const resultEl = document.getElementById('gr-result');
-        const optionEls = Array.from(document.querySelectorAll('.gr-option'));
-        let idx = 0, answered = false;
-        function clearState(){
-          optionEls.forEach(o=>o.classList.remove('chosen','correct','wrong'));
-          resultEl.textContent=''; resultEl.style.color=''; answered=false;
-        }
-        function show(){ clearState(); textEl.textContent = dataset[idx].t; }
-        function grade(k){
-          const opt = optionEls.find(o=>o.dataset.key===k); if(!opt) return;
-          optionEls.forEach(o=>o.classList.remove('chosen')); opt.classList.add('chosen');
-          if(answered) optionEls.forEach(o=>o.classList.remove('correct','wrong'));
-          const correct = (k===dataset[idx].gold);
-          opt.classList.add(correct?'correct':'wrong');
-          resultEl.innerHTML = (correct?'✅ Correct':'❌ We coded: <strong>'+dataset[idx].gold+'</strong>')+' — <em>'+dataset[idx].note+'</em>';
-          resultEl.style.color = correct ? '#5ad27d' : '#ff736a';
-          answered = true;
-        }
-        document.addEventListener('keydown', e=>{
-          if(!Reveal.isFocused()) return;
-          const k = e.key.toUpperCase();
-          if('ABCDEF'.includes(k)) grade(k);
-          else if(k==='N'){ idx = (idx+1)%dataset.length; show(); }
-        });
-        optionEls.forEach(o=>o.addEventListener('click', ()=>grade(o.dataset.key)));
-        show();
-      })();
-    </script>
-  </section>
-
-
-
+  <!-- REMOVE Guess the Regime from here -->
 
   <!-- === NEW Ch4 Slide 2: Methodology (compact side-by-side) === -->
   <section>
@@ -2577,34 +2517,7 @@
     </div>
   </section>
   <!-- === NEW Ch4 Slide 4: Contributions & Applications (grouped fragments) === -->
-  <section>
-    <div class="ch4-extra">
-      <div class="contrib-grid fragment" data-fragment-index="1" style="margin-bottom:1.2rem;">
-       
-     
-       
-      
-      </div>
 
-      <h2 class="fragment" data-fragment-index="2" style="margin-bottom:1.2rem;">Future Uses</h2>
-      <div class="ch4-grid fragment" data-fragment-index="3" style="margin-bottom:1.2rem;">
-        <div class="regime-box" style="border-left-color:#9d7dff">
-          <h4>Political Economy</h4>
-          <p>Track regime change & politicisation.</p>
-        </div>
-        <div class="regime-box" style="border-left-color:#ff5252">
-          <h4>Model Validation</h4>
-          <p>Compare rhetorical vs structural constraints.</p>
-        </div>
-        <div class="regime-box" style="border-left-color:#28b487">
-          <h4>Real‑Time Signals</h4>
-          <p>Monitor shifts toward dominance pressure.</p>
-        </div>
-      </div>
-
-
-    </div>
-  </section>
 
   </section> <!-- end Ch4 -->
     <!-- CHAPTER 5 / CONCLUSION (replaced) -->
@@ -2704,11 +2617,65 @@
           <li>Dashboards: <a href="https://centralbanktalk.eu" target="_blank">centralbanktalk.eu</a></li>
         </ul>
       </section>
+      <!-- Moved: Guess the Regime slide -->
+      <section>
+        <h3 style="margin-bottom:1.2rem;">Guess the Regime</h3>
+        <div class="gr-panel" style="margin-bottom:1.2rem;">
+          <p id="gr-text" style="font-style:italic;margin:0 0 .9rem">Loading example…</p>
+          <div class="gr-options" id="gr-options" style="margin-bottom:.8rem;">
+            <div class="gr-option" data-key="A"><span class="gr-key">A</span><span class="gr-label">Monetary Independence</span></div>
+            <div class="gr-option" data-key="B"><span class="gr-key">B</span><span class="gr-label">Monetary → Fiscal Coordination</span></div>
+            <div class="gr-option" data-key="C"><span class="gr-key">C</span><span class="gr-label">Fiscal Dominance</span></div>
+            <div class="gr-option" data-key="D"><span class="gr-key">D</span><span class="gr-label">Financial Coordination</span></div>
+            <div class="gr-option" data-key="E"><span class="gr-key">E</span><span class="gr-label">Financial Dominance</span></div>
+            <div class="gr-option" data-key="F"><span class="gr-key">F</span><span class="gr-label">Other / Neutral</span></div>
+          </div>
+          <div id="gr-result" class="gr-result"></div>
+          <div class="gr-meta" style="margin-top:.6rem;">
+            <span><code>A–F</code> classify</span>
+            <span><code>N</code> next &nbsp;|&nbsp; <code>L</code> spotlight</span>
+          </div>
+        </div>
+        <script>
+          (() => {
+            const dataset = [
+              { t:"“We stand ready to adjust the pace of purchases to preserve transmission.”", gold:'D', note:'Financial coordination (backstop language)' },
+              { t:"“Budgetary support must be calibrated to avoid adding to inflationary pressures.”", gold:'B', note:'Monetary→Fiscal coordination guidance' },
+              { t:"“Debt sustainability considerations limit our room for manoeuvre.”", gold:'C', note:'Fiscal dominance cue' },
+              { t:"“We will maintain an adequate liquidity stance while monitoring market functioning.”", gold:'D', note:'Financial coordination / liquidity assurance' },
+              { t:"“Further rate moves will depend on data, not political timelines.”", gold:'A', note:'Monetary independence assertion' }
+            ];
+            const textEl = document.getElementById('gr-text');
+            const resultEl = document.getElementById('gr-result');
+            const optionEls = Array.from(document.querySelectorAll('.gr-option'));
+            let idx = 0, answered = false;
+            function clearState(){
+              optionEls.forEach(o=>o.classList.remove('chosen','correct','wrong'));
+              resultEl.textContent=''; resultEl.style.color=''; answered=false;
+            }
+            function show(){ clearState(); textEl.textContent = dataset[idx].t; }
+            function grade(k){
+              const opt = optionEls.find(o=>o.dataset.key===k); if(!opt) return;
+              optionEls.forEach(o=>o.classList.remove('chosen')); opt.classList.add('chosen');
+              if(answered) optionEls.forEach(o=>o.classList.remove('correct','wrong'));
+              const correct = (k===dataset[idx].gold);
+              opt.classList.add(correct?'correct':'wrong');
+              resultEl.innerHTML = (correct?'✅ Correct':'❌ We coded: <strong>'+dataset[idx].gold+'</strong>')+' — <em>'+dataset[idx].note+'</em>';
+              resultEl.style.color = correct ? '#5ad27d' : '#ff736a';
+              answered = true;
+            }
+            document.addEventListener('keydown', e=>{
+              if(!Reveal.isFocused()) return;
+              const k = e.key.toUpperCase();
+              if('ABCDEF'.includes(k)) grade(k);
+              else if(k==='N'){ idx = (idx+1)%dataset.length; show(); }
+            });
+            optionEls.forEach(o=>o.addEventListener('click', ()=>grade(o.dataset.key)));
+            show();
+          })();
+        </script>
+      </section>
     </section>
-
-    <!-- SITE IFRAME -->
-    <section data-background-iframe="https://centralbanktalk.eu" data-background-interactive data-state="no-logo"></section>
-
   </div></div>
   <script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js"></script>
   <script src="https://unpkg.com/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
@@ -2830,6 +2797,12 @@
         <a class="action" href="https://centralbanktalk.eu/" target="_blank" rel="noopener">Open in new tab ↗</a>
         <button type="button" id="siteContinue">Close & Continue ▶</button>
         <button type="button" id="siteClose">Close ✕</button>
+      </div>
+    </div>
+    <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
+  </div>
+</body>
+</html>
       </div>
     </div>
     <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
