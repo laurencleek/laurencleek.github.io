@@ -1904,12 +1904,6 @@
   left: 0;
   color: #ffb74d; /* Bullet color for contrast */
 }
-/* Responsive: on small screens, span only one column */
-@media (max-width: 900px) {
-  .contemporary-box {
-    grid-column: span 1;
-  }
-}
   </style>
 </head>
 <body>
@@ -1950,13 +1944,13 @@
       if(!clock || !bar) return;
       const elapsedMin = startTime ? (Date.now()-startTime)/60000 : 0;
       const remaining = Math.max(0, MAX_MIN - elapsedMin);
-      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : '
-        ⏱ Time's up!';
+      // fixed: properly closed string for the "time's up" message
+      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : `⏱ Time's up!`;
       bar.style.width = (remaining/MAX_MIN*100)+'%';
       if(remaining===0){
         clearInterval(timerInterval);
         setTimeout(()=>{ bar.style.width='100%'; },50);
-        setTimeout(()=>{ document.getElementById('timeup-sound').play(); },350);
+        setTimeout(()=>{ const s = document.getElementById('timeup-sound'); if(s) s.play(); },350);
       }
     }
     function startTimer(){
@@ -2225,9 +2219,7 @@
     </div>
     <div class="fragment" data-fragment-index="2">
       <div class="rq-container">
-        <div class="question-icon">?</div>
-        <p>Does central bank independence change how CBs communicate about monetary policy?</p>
-      </div>
+ 
     </div>
     <div class="pub-citation fragment" data-fragment-index="3">
       * Published as: Leek, L., &amp; Bischl, S. (2025). How central bank independence shapes monetary policy communication.
@@ -2239,19 +2231,27 @@
   <!-- Reformatted Theory slide -->
   <section>
     <div class="ch3-block">
-      <span class="pill-title">Theory</span>
+      <h1 style="font-size:1.2em;margin-bottom:.5em;">Theory</h1>
       <div class="ch3-card" style="padding:0;background:transparent;box-shadow:none;border:none;">
-        <ul class="spotlight">
-          <li class="fragment"><strong>Central banks use communication as a monetary policy tool and for public support/reputation.</strong></li>
-          <li class="fragment" style="list-style:none; padding-left:0; margin-left:0;">
-            <img src="main_channels_r.png" alt="Main channels diagram" style="width: 90%; max-width: 700px; height: auto; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.3); margin: 1rem 0;">
-          </li>
-          <li class="fragment" style="list-style:none; padding-left:0; margin-left:0;">
-            <div class="key-box" style="margin-top:.5em;">
-              <strong>Hypothesis:</strong> As independence ↑, communication shifts from narrow, technical justifications (price stability) to broader topics (financial stability) to build public legitimacy.
-            </div>
-          </li>
-        </ul>
+        <img src="main_channels_r.png" alt="Main channels diagram" style="width: 90%; max-width: 700px; height: auto; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.3); margin: 1rem 0;">
+      </div>
+      <div class="ch3-grid" style="margin-top:1.2em;">
+        <div class="ch3-card fragment" data-fragment-index="0" style="border-left:5px solid #42affa;">
+          <h2 style="font-size:1em;color:#42affa;margin-bottom:.3em;">Main</h2>
+          <div>H1: More independence → less inflation talk.</div>
+        </div>
+        <div class="ch3-card fragment" data-fragment-index="1" style="border-left:5px solid #42affa;">
+          <h2 style="font-size:1em;color:#42affa;margin-bottom:.3em;">Main</h2>
+          <div>H2: More independence → more financial pressure talk.</div>
+        </div>
+        <div class="ch3-card fragment" data-fragment-index="2" style="border-left:5px solid #28b487;">
+          <h2 style="font-size:1em;color:#28b487;margin-bottom:.3em;">Mechanism</h2>
+          <div>H3: Independence shifts which pressures are addressed in communication.</div>
+        </div>
+        <div class="ch3-card fragment" data-fragment-index="3" style="border-left:5px solid #ffb74d;">
+          <h2 style="font-size:1em;color:#ffb74d;margin-bottom:.3em;">Scope Condition</h2>
+          <div>H4: Effects strongest in democracies and advanced economies.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2281,11 +2281,7 @@
       <div class="ch3-grid">
         <div class="ch3-card">
           <ul style="margin:0;">
-            <li>
-              <span class="arrow-up">↑</span> Independence ⇒
-              <span class="arrow-down">↓</span> price‑stability talk;
-              <span class="arrow-up">↑</span> financial‑stability talk.
-            </li>
+
             <li>Effect strongest in advanced democracies; robust to crises controls.</li>
           </ul>
         </div>
@@ -2314,16 +2310,27 @@
   <!-- Reformatted Findings (crisis case) -->
   <section>
     <div class="ch3-block">
-      <span class="pill-title">It is not the GFC</span>
+      <span class="pill-title">Free from government ≠ free from markets</span>
       <div class="ch3-card gfc-smaller" style="display:flex;align-items:center;justify-content:center;padding:0;background:transparent;box-shadow:none;border:none;">
-        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:18vh;width:auto;max-width:55%;">
+        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:22vh;width:auto;max-width:65%;">
       </div>
       <div class="ch3-card" style="border-left:5px solid #28b487;">
-        <strong>Robust to:</strong> Alternative CBI measures| Independence precedent | Audiences | Financial supervision mandates | Excluding Euro area | Multiple estimators | Placebo tests | Sample construction | Event study indicator
-      </div>
-        <div class="ch3-card" style="border-left:5px solid #28b487;">
-          Independence paradox: free from government ≠ free from markets
+        <div class="robust-title">
+          <span class="robust-icon">&#10003;</span> Robustness Checks
         </div>
+        <div class="robust-btn-row">
+          <button class="robust-btn" type="button" data-robust="cbi">Alternative CBI measures</button>
+          <button class="robust-btn" type="button" data-robust="precedent">Independence precedent</button>
+          <button class="robust-btn" type="button" data-robust="audiences">Audiences</button>
+          <button class="robust-btn" type="button" data-robust="supervision">Financial supervision mandates</button>
+          <button class="robust-btn" type="button" data-robust="euro">Excluding Euro area</button>
+          <button class="robust-btn" type="button" data-robust="estimators">Multiple estimators</button>
+          <button class="robust-btn" type="button" data-robust="placebo">Placebo tests</button>
+          <button class="robust-btn" type="button" data-robust="sample">Sample construction</button>
+          <button class="robust-btn" type="button" data-robust="event">Event study indicator</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2331,18 +2338,16 @@
   
   
   
-</section> <!-- end Chapter 2 stack -->
-<!-- CHAPTER 3 -->
+  </section>
+
+  <!-- CHAPTER 3 -->
+ 
 <section data-section="ch3">
-  <!-- Chapter 3 title slide (now correctly inside ch3) -->
+  <!-- Chapter 3 title slide -->
   <section>
     <div class="chapter-title-block">
       <h2>Chapter&nbsp;3</h2>
       <p style="font-size:0.7em;line-height:1.2;">Who Sets the Agenda? The Role of National Central Banks in the Eurosystem*</p>
-    </div>
-    <div class="rq-container fragment" data-fragment-index="1">
-      <div class="question-icon">?</div>
-      <p>What is the role of NCBs in setting the ECB agenda?</p>
     </div>
     <div class="pub-citation fragment" data-fragment-index="3">
       * R&amp;R at Journal of European Public Policy.
@@ -2393,7 +2398,6 @@
     </div>
   </section>
   <!-- New: Contributions moved to last slide of chapter 3 -->
-
 </section> <!-- end Chapter 3 stack -->
 
 <!-- CHAPTER 4 -->
@@ -2405,9 +2409,7 @@
       <p style="font-size:0.7em; line-height:1.2;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT‑3.5</p>
     </div>
     <div class="rq-container fragment" data-fragment-index="1">
-      <div class="question-icon">?</div>
-      <p>How good are LLMs at detecting shifts toward dominance or coordination across policy domains?</p>
-    </div>
+
   </section>
 
 
@@ -2618,7 +2620,7 @@
 
             <h3>Key Insight</h3>
             <div class="key-box">
-              Communication is not just information transmission - it helps address <strong>financial & societal pressures</strong> not foreseen at delegation - independence is <strong>dynamically maintained</strong>, not statically granted. Therefore, communication is more than "just talk".
+              Communication is not just information transmission - it helps address <strong>financial & societal pressures</strong> not foreseen at delegation => more than "just talk". LLMs offer ways forward to reserach this.
             </div>
 
           </div>
@@ -2637,16 +2639,8 @@
                 <li><strong>LLM Issues:</strong> Reproducibility, bias, environmental costs.</li>
                 <li><strong>Coverage:</strong> Sparse data for many emerging economies.</li>
               </ul>
-            <h3>Future Research Priorities</h3>
             <div class="grid">
-              <div class="grid-item">
-                <h4>Methodological</h4>
-                <p>• Open-source LLM pipelines<br>• Unified global speech corpora<br>• Reproducibility standards.</p>
-              </div>
-              <div class="grid-item">
-                <h4>Theoretical</h4>
-                <p>• Optimal responsiveness models<br>• Audience segmentation logic<br>• Structured coordination frameworks.</p>
-              </div>
+   
             </div>
 
           </div>
@@ -2825,6 +2819,7 @@
     console.log('Reveal initialized, slide count:',
                 document.querySelectorAll('.reveal .slides > section').length);
   </script>
+
   <!-- Overlay (single, kept) -->
   <div class="embed-site-overlay" id="embedSite" aria-hidden="true">
     <div class="embed-site-toolbar">
@@ -2842,11 +2837,6 @@
 </body>
 </html>
 </html>
-      </div>
-      <div class="right">
-        <a class="action" href="https://centralbanktalk.eu/" target="_blank" rel="noopener">Open in new tab ↗</a>
-        <button type="button" id="siteContinue">Close & Continue ▶</button>
-        <button type="button" id="siteClose">Close ✕</button>
       </div>
     </div>
     <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
