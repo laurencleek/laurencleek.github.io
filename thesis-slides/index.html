@@ -1,11 +1,3 @@
-  /* Make Chapter 5 subtitle smaller to match other chapters */
-  section[data-section="conclusion"] .chapter-title-block small {
-    font-size: 0.7em !important;
-    display: block;
-    font-weight: 400;
-    color: #ccc !important;
-    margin-top: 0.2em;
-  }
 <!doctype html>
 <html>
 <head>
@@ -1129,6 +1121,13 @@
   .ch4-grid, .contrib-grid { grid-template-columns: 1fr; }
   .stat-bar { flex-direction: column; gap: .8rem; }
 }
+
+.ch3-fig-slide h3 {
+  font-size: 0.6em;
+  margin: 0.2em 0 0.4em;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
     /* === Conclusion (Chapter 5) redesigned slides === */
     .conclusion-set .card{
       background:rgba(255,255,255,.045);
@@ -1372,47 +1371,43 @@
     }
 
   /* Ch3 figure slides: tighter headings & image scaling */
-  .ch3-fig-slide h3{
-    font-size:.66em;              /* was .78em */
-    margin:.08em 0 .3em;
-    letter-spacing:.4px;
-    font-weight:600;
-  }
-  .ch3-fig-slide img{
-    max-height:65vh;              /* was 70–75vh inline */
-    width:auto;
-    max-width:100%;
-    object-fit:contain;
-    margin:0 auto;
-    display:block;
-  }
-  .ch3-fig-slide.fig-pressure img{max-height:58vh;} /* most constrained */
-  /* Progressive shrink on short viewports */
-  @media (max-height:780px){
-    .ch3-fig-slide img{max-height:55vh;}
-    .ch3-fig-slide.fig-pressure img{max-height:49vh;}
-  }
-  @media (max-height:700px){
-    .ch3-fig-slide img{max-height:51vh;}
-    .ch3-fig-slide.fig-pressure img{max-height:46vh;}
-  }
-  @media (max-height:640px){
-    .ch3-fig-slide img{max-height:45vh;}
-    .ch3-fig-slide.fig-pressure img{max-height:42vh;}
-  }
-  @media (max-height:580px){
-    .ch3-fig-slide img{max-height:35vh;}
-    .ch3-fig-slide.fig-pressure img{max-height:40vh;}
-  }
-  @media (max-height:520px){
-    .ch3-fig-slide img{max-height:34vh;}
-    .ch3-fig-slide.fig-pressure img{max-height:38vh;}
-  }
+  /* Consistent Chapter 3 figure sizing */
+.ch3-fig-slide img {
+  max-height: 85vh !important;
+  width: auto;
+  max-width: 95%;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
 
-  /* Larger images for selected Ch3 slides */
-  .ch3-fig-slide.bigger img{max-height:72vh;}
-  .ch3-fig-slide.bigger.fig-pressure img{max-height:65vh;}
+.ch3-fig-slide.fig-pressure img {
+  max-height: 85vh !important;
+}
 
+@media (max-height: 780px) {
+  .ch3-fig-slide img {
+    max-height: 70vh;  /* was 60vh */
+  }
+}
+
+@media (max-height: 700px) {
+  .ch3-fig-slide img {
+    max-height: 65vh;  /* was 55vh */
+  }
+}
+
+@media (max-height: 640px) {
+  .ch3-fig-slide img {
+    max-height: 60vh;  /* was 50vh */
+  }
+}
+
+@media (max-height: 580px) {
+  .ch3-fig-slide img {
+    max-height: 55vh;  /* was 45vh */
+  }
+}
   /* REMOVE old .view-badges badge styling block and replace with richer comparison layout */
   /* Argument slide: Standard vs Thesis comparison */
   .argument-contrast .contrast-wrap{
@@ -1551,29 +1546,6 @@
       .ch4-method-grid .pipeline-col img{max-height:38vh;}
     }
 
-    /* === Override: Larger Ch3 figure images === */
-    .ch3-fig-slide img{max-height:65vh;}
-    .ch3-fig-slide.fig-pressure img{max-height:58vh;}
-    @media (max-height:780px){
-      .ch3-fig-slide img{max-height:55vh;}
-      .ch3-fig-slide.fig-pressure img{max-height:49vh;}
-    }
-    @media (max-height:700px){
-      .ch3-fig-slide img{max-height:51vh;}
-      .ch3-fig-slide.fig-pressure img{max-height:46vh;}
-    }
-    @media (max-height:640px){
-      .ch3-fig-slide img{max-height:45vh;}
-      .ch3-fig-slide.fig-pressure img{max-height:42vh;}
-    }
-    @media (max-height:580px){
-      .ch3-fig-slide img{max-height:35vh;}
-      .ch3-fig-slide.fig-pressure img{max-height:40vh;}
-    }
-    @media (max-height:520px){
-      .ch3-fig-slide img{max-height:34vh;}
-      .ch3-fig-slide.fig-pressure img{max-height:38vh;}
-    }
 
     /* Make Chapter 4 font size much smaller */
     .ch4-small {
@@ -1891,9 +1863,9 @@
 
   /* Make GFC image much smaller - fix selector to match actual HTML structure */
   .ch3-block .ch3-card.gfc-smaller img {
-    max-height: 25vh !important;
+    max-height: 45vh !important;
     width: auto !important;
-    max-width: 70% !important;
+    max-width: 85% !important;
   }
   @media (max-height:760px){
     .ch3-block .ch3-card.gfc-smaller img{max-height:22vh !important;}
@@ -1971,47 +1943,9 @@
     </div>
   </div>
 
-  <!-- Elapsed time clock & progress bar (moved to right corner, no auto-start) -->
-  <div id="clock"></div>
-  <div id="timebar"></div>
 
-  <!-- Spotlight overlay element (previously missing) -->
-  <div class="spot"></div>
 
-  <!-- Timer script (authoritative: keep this one) -->
-  <script>
-    const MAX_MIN = 20;
-    let startTime = null;
-    let timerInterval = null;
-    function updateTimer(){
-      const clock = document.getElementById('clock');
-      const bar = document.getElementById('timebar');
-      if(!clock || !bar) return;
-      const elapsedMin = startTime ? (Date.now()-startTime)/60000 : 0;
-      const remaining = Math.max(0, MAX_MIN - elapsedMin);
-      // fixed: properly closed string for the "time's up" message
-      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : `⏱ Time's up!`;
-      bar.style.width = (remaining/MAX_MIN*100)+'%';
-      if(remaining===0){
-        clearInterval(timerInterval);
-        setTimeout(()=>{ bar.style.width='100%'; },50);
-        setTimeout(()=>{ const s = document.getElementById('timeup-sound'); if(s) s.play(); },350);
-      }
-    }
-    function startTimer(){
-      if(startTime) return;
-      startTime = Date.now();
-      timerInterval = setInterval(updateTimer, 100);
-      updateTimer();
-    }
-    document.addEventListener('visibilitychange', () => {
-      if(document.hidden) clearInterval(timerInterval);
-      else updateTimer();
-    });
-  </script>
-  <audio id="timeup-sound" src="timeup.mp3" preload="auto"></audio>
-
-  <div class="reveal"><div class="slides">
+  <div class="reveal" style="margin-top:48px"><div class="slides">
 
     <!-- TITLE -->
     <section>
@@ -2342,55 +2276,56 @@
     <span class="pill-title fragment" data-fragment-index="0">Findings: strongest in advanced democracies</span>
     <div class="ch3-grid" style="display: flex; justify-content: center; align-items: center;">
       <div class="ch3-card fragment" data-fragment-index="0" style="display:flex;align-items:center;justify-content:center;">
-        <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:90%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain;margin-top:.2rem;">
+        <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:95% !important;height:auto !important;max-width:98vw !important;max-height:92vh !important;object-fit:contain;margin-top:.2rem;">
       </div>
     </div>
   </div>
 </section>
+
   <!-- Reformatted Findings (mechanisms) -->
-  <section>
-    <div class="ch3-block">
-      <span class="pill-title">Mechanisms</span>
-      <div class="ch3-grid">
-        <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
-          <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:90vh;">
-        </div>
-        <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
-          <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:90vh;">
-        </div>
+<section>
+  <div class="ch3-block">
+    <span class="pill-title">Mechanisms</span>
+    <div class="ch3-grid">
+      <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+        <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:99vh !important;width:auto !important;max-width:105% !important;">
+      </div>
+      <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+        <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:99vh !important;width:auto !important;max-width:105% !important;">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 
 
   
   <!-- Reformatted Findings (crisis case) -->
-  <section>
-    <div class="ch3-block">
-      <span class="pill-title">Free from government ≠ free from markets</span>
-      <div class="ch3-card gfc-smaller" style="display:flex;align-items:center;justify-content:center;padding:0;background:transparent;box-shadow:none;border:none;">
-        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:25vh;width:auto;max-width:75%;">
-      </div>
-      <div class="ch3-card" style="border-left:5px solid #28b487;">
-        <div class="robust-title">
-          <span class="robust-icon">&#10003;</span> Robustness Checks
-        </div>
-        <div class="robust-btn-row">
-          <button class="robust-btn" type="button" data-robust="cbi">Alternative CBI measures</button>
-          <button class="robust-btn" type="button" data-robust="precedent">Independence precedent</button>
-          <button class="robust-btn" type="button" data-robust="audiences">Audiences</button>
-          <button class="robust-btn" type="button" data-robust="supervision">Financial supervision mandates</button>
-          <button class="robust-btn" type="button" data-robust="euro">Excluding Euro area</button>
-          <button class="robust-btn" type="button" data-robust="estimators">Multiple estimators</button>
-          <button class="robust-btn" type="button" data-robust="placebo">Placebo tests</button>
-          <button class="robust-btn" type="button" data-robust="sample">Sample construction</button>
-          <button class="robust-btn" type="button" data-robust="event">Event study indicator</button>
-        </div>
-      </div>
-
+<!-- Reformatted Findings (crisis case) -->
+<section>
+  <div class="ch3-block">
+    <span class="pill-title">Free from government ≠ free from markets</span>
+    <div class="ch3-card gfc-smaller" style="display:flex;align-items:center;justify-content:center;padding:0;background:transparent;box-shadow:none;border:none;">
+      <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:60vh !important;width:auto !important;max-width:90% !important;">
     </div>
-  </section>
+    <div class="ch3-card" style="border-left:5px solid #28b487;">
+      <div class="robust-title">
+        <span class="robust-icon">&#10003;</span> Robustness Checks
+      </div>
+      <div class="robust-btn-row">
+        <button class="robust-btn" type="button" data-robust="cbi">Alternative CBI measures</button>
+        <button class="robust-btn" type="button" data-robust="precedent">Independence precedent</button>
+        <button class="robust-btn" type="button" data-robust="audiences">Audiences</button>
+        <button class="robust-btn" type="button" data-robust="supervision">Financial supervision mandates</button>
+        <button class="robust-btn" type="button" data-robust="euro">Excluding Euro area</button>
+        <button class="robust-btn" type="button" data-robust="estimators">Multiple estimators</button>
+        <button class="robust-btn" type="button" data-robust="placebo">Placebo tests</button>
+        <button class="robust-btn" type="button" data-robust="sample">Sample construction</button>
+        <button class="robust-btn" type="button" data-robust="event">Event study indicator</button>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- MOVED IN: Chapter 2 Contributions & Implications (was wrongly inside an early ch3 section) -->
   
@@ -2652,68 +2587,65 @@
 
   <!-- === NEW Ch4 Slide 2: Methodology (compact side-by-side) === -->
   <section>
-    <div class="ch4-extra">
-      <div class="ch4-method-grid" style="margin-bottom:1.2rem;">
-        <div class="pipeline-col">
-          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Classification Pipeline</h2>
-          <img src="coding_scheme.jpg"
-               alt="Three-stage classification pipeline schematic"
-               class="fragment"
-               data-fragment-index="0"
-               style="margin-bottom:.8rem;">
-        </div>
-        <div class="validation-col">
-          <h2 class="fragment" data-fragment-index="1" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
-          <div class="ch4-grid fragment" data-fragment-index="1" style="margin-bottom:.8rem;">
-            <div class="regime-box" style="border-left-color:#28b487">
-              <h4>Manual Validation</h4>
-              1k sentences / 3 coders (IRR 76–84%). Accuracy 62–85%; high macro F1 (.36–.83).
-            </div>
-            <div class="regime-box" style="border-left-color:#ffb74d">
-              <h4>Prompt Choices</h4>
-              Temp=0; 10 sentences/prompt; context window for disambiguation.
-            </div>
-            <div class="regime-box" style="border-left-color:#ff5252">
-              <h4>Compute / Tokens</h4>
-              Efficient token usuage ; GPT‑4 & Gemini benchmarking checks.
-            </div>
-
+  <div class="ch4-extra">
+    <div class="ch4-method-grid" style="margin-bottom:1.0rem;">
+      <div class="pipeline-col">
+        <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Classification Pipeline</h2>
+        <img src="coding_scheme.jpg"
+             alt="Three-stage classification pipeline schematic"
+             class="fragment"
+             data-fragment-index="0"
+             style="margin-bottom:.1rem;width:99% !important;max-width:700px !important;max-height:65vh !important;">
+      </div>
+      <div class="validation-col">
+        <h2 class="fragment" data-fragment-index="1" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
+        <div class="ch4-grid fragment" data-fragment-index="1" style="margin-bottom:.8rem;">
+          <div class="regime-box" style="border-left-color:#28b487">
+            <h4>Manual Validation</h4>
+            1k sentences / 3 coders (IRR 76–84%). Accuracy 62–85%; high macro F1 (.36–.83).
           </div>
-
+          <div class="regime-box" style="border-left-color:#ffb74d">
+            <h4>Prompt Choices</h4>
+            Temp=0; 10 sentences/prompt; context window for disambiguation.
+          </div>
+          <div class="regime-box" style="border-left-color:#ff5252">
+            <h4>Compute / Tokens</h4>
+            Efficient token usuage ; GPT‑4 & Gemini benchmarking checks.
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   <!-- === NEW Ch4 Slide 3: Key Findings (grouped cross-country boxes) === -->
-  <section>
-    <div class="ch4-extra">
-      <div class="ch4-findings-grid" style="margin-bottom:1.2rem;">
-        <div class="trend-col">
-          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Dominance / Coordination Over Time</h2>
-          <img src="dominance_trends.jpg"
-               alt="Trends in monetary dominance, fiscal/financial coordination and dominance over time"
-               class="fragment ch4-trend-small"
-               data-fragment-index="0"
-               style="margin-bottom:.8rem;">
-        </div>
-        <div class="variation-col">
-          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
-          <div class="ch4-grid fragment" data-fragment-index="0" style="margin-bottom:.8rem;">
-            <div class="regime-box" style="border-left-color:#42affa">
-              <h4>Advanced vs Emerging</h4>
-            </div>
-            <div class="regime-box" style="border-left-color:#ffb74d">
-              <h4>Democracy vs Autocracy</h4>
-            </div>
-            <div class="regime-box" style="border-left-color:#28b487">
-              <h4>Crisis Effects</h4>
-            </div>
+<section>
+  <div class="ch4-extra">
+    <div class="ch4-findings-grid" style="margin-bottom:1.2rem;">
+      <div class="trend-col">
+        <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Dominance / Coordination Over Time</h2>
+        <img src="dominance_trends.jpg"
+             alt="Trends in monetary dominance, fiscal/financial coordination and dominance over time"
+             class="fragment ch4-trend-small"
+             data-fragment-index="0"
+             style="margin-bottom:.8rem;width:97% !important;max-width:720px !important;max-height:59vh !important;">
+      </div>
+      <div class="variation-col">
+        <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
+        <div class="ch4-grid fragment" data-fragment-index="0" style="margin-bottom:.8rem;">
+          <div class="regime-box" style="border-left-color:#42affa">
+            <h4>Advanced vs Emerging</h4>
+          </div>
+          <div class="regime-box" style="border-left-color:#ffb74d">
+            <h4>Democracy vs Autocracy</h4>
+          </div>
+          <div class="regime-box" style="border-left-color:#28b487">
+            <h4>Crisis Effects</h4>
           </div>
         </div>
       </div>
-
     </div>
-  </section>
+  </div>
+</section>
   <!-- === NEW Ch4 Slide 4: Contributions & Applications (grouped fragments) === -->
 
 
