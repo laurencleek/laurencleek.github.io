@@ -1,3 +1,11 @@
+  /* Make Chapter 5 subtitle smaller to match other chapters */
+  section[data-section="conclusion"] .chapter-title-block small {
+    font-size: 0.7em !important;
+    display: block;
+    font-weight: 400;
+    color: #ccc !important;
+    margin-top: 0.2em;
+  }
 <!doctype html>
 <html>
 <head>
@@ -74,11 +82,18 @@
       display: inline-block;
     }
     .chapter-title-block h2 {
-      margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25em !important;
     }
     .chapter-title-block p {
       margin-top: 0;
       color: #ccc !important;
+  }
+
+  /* Make Chapter 4 subtitle smaller */
+  section[data-section="ch4"] .chapter-title-block p {
+    font-size: 0.7em !important;
+  }
     }
 
     .rq-container {
@@ -468,6 +483,35 @@
     @media (max-height: 600px){
       .intro-slide.theory-tight .theory-list{font-size:.54em}
     }
+
+    .robust-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #98b8d7;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #28b487;
+}
+
+.robust-btn {
+  background: linear-gradient(135deg, #928e8e 0%, #f8f9fa 100%);
+  border: 1px solid #d1d5db;
+  color: #374151;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.45em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.robust-btn:hover {
+  background: #28b487;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40, 180, 135, 0.2);
+}
 
     /* Overview table styles */
     .methods-table{
@@ -1533,12 +1577,12 @@
 
     /* Make Chapter 4 font size much smaller */
     .ch4-small {
-      font-size: inherit !important;
+  font-size: 0.82em !important;
     }
     .ch4-small h2,
     .ch4-small h3,
     .ch4-small h4 {
-      font-size: inherit !important;
+      font-size: 1.25em !important;
     }
     .ch4-small .regime-box,
     .ch4-small .contrib-box,
@@ -1557,9 +1601,9 @@
     }
     /* Make bottom line even smaller for better fit */
     .ch4-small .bottom-line {
-      font-size: 0.75em !important;
-      padding: .6em 1em .65em !important;
-      margin-top: 1rem !important;
+  font-size: 0.75em !important;
+  padding: .6em 1em .65em !important;
+  margin-top: 1rem !important;
     }
     /* Optionally shrink paragraph and list text further */
     .ch4-small p,
@@ -1576,7 +1620,7 @@
     }
     /* Make cross-country variation points larger */
     .ch4-small .variation-col .regime-box {
-      font-size: 0.95em !important;
+  font-size: 0.95em !important;
     }
     /* Guess the Regime formatting improvements */
     .ch4-small .gr-panel {
@@ -1659,7 +1703,7 @@
     .c2-list{
       margin:0;
             
-            
+
     }
 
     .c2-list li:before{
@@ -1870,7 +1914,7 @@
   /* NEW: Contemporary relevance box styling */
 .contemporary-box {
   background: linear-gradient(135deg,#ffb74d22,#42affa22);
-  border: 2px solid #ffb74d;
+  border: 2px solid #4a67b6;
   border-radius: 14px;
   box-shadow: 0 4px 16px -6px rgba(0,0,0,.45);
   padding: 1rem 1.2rem 1.1rem;
@@ -1903,7 +1947,7 @@
 .contemporary-box li span {
   position: absolute;
   left: 0;
-  color: #ffb74d; /* Bullet color for contrast */
+  color: #db7373; /* Bullet color for contrast */
 }
   </style>
 </head>
@@ -2215,7 +2259,7 @@
 <section data-section="ch2">
   <section>
     <div class="chapter-title-block">
-      <h2>Chapter&nbsp;2<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
+  <h2>Chapter&nbsp;2<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
       <p style="font-size:0.7em; line-height:1.2;">How Central Bank Independence Shapes Monetary Policy Communication:<br>A Large Language Model Application</p>
     </div>
     <div class="fragment" data-fragment-index="2">
@@ -2230,90 +2274,103 @@
   </section>
 
   <!-- Reformatted Theory slide -->
-  <section>
-    <div class="ch3-block">
-      <h1 style="font-size:1.2em;margin-bottom:.5em;">Theory</h1>
-      <div class="ch3-card" style="padding:0;background:transparent;box-shadow:none;border:none;">
-        <img src="main_channels_r.png" alt="Main channels diagram" style="width: 90%; max-width: 700px; height: auto; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.3); margin: 1rem 0;">
+<!-- Reformatted Theory slide -->
+<section>
+  <div class="ch3-block">
+    <span class="pill-title">Theory</span>
+    <div class="ch3-card" style="padding:0;background:transparent;box-shadow:none;border:none;">
+      <img src="main_channels_r.png" alt="Main channels diagram" style="width: 90%; max-width: 700px; height: auto; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.3); margin: 1rem 0;">
+    </div>
+    <div class="ch3-grid" style="margin-top:1.2em;">
+      <div class="ch3-card fragment" data-fragment-index="1" style="border-left:5px solid #42affa;">
+        <h2 style="font-size:1em;color:#42affa;margin-bottom:.3em;">Main</h2>
+        <div>H1: More independence → less inflation talk.</div>
       </div>
-      <div class="ch3-grid" style="margin-top:1.2em;">
-        <div class="ch3-card fragment" data-fragment-index="0" style="border-left:5px solid #42affa;">
-          <h2 style="font-size:1em;color:#42affa;margin-bottom:.3em;">Main</h2>
-          <div>H1: More independence → less inflation talk.</div>
-        </div>
-        <div class="ch3-card fragment" data-fragment-index="1" style="border-left:5px solid #42affa;">
-          <h2 style="font-size:1em;color:#42affa;margin-bottom:.3em;">Main</h2>
-          <div>H2: More independence → more financial pressure talk.</div>
-        </div>
-        <div class="ch3-card fragment" data-fragment-index="2" style="border-left:5px solid #28b487;">
-          <h2 style="font-size:1em;color:#28b487;margin-bottom:.3em;">Mechanism</h2>
-          <div>H3: Independence shifts which pressures are addressed in communication.</div>
-        </div>
-        <div class="ch3-card fragment" data-fragment-index="3" style="border-left:5px solid #ffb74d;">
-          <h2 style="font-size:1em;color:#ffb74d;margin-bottom:.3em;">Scope Condition</h2>
-          <div>H4: Effects strongest in democracies and advanced economies.</div>
-        </div>
+      <div class="ch3-card fragment" data-fragment-index="1" style="border-left:5px solid #42affa;">
+        <h2 style="font-size:1em;color:#42affa;margin-bottom:.3em;">Main</h2>
+        <div>H2: More independence → more financial pressure talk.</div>
+      </div>
+      <div class="ch3-card fragment" data-fragment-index="1" style="border-left:5px solid #28b487;">
+        <h2 style="font-size:1em;color:#28b487;margin-bottom:.3em;">Mechanism</h2>
+        <div>H3: Independence shifts which pressures are addressed in communication.</div>
+      </div>
+      <div class="ch3-card fragment" data-fragment-index="1" style="border-left:5px solid #ffb74d;">
+        <h2 style="font-size:1em;color:#ffb74d;margin-bottom:.3em;">Scope Condition</h2>
+        <div>H4: Effects strongest in democracies and advanced economies.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Reformatted Methods slide -->
-  <section>
-    <div class="ch3-block">
-      <span class="pill-title">Methods</span>
-      <div class="ch3-grid">
-        <div class="ch3-card">
-          <ul class="spotlight" style="margin:0;">
-            <li class="fragment">Google Gemini sentence classification (monetary vs. financial pressures)</li>
-            <li class="fragment">Staggered DiD on 100 CBs (1997‑2023) & augmented event study + Instrumental Variable (inverse distance-weighted measure of the lagged world CBI)</li>
-          </ul>
-        </div>
-        <div class="ch3-card fragment" data-fragment-index="2" style="display:flex;align-items:center;justify-content:center;">
-          <img src="workflow.jpg" alt="Workflow diagram" class="methods-img" style="margin-top:.2rem;max-width:900px;width:90%">
-        </div>
+<section>
+  <div class="ch3-block">
+    <span class="pill-title">Methods</span>
+    <div class="ch3-grid fragment" data-fragment-index="1">
+      <div class="ch3-card" style="display: flex; flex-direction: column; justify-content: center;">
+        <ul class="spotlight" style="margin:0; padding-left:0; list-style:none;">
+          <li style="margin-bottom:.7em;">
+            <span style="display:inline-flex;align-items:center;gap:.5em;">
+              <span style="background:#42affa22;border-radius:6px;padding:.18em .55em;font-weight:600;color:#42affa;font-size:1.05em;">LLM</span>
+              <span>Google Gemini sentence classification</span>
+            </span>
+          </li>
+          <li style="margin-bottom:.7em;">
+            <span style="display:inline-flex;align-items:center;gap:.5em;">
+              <span style="background:#28b48722;border-radius:6px;padding:.18em .55em;font-weight:600;color:#28b487;font-size:1.05em;">DiD</span>
+              <span>Staggered Difference-in-Differences on 100 CBs (1997–2023) and augmented</span>
+            </span>
+          </li>
+          <li style="margin-bottom:.7em;">
+            <span style="display:inline-flex;align-items:center;gap:.5em;">
+              <span style="background:#ffb74d22;border-radius:6px;padding:.18em .55em;font-weight:600;color:#ffb74d;font-size:1.05em;">IV</span>
+              <span>Inverse distance-weighted lagged world CBI</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+        <img src="workflow.jpg" alt="Workflow diagram" class="methods-img" style="margin-top:.2rem;max-width:1400px;width:109%;border-radius:14px;box-shadow:0 8px 32px -8px #42affa55;">
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Reformatted Findings (main results) -->
-  <section>
-    <div class="ch3-block">
-      <span class="pill-title">Findings</span>
-      <div class="ch3-grid">
-        <div class="ch3-card">
-          <ul style="margin:0;">
-
-            <li>Effect strongest in advanced democracies; robust to crises controls.</li>
-          </ul>
-        </div>
-        <div class="ch3-card fragment" data-fragment-index="1" style="display:flex;align-items:center;justify-content:center;">
-          <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain;margin-top:.2rem;">
-        </div>
+<section>
+  <div class="ch3-block">
+    <span class="pill-title fragment" data-fragment-index="0">Findings: strongest in advanced democracies</span>
+    <div class="ch3-grid" style="display: flex; justify-content: center; align-items: center;">
+      <div class="ch3-card fragment" data-fragment-index="0" style="display:flex;align-items:center;justify-content:center;">
+        <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:90%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain;margin-top:.2rem;">
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- Reformatted Findings (mechanisms) -->
   <section>
     <div class="ch3-block">
       <span class="pill-title">Mechanisms</span>
       <div class="ch3-grid">
         <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
-          <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:70vh;">
+          <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:90vh;">
         </div>
         <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
-          <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:70vh;">
+          <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:90vh;">
         </div>
       </div>
     </div>
   </section>
 
+
+
+  
   <!-- Reformatted Findings (crisis case) -->
   <section>
     <div class="ch3-block">
       <span class="pill-title">Free from government ≠ free from markets</span>
       <div class="ch3-card gfc-smaller" style="display:flex;align-items:center;justify-content:center;padding:0;background:transparent;box-shadow:none;border:none;">
-        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:22vh;width:auto;max-width:65%;">
+        <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:25vh;width:auto;max-width:75%;">
       </div>
       <div class="ch3-card" style="border-left:5px solid #28b487;">
         <div class="robust-title">
@@ -2347,7 +2404,7 @@
   <!-- Chapter 3 title slide -->
   <section>
     <div class="chapter-title-block">
-      <h2>Chapter&nbsp;3</h2>
+  <h2>Chapter&nbsp;3</h2>
       <p style="font-size:0.7em;line-height:1.2;">Who Sets the Agenda? The Role of National Central Banks in the Eurosystem*</p>
     </div>
     <div class="pub-citation fragment" data-fragment-index="3">
@@ -2357,16 +2414,162 @@
 
   <!-- Framework + Hypotheses -->
   <section>
-    <div class="ch3-block">
-      <span class="pill-title">Framework</span>
-      <div class="key-box fragment" data-fragment-index="1">
-        Issue‑responsiveness as a functional tool: the ECB preserves legitimacy under expanding expectations while retaining formal autonomy.
+    <div class="ch3-block" style="max-width:1000px;margin:0 auto;">
+      <h3 style="color:#cfe8f8;font-size:0.95em;letter-spacing:.5px;margin:1rem 0 .5rem;text-align:center;">Hypotheses</h3>
+      <div class="svg-container" style="width:100%;max-width:1000px;margin:0 auto 1rem auto;">
+        <!-- ...existing SVG code (Eurosystem Structure)... -->
+        <svg viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <!-- Background -->
+          <rect width="1200" height="550" fill="#f8f9fa"/>
+          
+          <!-- Title -->
+          <text x="600" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">Eurosystem Structure (20 NCBs + ECB)</text>
+          
+          <!-- ECB Central Node -->
+          <circle cx="600" cy="250" r="50" fill="#1e3a8a" stroke="#ffffff" stroke-width="3"/>
+          <text x="600" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">ECB</text>
+          <text x="600" y="258" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">European</text>
+          <text x="600" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Central Bank</text>
+          
+          <!-- Top 5 NCBs (larger economies) - Different color -->
+          
+          <!-- Germany (largest) -->
+          <circle cx="450" cy="150" r="45" fill="#e74c3c" stroke="#ffffff" stroke-width="3"/>
+          <text x="450" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">DE</text>
+          
+          <!-- France (2nd largest) -->
+          <circle cx="750" cy="150" r="40" fill="#e74c3c" stroke="#ffffff" stroke-width="3"/>
+          <text x="750" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white">FR</text>
+          
+          <!-- Italy (3rd largest) -->
+          <circle cx="350" cy="250" r="35" fill="#e74c3c" stroke="#ffffff" stroke-width="3"/>
+          <text x="350" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white">IT</text>
+          
+          <!-- Spain (4th largest) -->
+          <circle cx="850" cy="250" r="32" fill="#e74c3c" stroke="#ffffff" stroke-width="3"/>
+          <text x="850" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white">ES</text>
+          
+          <!-- Netherlands (5th largest) -->
+          <circle cx="600" cy="380" r="28" fill="#e74c3c" stroke="#ffffff" stroke-width="3"/>
+          <text x="600" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">NL</text>
+          
+          <!-- Remaining 15 NCBs (smaller economies) - Standard green color -->
+          
+          <!-- Belgium -->
+          <circle cx="500" cy="80" r="20" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="500" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">BE</text>
+          
+          <!-- Austria -->
+          <circle cx="700" cy="80" r="19" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="700" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">AT</text>
+          
+          <!-- Ireland -->
+          <circle cx="380" cy="100" r="18" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="380" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white">IE</text>
+          
+          <!-- Finland -->
+          <circle cx="820" cy="100" r="15" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="820" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">FI</text>
+          
+          <!-- Portugal -->
+          <circle cx="250" cy="200" r="14" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="250" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">PT</text>
+          
+          <!-- Greece -->
+          <circle cx="950" cy="200" r="13" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="950" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">GR</text>
+          
+          <!-- Croatia -->
+          <circle cx="300" cy="320" r="12" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="300" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">HR</text>
+          
+          <!-- Slovakia -->
+          <circle cx="900" cy="320" r="12" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="900" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">SK</text>
+          
+          <!-- Slovenia -->
+          <circle cx="500" cy="450" r="11" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="500" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">SI</text>
+          
+          <!-- Luxembourg -->
+          <circle cx="700" cy="450" r="11" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="700" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">LU</text>
+          
+          <!-- Lithuania -->
+          <circle cx="450" cy="380" r="10" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="450" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">LT</text>
+          
+          <!-- Latvia -->
+          <circle cx="750" cy="380" r="9" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="750" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">LV</text>
+          
+          <!-- Estonia -->
+          <circle cx="200" cy="300" r="9" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="200" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">EE</text>
+          
+          <!-- Cyprus -->
+          <circle cx="1000" cy="300" r="8" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="1000" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">CY</text>
+          
+          <!-- Malta -->
+          <circle cx="400" cy="480" r="7" fill="#28b487" stroke="#ffffff" stroke-width="2"/>
+          <text x="400" y="485" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="white">MT</text>
+          
+          <!-- Connection lines from ECB to Top 5 NCBs (thicker) -->
+          <line x1="565" y1="215" x2="480" y2="185" stroke="#64748b" stroke-width="2.5" opacity="0.6"/>
+          <line x1="635" y1="215" x2="720" y2="185" stroke="#64748b" stroke-width="2.5" opacity="0.6"/>
+          <line x1="550" y1="250" x2="385" y2="250" stroke="#64748b" stroke-width="2.5" opacity="0.6"/>
+          <line x1="650" y1="250" x2="818" y2="250" stroke="#64748b" stroke-width="2.5" opacity="0.6"/>
+          <line x1="600" y1="300" x2="600" y2="352" stroke="#64748b" stroke-width="2.5" opacity="0.6"/>
+          
+          <!-- Connection lines from ECB to smaller NCBs (thinner) -->
+          <line x1="575" y1="205" x2="515" y2="98" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="625" y1="205" x2="685" y2="98" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="555" y1="220" x2="398" y2="118" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="645" y1="220" x2="802" y2="118" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="530" y1="265" x2="264" y2="214" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="670" y1="265" x2="937" y2="214" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="540" y1="285" x2="312" y2="332" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="660" y1="285" x2="888" y2="332" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="575" y1="320" x2="511" y2="439" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="625" y1="320" x2="689" y2="439" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="555" y1="305" x2="460" y2="370" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="645" y1="305" x2="740" y2="370" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="525" y1="275" x2="209" y2="309" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="675" y1="275" x2="991" y2="309" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          <line x1="565" y1="335" x2="407" y2="473" stroke="#64748b" stroke-width="1.5" opacity="0.4"/>
+          
+          <!-- Legend (bottom left) -->
+          <rect x="30" y="480" width="280" height="60" fill="white" stroke="#e5e7eb" stroke-width="1" rx="6"/>
+          <text x="40" y="500" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2c3e50">Legend:</text>
+          
+          <circle cx="50" cy="515" r="8" fill="#1e3a8a"/>
+          <text x="65" y="520" font-family="Arial, sans-serif" font-size="10" fill="#4b5563">ECB</text>
+          
+          <circle cx="105" cy="515" r="7" fill="#e74c3c"/>
+          <text x="120" y="520" font-family="Arial, sans-serif" font-size="10" fill="#4b5563">Top 5 NCBs</text>
+          
+          <circle cx="195" cy="515" r="6" fill="#28b487"/>
+          <text x="210" y="520" font-family="Arial, sans-serif" font-size="10" fill="#4b5563">Other 15 NCBs</text>
+          
+          <circle cx="50" cy="530" r="5" fill="#64748b" opacity="0.6"/>
+          <text x="65" y="535" font-family="Arial, sans-serif" font-size="9" fill="#4b5563">Size = GDP</text>
+        </svg>
+
       </div>
-      <h3 class="fragment" data-fragment-index="2" style="font-size:.9em;letter-spacing:.5px;color:#cfe8f8;margin:.15rem 0 .35rem;">Hypotheses</h3>
-      <div class="hypo-grid fragment" data-fragment-index="3">
-        <div class="hypo"><h5>H1 First Movers</h5><strong>NCBs introduce novel topics first</strong></div>
-        <div class="hypo"><h5>H2 Public Salience</h5><strong>ECB uptake ↑ with national salience</strong></div>
-        <div class="hypo"><h5>H3 Economic Pressure</h5><strong>Responsiveness ↑ with asymmetric pressures</strong></div>
+      <div class="hypo-grid fragment" data-fragment-index="3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:-4.9rem;width:100%;">
+        <div class="hypo" style="background:rgba(255,255,255,0.1);padding:0.8rem;border-radius:8px;text-align:center;border:1px solid rgba(255,255,255,0.2);">
+          <h5 style="color:#42affa;margin:0 0 .8rem 0;font-size:1rem;font-weight:600;">H1 First Movers</h5>
+          <strong style="color:white;font-size:0.9rem;line-height:1.4;">NCBs introduce novel topics first</strong>
+        </div>
+        <div class="hypo" style="background:rgba(255,255,255,0.1);padding:0.8rem;border-radius:8px;text-align:center;border:1px solid rgba(255,255,255,0.2);">
+          <h5 style="color:#42affa;margin:0 0 .8rem 0;font-size:1rem;font-weight:600;">H2 Public Salience</h5>
+          <strong style="color:white;font-size:0.9rem;line-height:1.4;">ECB uptake ↑ with national salience</strong>
+        </div>
+        <div class="hypo" style="background:rgba(255,255,255,0.1);padding:0.8rem;border-radius:8px;text-align:center;border:1px solid rgba(255,255,255,0.2);">
+          <h5 style="color:#42affa;margin:0 0 .8rem 0;font-size:1rem;font-weight:600;">H3 Economic Pressure</h5>
+          <strong style="color:white;font-size:0.9rem;line-height:1.4;">Responsiveness ↑ with asymmetric pressures</strong>
+        </div>
       </div>
     </div>
   </section>
@@ -2377,6 +2580,8 @@
   <section class="ch3-fig-slide"><h3>NCBs lead 3 month lags</h3><img src="coefficient_plot.jpg" alt="Coefficient Plot"></section>
   <section class="ch3-fig-slide fig-pressure"><h3>ECB not extra responsive under pressure</h3><img src="interaction_grid.jpg" alt="Interaction Grid"></section>
 
+
+  
   <!-- Heterogeneity / scope conditions -->
   <section>
     <div class="het-grid">
@@ -2394,9 +2599,10 @@
         </div>
       </div>
     </div>
-    <div class="het-key fragment" data-fragment-index="1">
-      <strong>Key Insight:</strong> ECB responsiveness is <span class="highlight">conditional</span> and topic audience dictates desired unity.
-    </div>
+<div class="het-key fragment" data-fragment-index="1" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(66, 175, 250, 0.3); padding: 1.2rem 1.5rem; border-radius: 10px; backdrop-filter: blur(10px); margin: 1rem 0;">
+  <strong style="color: #42affa; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9em;">Key Insight</strong>
+  <p style="margin: 0.5rem 0 0 0; color: white; font-size: 1.0em; line-height: 1.5;">ECB responsiveness is <span class="highlight" style="background: #567589; color: white; padding: 0.15em 0.4em; border-radius: 3px; font-weight: 500;">conditional</span> and topic audience dictates desired unity.</p>
+</div>
   </section>
   <!-- New: Contributions moved to last slide of chapter 3 -->
 </section> <!-- end Chapter 3 stack -->
@@ -2406,7 +2612,7 @@
   <!-- Title / RQ slide -->
   <section>
     <div class="chapter-title-block">
-      <h2>Chapter&nbsp;4</h2>
+  <h2>Chapter&nbsp;4</h2>
       <p style="font-size:0.7em; line-height:1.2;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT‑3.5</p>
     </div>
     <div class="rq-container fragment" data-fragment-index="1">
@@ -2422,26 +2628,21 @@
 
       <h2 class="fragment" data-fragment-index="1" style="margin-bottom:1.2rem;">Policy Regimes</h2>
       <div class="ch4-grid" style="margin-bottom:1.2rem;">
-        <div class="regime-box fragment" data-fragment-index="1">
+        <div class="regime-box fragment" data-fragment-index="1" style="border: 2px solid #75a170;">
           <h4>💪 Monetary Dominance</h4>
-          CB prioritises price stability over other aims.
         </div>
-        <div class="regime-box dom-fiscal fragment" data-fragment-index="1">
+        <div class="regime-box dom-fiscal fragment" data-fragment-index="1" style="border: 2px solid #75a170;">
           <h4>🏛 Fiscal Dominance</h4>
-          Accommodation of debt/deficits constrains policy.
         </div>
-        <div class="regime-box dom-fin fragment" data-fragment-index="1">
-          <h4>💼 Financial Dominance</h4>
-          Stability/market functioning overrides price mandate.
-        </div>
-        <div class="regime-box coord-fisc fragment" data-fragment-index="1">
-          <h4>🤝 Monetary–Fiscal Coordination</h4>
-          Symmetric joint calibration.
-        </div>
-        <div class="regime-box coord-fin fragment" data-fragment-index="1">
-          <h4>🤝 Monetary–Financial Coordination</h4>
-          Liquidity + prudential signaling alignment.
-        </div>
+<div class="regime-box dom-fin fragment" data-fragment-index="1" style="border: 2px solid #e74c3c;">
+  <h4>💼 Financial Dominance</h4>
+</div>
+<div class="regime-box coord-fisc fragment" data-fragment-index="1" style="border: 2px solid #e74c3c;">
+  <h4>🤝 Monetary–Fiscal Coordination</h4>
+</div>
+<div class="regime-box coord-fin fragment" data-fragment-index="1" style="border: 2px solid #e74c3c;">
+  <h4>🤝 Monetary–Financial Coordination</h4>
+</div>
       </div>
 
     </div>
@@ -2458,12 +2659,12 @@
           <img src="coding_scheme.jpg"
                alt="Three-stage classification pipeline schematic"
                class="fragment"
-               data-fragment-index="1"
+               data-fragment-index="0"
                style="margin-bottom:.8rem;">
         </div>
         <div class="validation-col">
-          <h2 class="fragment" data-fragment-index="2" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
-          <div class="ch4-grid fragment" data-fragment-index="3" style="margin-bottom:.8rem;">
+          <h2 class="fragment" data-fragment-index="1" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
+          <div class="ch4-grid fragment" data-fragment-index="1" style="margin-bottom:.8rem;">
             <div class="regime-box" style="border-left-color:#28b487">
               <h4>Manual Validation</h4>
               1k sentences / 3 coders (IRR 76–84%). Accuracy 62–85%; high macro F1 (.36–.83).
@@ -2492,23 +2693,20 @@
           <img src="dominance_trends.jpg"
                alt="Trends in monetary dominance, fiscal/financial coordination and dominance over time"
                class="fragment ch4-trend-small"
-               data-fragment-index="1"
+               data-fragment-index="0"
                style="margin-bottom:.8rem;">
         </div>
         <div class="variation-col">
-          <h2 class="fragment" data-fragment-index="2" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
-          <div class="ch4-grid fragment" data-fragment-index="3" style="margin-bottom:.8rem;">
+          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
+          <div class="ch4-grid fragment" data-fragment-index="0" style="margin-bottom:.8rem;">
             <div class="regime-box" style="border-left-color:#42affa">
               <h4>Advanced vs Emerging</h4>
-              Advanced: more monetary talk; Emerging: more financial (risk management).
             </div>
             <div class="regime-box" style="border-left-color:#ffb74d">
               <h4>Democracy vs Autocracy</h4>
-              Democracies stress monetary dominance; autocracies higher financial dominance.
             </div>
             <div class="regime-box" style="border-left-color:#28b487">
               <h4>Crisis Effects</h4>
-              Fiscal stress → ↑ fiscal dominance rhetoric; inflation → ↑ dominance + coordination.
             </div>
           </div>
         </div>
@@ -2526,14 +2724,14 @@
       <section>
         <!-- New chapter-style title block -->
         <div class="chapter-title-block">
-          <h2>Chapter&nbsp;5<br><small>Conclusion</small></h2>
+          <h2>Chapter&nbsp;5<br><small>Conclusion: More than just talk?</small></h2>
         </div>
         <div class="concl-wrapper">
           <div class="card">
 
             <h3>Key Insight</h3>
             <div class="key-box">
-              Communication is not just information transmission - it helps address <strong>financial & societal pressures</strong> not foreseen at delegation => more than "just talk". LLMs offer ways forward to reserach this.
+              Communication is not just information transmission - it helps address <strong>financial & societal pressures</strong> not foreseen at delegation. LLMs offer ways forward to reserach this.
             </div>
 
           </div>
@@ -2541,24 +2739,35 @@
       </section>
 
           <!-- Slide 2: Limitations & Future Research -->
-      <section>
-        <div class="concl-wrapper">
-          <div class="card">
-            <h2 class="main"> Limitations & Future Research</h2>
-              <ul>
-                <li><strong>Normative Gap:</strong> No benchmark for “optimal” responsiveness.</li>
-                <li><strong>Talk vs Action:</strong> Need tighter mapping to implementation.</li>
-                <li><strong>Multi‑level Complexity:</strong> Eurosystem internal dynamics underexplored.</li>
-                <li><strong>LLM Issues:</strong> Reproducibility, bias, environmental costs.</li>
-                <li><strong>Coverage:</strong> Sparse data for many emerging economies.</li>
-              </ul>
-            <div class="grid">
-   
-            </div>
-
-          </div>
-        </div>
-      </section>
+<section>
+  <div class="concl-wrapper">
+    <div class="card">
+      <h2 class="main">Limitations & Future Research</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">1</span>
+          <span>No benchmark for "optimal" responsiveness.</span>
+        </li>
+        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">2</span>
+          <span>Need tighter mapping to implementation.</span>
+        </li>
+        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">3</span>
+          <span>Eurosystem internal dynamics underexplored.</span>
+        </li>
+        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">4</span>
+          <span>LLM Reproducibility, bias, environmental costs.</span>
+        </li>
+        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
+          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">5</span>
+          <span>Heterogenous effects in emerging economies.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
       <!-- Slide 3: Four Broader Implications (Contemporary Relevance removed) -->
       <section>
@@ -2594,8 +2803,6 @@
             <div class="contemporary-box fragment" data-fragment-index="0">
               <h4>Contemporary Relevance</h4>
               <ul>
-                <li><span>•</span> Political & populist pressures intensifying</li>
-                <li><span>•</span> Generalisable to other international organisations or non-majoritarian institutions?</li>
               </ul>
               <div class="grid" style="margin-top: 1rem; gap: 1rem;">
                 <img src="jerome.jpg" alt="Jerome Powell" style="width: 90%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
@@ -2797,19 +3004,6 @@
         <a class="action" href="https://centralbanktalk.eu/" target="_blank" rel="noopener">Open in new tab ↗</a>
         <button type="button" id="siteContinue">Close & Continue ▶</button>
         <button type="button" id="siteClose">Close ✕</button>
-      </div>
-    </div>
-    <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
-  </div>
-</body>
-</html>
-      </div>
-    </div>
-    <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
-  </div>
-</body>
-</html>
-</html>
       </div>
     </div>
     <iframe class="embed-site-frame" src="about:blank" title="Embedded centralbanktalk.eu"></iframe>
