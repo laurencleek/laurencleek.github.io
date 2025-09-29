@@ -74,18 +74,11 @@
       display: inline-block;
     }
     .chapter-title-block h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25em !important;
+      margin-bottom: 0.5rem;
     }
     .chapter-title-block p {
       margin-top: 0;
       color: #ccc !important;
-  }
-
-  /* Make Chapter 4 subtitle smaller */
-  section[data-section="ch4"] .chapter-title-block p {
-    font-size: 0.7em !important;
-  }
     }
 
     .rq-container {
@@ -303,7 +296,132 @@
       display:none;
       transition:background .15s;
     }
+.method-section {
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-left: 5px solid #42affa;
+  border-radius: 12px;
+  padding: 1.2em 1.4em 1.3em;
+  box-shadow: 0 4px 14px -6px rgba(0,0,0,0.55);
+  margin-bottom: 1.5rem;
+}
 
+.method-section h3 {
+  color: #42affa;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0 0 0.8em 0;
+  letter-spacing: 0.5px;
+}
+
+.equation-block {
+  background: linear-gradient(135deg, rgba(66,175,250,0.08), rgba(20,70,105,0.15));
+  border: 1px solid rgba(66,175,250,0.3);
+  border-radius: 10px;
+  padding: 1.2em;
+  margin: 1em 0;
+  text-align: center;
+  box-shadow: 0 3px 10px -4px rgba(0,0,0,0.4);
+}
+
+.equation-block .eq-label {
+  color: #42affa;
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.parameter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+
+.param-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 0.8em 1em;
+  font-size: 0.95em;
+  line-height: 1.3;
+}
+
+.param-card .param-symbol {
+  color: #ffb74d;
+  font-weight: 700;
+  font-family: 'Times New Roman', serif;
+  font-size: 1.1em;
+}
+
+.param-card .param-desc {
+  color: #e4e9ef;
+  margin-top: 0.3em;
+}
+
+.key-insight {
+  background: linear-gradient(135deg, rgba(255,183,77,0.12), rgba(120,70,0,0.25));
+  border: 1px solid rgba(255,183,77,0.45);
+  border-left: 5px solid #ffb74d;
+  border-radius: 12px;
+  padding: 1em 1.2em;
+  font-size: 0.95em;
+  color: #daf1ff;
+  box-shadow: 0 4px 16px -6px rgba(0,0,0,0.55);
+  margin: 1.2rem 0;
+}
+
+.key-insight .insight-label {
+  color: #ffb74d;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+  display: block;
+}
+
+.binning-eq {
+  background: rgba(40,180,135,0.08);
+  border: 1px solid rgba(40,180,135,0.3);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 0.8em 0;
+  text-align: center;
+}
+
+.specification-notes {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 1em;
+  font-size: 0.85em;
+  color: #c8d0d6;
+  margin-top: 1rem;
+}
+
+.specification-notes h4 {
+  color: #42affa;
+  font-size: 1em;
+  margin: 0 0 0.6em 0;
+  font-weight: 600;
+}
+
+.specification-notes ul {
+  margin: 0.5em 0;
+  padding-left: 1.2em;
+}
+
+.specification-notes li {
+  margin-bottom: 0.4em;
+  line-height: 1.35;
+}
+
+/* Make math equations visible on dark theme */
+.MathJax {
+  color: #ffffff !important;
+}
     /* Guess the Regime styling */
     .gr-panel{
       background:rgba(25,45,65,.55);
@@ -1056,6 +1174,8 @@
     @media (max-height:560px){
       .pub-citation{font-size:.36em;}
     }
+
+    
   /* --- Chapter 4 missing styles --- */
 .ch4-extra {
   max-width: 1100px;
@@ -1120,13 +1240,6 @@
 @media (max-width:900px){
   .ch4-grid, .contrib-grid { grid-template-columns: 1fr; }
   .stat-bar { flex-direction: column; gap: .8rem; }
-}
-
-.ch3-fig-slide h3 {
-  font-size: 0.6em;
-  margin: 0.2em 0 0.4em;
-  letter-spacing: 0.3px;
-  font-weight: 600;
 }
     /* === Conclusion (Chapter 5) redesigned slides === */
     .conclusion-set .card{
@@ -1371,43 +1484,47 @@
     }
 
   /* Ch3 figure slides: tighter headings & image scaling */
-  /* Consistent Chapter 3 figure sizing */
-.ch3-fig-slide img {
-  max-height: 85vh !important;
-  width: auto;
-  max-width: 95%;
-  object-fit: contain;
-  margin: 0 auto;
-  display: block;
-}
-
-.ch3-fig-slide.fig-pressure img {
-  max-height: 85vh !important;
-}
-
-@media (max-height: 780px) {
-  .ch3-fig-slide img {
-    max-height: 70vh;  /* was 60vh */
+  .ch3-fig-slide h3{
+    font-size:.66em;              /* was .78em */
+    margin:.08em 0 .3em;
+    letter-spacing:.4px;
+    font-weight:600;
   }
-}
-
-@media (max-height: 700px) {
-  .ch3-fig-slide img {
-    max-height: 65vh;  /* was 55vh */
+  .ch3-fig-slide img{
+    max-height:65vh;              /* was 70–75vh inline */
+    width:auto;
+    max-width:100%;
+    object-fit:contain;
+    margin:0 auto;
+    display:block;
   }
-}
-
-@media (max-height: 640px) {
-  .ch3-fig-slide img {
-    max-height: 60vh;  /* was 50vh */
+  .ch3-fig-slide.fig-pressure img{max-height:58vh;} /* most constrained */
+  /* Progressive shrink on short viewports */
+  @media (max-height:780px){
+    .ch3-fig-slide img{max-height:55vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:49vh;}
   }
-}
-
-@media (max-height: 580px) {
-  .ch3-fig-slide img {
-    max-height: 55vh;  /* was 45vh */
+  @media (max-height:700px){
+    .ch3-fig-slide img{max-height:51vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:46vh;}
   }
-}
+  @media (max-height:640px){
+    .ch3-fig-slide img{max-height:45vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:42vh;}
+  }
+  @media (max-height:580px){
+    .ch3-fig-slide img{max-height:35vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:40vh;}
+  }
+  @media (max-height:520px){
+    .ch3-fig-slide img{max-height:34vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:38vh;}
+  }
+
+  /* Larger images for selected Ch3 slides */
+  .ch3-fig-slide.bigger img{max-height:72vh;}
+  .ch3-fig-slide.bigger.fig-pressure img{max-height:65vh;}
+
   /* REMOVE old .view-badges badge styling block and replace with richer comparison layout */
   /* Argument slide: Standard vs Thesis comparison */
   .argument-contrast .contrast-wrap{
@@ -1546,15 +1663,38 @@
       .ch4-method-grid .pipeline-col img{max-height:38vh;}
     }
 
+    /* === Override: Larger Ch3 figure images === */
+    .ch3-fig-slide img{max-height:65vh;}
+    .ch3-fig-slide.fig-pressure img{max-height:58vh;}
+    @media (max-height:780px){
+      .ch3-fig-slide img{max-height:55vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:49vh;}
+    }
+    @media (max-height:700px){
+      .ch3-fig-slide img{max-height:51vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:46vh;}
+    }
+    @media (max-height:640px){
+      .ch3-fig-slide img{max-height:45vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:42vh;}
+    }
+    @media (max-height:580px){
+      .ch3-fig-slide img{max-height:35vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:40vh;}
+    }
+    @media (max-height:520px){
+      .ch3-fig-slide img{max-height:34vh;}
+      .ch3-fig-slide.fig-pressure img{max-height:38vh;}
+    }
 
     /* Make Chapter 4 font size much smaller */
     .ch4-small {
-  font-size: 0.82em !important;
+      font-size: inherit !important;
     }
     .ch4-small h2,
     .ch4-small h3,
     .ch4-small h4 {
-      font-size: 1.25em !important;
+      font-size: inherit !important;
     }
     .ch4-small .regime-box,
     .ch4-small .contrib-box,
@@ -1573,9 +1713,9 @@
     }
     /* Make bottom line even smaller for better fit */
     .ch4-small .bottom-line {
-  font-size: 0.75em !important;
-  padding: .6em 1em .65em !important;
-  margin-top: 1rem !important;
+      font-size: 0.75em !important;
+      padding: .6em 1em .65em !important;
+      margin-top: 1rem !important;
     }
     /* Optionally shrink paragraph and list text further */
     .ch4-small p,
@@ -1592,7 +1732,7 @@
     }
     /* Make cross-country variation points larger */
     .ch4-small .variation-col .regime-box {
-  font-size: 0.95em !important;
+      font-size: 0.95em !important;
     }
     /* Guess the Regime formatting improvements */
     .ch4-small .gr-panel {
@@ -1863,9 +2003,9 @@
 
   /* Make GFC image much smaller - fix selector to match actual HTML structure */
   .ch3-block .ch3-card.gfc-smaller img {
-    max-height: 45vh !important;
+    max-height: 25vh !important;
     width: auto !important;
-    max-width: 85% !important;
+    max-width: 70% !important;
   }
   @media (max-height:760px){
     .ch3-block .ch3-card.gfc-smaller img{max-height:22vh !important;}
@@ -1921,6 +2061,13 @@
   left: 0;
   color: #db7373; /* Bullet color for contrast */
 }
+
+
+
+/* Make math equations visible on dark theme */
+.MathJax {
+  color: #ffffff !important;
+}
   </style>
 </head>
 <body>
@@ -1933,19 +2080,70 @@
   <div class="mini-nav">
     <button id="nav-toggle" aria-expanded="false" aria-controls="nav-sections">☰ Sections</button>
     <div class="nav-items" id="nav-sections">
-      <button data-target="puzzle">Puzzle</button>
-      <button data-target="intro">Intro</button>
-      <button data-target="ch2">Ch2</button>
-      <button data-target="ch3">Ch3</button>
-      <button data-target="ch4">Ch4</button>
-      <button data-target="conclusion">Conclusion</button>
-      <button data-target="appendix">Appendix</button>
+  <button data-target="intro">Intro</button>
+  <button data-target="ch2">Ch2</button>
+  <button data-target="ch3">Ch3</button>
+  <button data-target="ch4">Ch4</button>
+  <button data-target="appendix-intro">App: Introduction</button>
+  <button data-target="appendix-ch2">App: Ch2</button>
+  <button data-target="appendix-ch3">App: Ch3</button>
+  <button data-target="appendix-ch4">App: Ch4</button>
+  <button data-target="appendix-conclusion">App: Conclusion</button>
+  <button data-target="website-replication">Website & Replication</button>
     </div>
   </div>
 
+  <!-- Elapsed time clock & progress bar (moved to right corner, no auto-start) -->
 
+  <!-- Spotlight overlay element (previously missing) -->
+  <div class="spot"></div>
 
-  <div class="reveal" style="margin-top:px"><div class="slides">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      tags: 'ams'
+    }
+  };
+</script>
+
+  <!-- Timer script (authoritative: keep this one) -->
+  <script>
+    const MAX_MIN = 20;
+    let startTime = null;
+    let timerInterval = null;
+    function updateTimer(){
+      const clock = document.getElementById('clock');
+      const bar = document.getElementById('timebar');
+      if(!clock || !bar) return;
+      const elapsedMin = startTime ? (Date.now()-startTime)/60000 : 0;
+      const remaining = Math.max(0, MAX_MIN - elapsedMin);
+      // fixed: properly closed string for the "time's up" message
+      clock.textContent = remaining > 0 ? `⏱ ${remaining.toFixed(1)} min left` : `⏱ Time's up!`;
+      bar.style.width = (remaining/MAX_MIN*100)+'%';
+      if(remaining===0){
+        clearInterval(timerInterval);
+        setTimeout(()=>{ bar.style.width='100%'; },50);
+        setTimeout(()=>{ const s = document.getElementById('timeup-sound'); if(s) s.play(); },350);
+      }
+    }
+    function startTimer(){
+      if(startTime) return;
+      startTime = Date.now();
+      timerInterval = setInterval(updateTimer, 100);
+      updateTimer();
+    }
+    document.addEventListener('visibilitychange', () => {
+      if(document.hidden) clearInterval(timerInterval);
+      else updateTimer();
+    });
+  </script>
+  <audio id="timeup-sound" src="timeup.mp3" preload="auto"></audio>
+
+  <div class="reveal"><div class="slides">
 
     <!-- TITLE -->
     <section>
@@ -2044,31 +2242,7 @@
          style="width:90%;max-width:900px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.4);margin-top:.5rem">
   </section>
 
-  <!-- Contributions slide unchanged -->
-  <section class="intro-slide theory-tight">
-    <h2>Contributions to Theory</h2>
-    <ul class="theory-list">
-      <li class="theory-item">
-        <span class="ch-badge ch2" aria-label="Chapter 2">Ch 2</span>
-        <span class="theory-check">&#10003;</span>
-        <span>Financial instability as a persistent challenge for central bank independence - beyond macroprudential turn literature</span>
-      </li>
-      <li class="theory-item">
-        <span class="ch-badge ch3" aria-label="Chapter 3">Ch 3</span>
-        <span class="theory-check">&#10003;</span>
-        <span>Even/especially the most independent central banks are responsive - beyond Cukierman</span>
-      </li>
-      <li class="theory-item pad-right">
-        <span class="ch-badge ch4" aria-label="Chapter 4">Ch 4</span>
-        <span class="theory-check">&#10003;</span>
-        <span>Fiscal and financial pressures through either coordination or dominance (policy‑linkages) - beyond Sargent and Wallace</span>
-      </li>
-      <li class="theory-item note">
-        <span class="theory-check theory-warn" title="Limitation">&#9888;</span>
-        <span class="theory-note"><em>Note:</em> <strong style="color:#c91c1c">not </strong> a test of the intentions of governors behind communicating</span>
-      </li>
-    </ul>
-  </section>
+
 </section> <!-- end of intro (Argument + Contributions to Theory stack) -->
 
     <!-- METHODS vertical stack -->
@@ -2159,42 +2333,13 @@
         </div>
       </section>
 
-      <!-- REPLACED: old free-form list -> unified boxed numbered style -->
-      <section class="intro-slide theory-tight">
-        <h2>Methods &amp; Data Contributions</h2>
-        <ul class="theory-list">
-          <li class="theory-item has-multi-badges">
-            <span class="badge-group">
-              <span class="ch-badge ch2" aria-label="Chapter 2">Ch 2</span>
-              <span class="ch-badge ch4" aria-label="Chapter 4">Ch 4</span>
-            </span>
-            <span class="theory-check">&#10003;</span>
-            <span><strong>Novel LLM-based methods</strong> for detecting policy pressures in central bank communication</span>
-          </li>
-          <li class="theory-item">
-            <span class="ch-badge all" aria-label="Chapters 2 to 4">Ch 2–4</span>
-            <span class="theory-check">&#10003;</span>
-            <span><strong>Comprehensive dataset</strong> with enriched meta-data (retrieved via LLMs)</span>
-          </li>
-            <li class="theory-item">
-              <span class="ch-badge ch3" aria-label="Chapter 3">Ch 3</span>
-              <span class="theory-check">&#10003;</span>
-              <span><strong>New measure of responsiveness</strong> for central banks</span>
-            </li>
-          <li class="theory-item">
-            <span class="ch-badge all" aria-label="Chapters 2 to 4">Ch 2–4</span>
-            <span class="theory-check">&#10003;</span>
-            <span><strong><a href="https://centralbanktalk.eu/" class="embed-site-link" data-embed-site>Interactive website</a></strong> with dashboards and insights</span>
-          </li>
-        </ul>
-      </section>
+      
     </section>
 <!-- CHAPTER 2 -->
 <section data-section="ch2">
   <section>
     <div class="chapter-title-block">
-  <h2>Chapter&nbsp;2<sup class="fragment" data-fragment-index="1" style="color:#a1a1a1">*</sup></h2>
-      <p style="font-size:0.7em; line-height:1.2;">How Central Bank Independence Shapes Monetary Policy Communication:<br>A Large Language Model Application</p>
+  <h2 style="font-size:1.25em; line-height:1.18;">How Central Bank Independence Shapes Monetary Policy Communication: A Large Language Model Application</h2>
     </div>
     <div class="fragment" data-fragment-index="2">
       <div class="rq-container">
@@ -2276,53 +2421,21 @@
     <span class="pill-title fragment" data-fragment-index="0">Findings: strongest in advanced democracies</span>
     <div class="ch3-grid" style="display: flex; justify-content: center; align-items: center;">
       <div class="ch3-card fragment" data-fragment-index="0" style="display:flex;align-items:center;justify-content:center;">
-        <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:95% !important;height:auto !important;max-width:98vw !important;max-height:92vh !important;object-fit:contain;margin-top:.2rem;">
+        <img src="dominance_combined.jpg" alt="Dominance combined results" class="methods-img" style="width:100%;height:auto;max-width:98vw;max-height:60vh;object-fit:contain;margin-top:.2rem;">
       </div>
     </div>
   </div>
 </section>
-
   <!-- Reformatted Findings (mechanisms) -->
-<section>
-  <div class="ch3-block">
-    <span class="pill-title">Mechanisms</span>
-    <div class="ch3-grid">
-      <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
-        <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:99vh !important;width:auto !important;max-width:105% !important;">
-      </div>
-      <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
-        <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:99vh !important;width:auto !important;max-width:105% !important;">
-      </div>
-    </div>
-  </div>
-</section>
-
-
 
   
   <!-- Reformatted Findings (crisis case) -->
-<!-- Reformatted Findings (crisis case) -->
+ <!-- Reformatted Findings (crisis case) -->
 <section>
   <div class="ch3-block">
     <span class="pill-title">Free from government ≠ free from markets</span>
     <div class="ch3-card gfc-smaller" style="display:flex;align-items:center;justify-content:center;padding:0;background:transparent;box-shadow:none;border:none;">
-      <img src="gfc.jpg" alt="GFC" class="methods-img" style="max-height:60vh !important;width:auto !important;max-width:90% !important;">
-    </div>
-    <div class="ch3-card" style="border-left:5px solid #28b487;">
-      <div class="robust-title">
-        <span class="robust-icon">&#10003;</span> Robustness Checks
-      </div>
-      <div class="robust-btn-row">
-        <button class="robust-btn" type="button" data-robust="cbi">Alternative CBI measures</button>
-        <button class="robust-btn" type="button" data-robust="precedent">Independence precedent</button>
-        <button class="robust-btn" type="button" data-robust="audiences">Audiences</button>
-        <button class="robust-btn" type="button" data-robust="supervision">Financial supervision mandates</button>
-        <button class="robust-btn" type="button" data-robust="euro">Excluding Euro area</button>
-        <button class="robust-btn" type="button" data-robust="estimators">Multiple estimators</button>
-        <button class="robust-btn" type="button" data-robust="placebo">Placebo tests</button>
-        <button class="robust-btn" type="button" data-robust="sample">Sample construction</button>
-        <button class="robust-btn" type="button" data-robust="event">Event study indicator</button>
-      </div>
+      <img src="gfc.jpg" alt="GFC" style="max-height:95vh !important; max-width:75% !important; width:auto !important; height:auto !important; object-fit:contain;">
     </div>
   </div>
 </section>
@@ -2339,8 +2452,7 @@
   <!-- Chapter 3 title slide -->
   <section>
     <div class="chapter-title-block">
-  <h2>Chapter&nbsp;3</h2>
-      <p style="font-size:0.7em;line-height:1.2;">Who Sets the Agenda? The Role of National Central Banks in the Eurosystem*</p>
+  <h2 style="font-size:1.25em; line-height:1.18;">Who Sets the Agenda? The Role of National Central Banks in the Eurosystem*</h2>
     </div>
     <div class="pub-citation fragment" data-fragment-index="3">
       * R&amp;R at Journal of European Public Policy.
@@ -2510,11 +2622,10 @@
   </section>
 
   <!-- Figure slides -->
-  <section class="ch3-fig-slide"><h3>NCBs first movers</h3><img src="first_movers.jpg" alt="First Movers"></section>
-  <section class="ch3-fig-slide"><h3>ECB direct responsive</h3><img src="topic_transitions.jpg" alt="Topic Transitions"></section>
-  <section class="ch3-fig-slide"><h3>NCBs lead 3 month lags</h3><img src="coefficient_plot.jpg" alt="Coefficient Plot"></section>
-  <section class="ch3-fig-slide fig-pressure"><h3>ECB not extra responsive under pressure</h3><img src="interaction_grid.jpg" alt="Interaction Grid"></section>
-
+<section class="ch3-fig-slide fig-pressure">
+  <h3>ECB not extra responsive under pressure</h3>
+  <img src="interaction_grid.jpg" alt="Interaction Grid" style="max-height:85vh !important; max-width:80% !important; width:auto !important; height:auto !important; object-fit:contain;">
+</section>
 
   
   <!-- Heterogeneity / scope conditions -->
@@ -2534,7 +2645,7 @@
         </div>
       </div>
     </div>
-<div class="het-key fragment" data-fragment-index="1" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(66, 175, 250, 0.3); padding: 1.2rem 1.5rem; border-radius: 10px; backdrop-filter: blur(10px); margin: 1rem 0;">
+<div class="het-key fragment" data-fragment-index="0" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(66, 175, 250, 0.3); padding: 1.2rem 1.5rem; border-radius: 10px; backdrop-filter: blur(10px); margin: 1rem 0;">
   <strong style="color: #42affa; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9em;">Key Insight</strong>
   <p style="margin: 0.5rem 0 0 0; color: white; font-size: 1.0em; line-height: 1.5;">ECB responsiveness is <span class="highlight" style="background: #567589; color: white; padding: 0.15em 0.4em; border-radius: 3px; font-weight: 500;">conditional</span> and topic audience dictates desired unity.</p>
 </div>
@@ -2547,8 +2658,7 @@
   <!-- Title / RQ slide -->
   <section>
     <div class="chapter-title-block">
-  <h2>Chapter&nbsp;4</h2>
-      <p style="font-size:0.7em; line-height:1.2;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT‑3.5</p>
+  <h2 style="font-size:1.25em; line-height:1.18;">Introducing Textual Measures of Central Bank Policy Linkages Using GPT‑3.5</h2>
     </div>
     <div class="rq-container fragment" data-fragment-index="1">
 
@@ -2587,119 +2697,132 @@
 
   <!-- === NEW Ch4 Slide 2: Methodology (compact side-by-side) === -->
   <section>
-  <div class="ch4-extra">
-    <div class="ch4-method-grid" style="margin-bottom:1.0rem;">
-      <div class="pipeline-col">
-        <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Classification Pipeline</h2>
-        <img src="coding_scheme.jpg"
-             alt="Three-stage classification pipeline schematic"
-             class="fragment"
-             data-fragment-index="0"
-             style="margin-bottom:.1rem;width:99% !important;max-width:700px !important;max-height:65vh !important;">
-      </div>
-      <div class="validation-col">
-        <h2 class="fragment" data-fragment-index="1" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
-        <div class="ch4-grid fragment" data-fragment-index="1" style="margin-bottom:.8rem;">
-          <div class="regime-box" style="border-left-color:#28b487">
-            <h4>Manual Validation</h4>
-            1k sentences / 3 coders (IRR 76–84%). Accuracy 62–85%; high macro F1 (.36–.83).
+    <div class="ch4-extra">
+      <div class="ch4-method-grid" style="margin-bottom:1.2rem;">
+        <div class="pipeline-col">
+          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Classification Pipeline</h2>
+          <img src="coding_scheme.jpg"
+               alt="Three-stage classification pipeline schematic"
+               class="fragment"
+               data-fragment-index="0"
+               style="margin-bottom:.8rem;">
+        </div>
+        <div class="validation-col">
+          <h2 class="fragment" data-fragment-index="1" style="margin-bottom:.8rem;">Validation & Prompt Engineering</h2>
+          <div class="ch4-grid fragment" data-fragment-index="1" style="margin-bottom:.8rem;">
+            <div class="regime-box" style="border-left-color:#28b487">
+              <h4>Manual Validation</h4>
+              1k sentences / 3 coders (IRR 76–84%). Accuracy 62–85%; high macro F1 (.36–.83).
+            </div>
+            <div class="regime-box" style="border-left-color:#ffb74d">
+              <h4>Prompt Choices</h4>
+              Temp=0; 10 sentences/prompt; context window for disambiguation.
+            </div>
+            <div class="regime-box" style="border-left-color:#ff5252">
+              <h4>Compute / Tokens</h4>
+              Efficient token usuage ; GPT‑4 & Gemini benchmarking checks.
+            </div>
+
           </div>
-          <div class="regime-box" style="border-left-color:#ffb74d">
-            <h4>Prompt Choices</h4>
-            Temp=0; 10 sentences/prompt; context window for disambiguation.
-          </div>
-          <div class="regime-box" style="border-left-color:#ff5252">
-            <h4>Compute / Tokens</h4>
-            Efficient token usuage ; GPT‑4 & Gemini benchmarking checks.
-          </div>
+
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
   <!-- === NEW Ch4 Slide 3: Key Findings (grouped cross-country boxes) === -->
-<section>
-  <div class="ch4-extra">
-    <div class="ch4-findings-grid" style="margin-bottom:1.2rem;">
-      <div class="trend-col">
-        <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Dominance / Coordination Over Time</h2>
-        <img src="dominance_trends.jpg"
-             alt="Trends in monetary dominance, fiscal/financial coordination and dominance over time"
-             class="fragment ch4-trend-small"
-             data-fragment-index="0"
-             style="margin-bottom:.8rem;width:97% !important;max-width:720px !important;max-height:59vh !important;">
-      </div>
-      <div class="variation-col">
-        <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
-        <div class="ch4-grid fragment" data-fragment-index="0" style="margin-bottom:.8rem;">
-          <div class="regime-box" style="border-left-color:#42affa">
-            <h4>Advanced vs Emerging</h4>
-          </div>
-          <div class="regime-box" style="border-left-color:#ffb74d">
-            <h4>Democracy vs Autocracy</h4>
-          </div>
-          <div class="regime-box" style="border-left-color:#28b487">
-            <h4>Crisis Effects</h4>
+  <section>
+    <div class="ch4-extra">
+      <div class="ch4-findings-grid" style="margin-bottom:1.2rem;">
+        <div class="trend-col">
+          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Dominance / Coordination Over Time</h2>
+          <img src="dominance_trends.jpg"
+               alt="Trends in monetary dominance, fiscal/financial coordination and dominance over time"
+               class="fragment ch4-trend-small"
+               data-fragment-index="0"
+               style="margin-bottom:.8rem;">
+        </div>
+        <div class="variation-col">
+          <h2 class="fragment" data-fragment-index="0" style="margin-bottom:.8rem;">Cross‑Country Variation</h2>
+          <div class="ch4-grid fragment" data-fragment-index="0" style="margin-bottom:.8rem;">
+            <div class="regime-box" style="border-left-color:#42affa">
+              <h4>Advanced vs Emerging</h4>
+            </div>
+            <div class="regime-box" style="border-left-color:#ffb74d">
+              <h4>Democracy vs Autocracy</h4>
+            </div>
+            <div class="regime-box" style="border-left-color:#28b487">
+              <h4>Crisis Effects</h4>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
-  </div>
-</section>
+  </section>
   <!-- === NEW Ch4 Slide 4: Contributions & Applications (grouped fragments) === -->
 
 
   </section> <!-- end Ch4 -->
     <!-- CHAPTER 5 / CONCLUSION (replaced) -->
     <section data-section="conclusion" class="conclusion-set">
-      <!-- Slide 1: Main Thesis & Key Insight -->
-      <section>
-        <!-- New chapter-style title block -->
-        <div class="chapter-title-block">
-          <h2>Chapter&nbsp;5<br><small>Conclusion: More than just talk?</small></h2>
-        </div>
-        <div class="concl-wrapper">
-          <div class="card">
 
-            <h3>Key Insight</h3>
-            <div class="key-box">
-              Communication is not just information transmission - it helps address <strong>financial & societal pressures</strong> not foreseen at delegation. LLMs offer ways forward to reserach this.
-            </div>
 
-          </div>
-        </div>
+    <!-- Contributions slide unchanged -->
+  <section class="intro-slide theory-tight">
+    <h2>Theoretical contributions</h2>
+    <ul class="theory-list">
+      <li class="theory-item">
+        <span class="ch-badge ch2" aria-label="Chapter 2">Ch 2</span>
+        <span class="theory-check">&#10003;</span>
+        <span>Financial instability as a persistent challenge for central bank independence - beyond macroprudential turn literature</span>
+      </li>
+      <li class="theory-item">
+        <span class="ch-badge ch3" aria-label="Chapter 3">Ch 3</span>
+        <span class="theory-check">&#10003;</span>
+        <span>Even/especially the most independent central banks are responsive - beyond Cukierman</span>
+      </li>
+      <li class="theory-item pad-right">
+        <span class="ch-badge ch4" aria-label="Chapter 4">Ch 4</span>
+        <span class="theory-check">&#10003;</span>
+        <span>Fiscal and financial pressures through either coordination or dominance (policy‑linkages) - beyond Sargent and Wallace</span>
+      </li>
+      <li class="theory-item note">
+        <span class="theory-check theory-warn" title="Limitation">&#9888;</span>
+        <span class="theory-note"><em>Note:</em> <strong style="color:#c91c1c">not </strong> a test of the intentions of governors behind communicating</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- REPLACED: old free-form list -> unified boxed numbered style -->
+      <section class="intro-slide theory-tight">
+        <h2>Methods &amp; Data Contributions</h2>
+        <ul class="theory-list">
+          <li class="theory-item has-multi-badges">
+            <span class="badge-group">
+              <span class="ch-badge ch2" aria-label="Chapter 2">Ch 2</span>
+              <span class="ch-badge ch4" aria-label="Chapter 4">Ch 4</span>
+            </span>
+            <span class="theory-check">&#10003;</span>
+            <span><strong>Novel LLM-based methods</strong> for detecting policy pressures in central bank communication</span>
+          </li>
+          <li class="theory-item">
+            <span class="ch-badge all" aria-label="Chapters 2 to 4">Ch 2–4</span>
+            <span class="theory-check">&#10003;</span>
+            <span><strong>Comprehensive dataset</strong> with enriched meta-data (retrieved via LLMs)</span>
+          </li>
+            <li class="theory-item">
+              <span class="ch-badge ch3" aria-label="Chapter 3">Ch 3</span>
+              <span class="theory-check">&#10003;</span>
+              <span><strong>New measure of responsiveness</strong> for central banks</span>
+            </li>
+          <li class="theory-item">
+            <span class="ch-badge all" aria-label="Chapters 2 to 4">Ch 2–4</span>
+            <span class="theory-check">&#10003;</span>
+            <span><strong><a href="https://centralbanktalk.eu/" class="embed-site-link" data-embed-site>Interactive website</a></strong> with dashboards and insights</span>
+          </li>
+        </ul>
       </section>
 
-          <!-- Slide 2: Limitations & Future Research -->
-<section>
-  <div class="concl-wrapper">
-    <div class="card">
-      <h2 class="main">Limitations & Future Research</h2>
-      <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
-          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">1</span>
-          <span>No benchmark for "optimal" responsiveness.</span>
-        </li>
-        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
-          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">2</span>
-          <span>Need tighter mapping to implementation.</span>
-        </li>
-        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
-          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">3</span>
-          <span>Eurosystem internal dynamics underexplored.</span>
-        </li>
-        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
-          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">4</span>
-          <span>LLM Reproducibility, bias, environmental costs.</span>
-        </li>
-        <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start;">
-          <span style="background: #42affa; color: white; border-radius: 50%; width: 1.5em; height: 1.5em; display: flex; align-items: center; justify-content: center; margin-right: 0.8rem; flex-shrink: 0; font-weight: bold; font-size: 0.9em;">5</span>
-          <span>Heterogenous effects in emerging economies.</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
 
       <!-- Slide 3: Four Broader Implications (Contemporary Relevance removed) -->
       <section>
@@ -2709,54 +2832,1082 @@
             <div class="grid">
               <div class="grid-item">
                 <h4>1. Dynamic Independence</h4>
-                <p>CBI is an <strong>ongoing negotiation</strong>; erosion can occur despite robust statutes.</p>
+                <p>CBI is an <strong>ongoing negotiation</strong> despite statutes.</p>
+              </div>
+
+              <div class="grid-item">
+                <h4>2. Geographic Heterogeneity</h4>
+                <p>Different mechanisms in emerging vs. advanced economies and currency areas/pegged currencies - <strong>context matters</strong>.</p>
               </div>
               <div class="grid-item">
-                <h4>2. Financial Expansion</h4>
-                <p>Post‑2008: broadened toward <strong>financial stability</strong>, increasing coordination needs.</p>
+                <h4>3. Government Coordination</h4>
+                <p>Macro-economic policy coordination - link with actual policies (fiscal & financial).</p>
               </div>
-              <div class="grid-item">
-                <h4>3. Geographic Heterogeneity</h4>
-                <p>Different mechanisms in emerging vs. advanced economies - <strong>context matters</strong>.</p>
+
+               <div class="grid-item">
+                <h4>4. LLM usage</h4>
+                <p>LLM Reproducibility, bias, environmental costs</p>
               </div>
-              <div class="grid-item">
-                <h4>4. Government Coordination</h4>
-                <p>Deeper fiscal interaction raises <strong>politicisation risks</strong>; balance is critical.</p>
-              </div>
+
+
+
+
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 4: Contemporary Relevance (only this content) -->
-      <section>
-        <div class="concl-wrapper">
-          <div class="card">
-            <div class="contemporary-box fragment" data-fragment-index="0">
-              <h4>Contemporary Relevance</h4>
-              <ul>
-              </ul>
-              <div class="grid" style="margin-top: 1rem; gap: 1rem;">
-                <img src="jerome.jpg" alt="Jerome Powell" style="width: 90%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
-                <img src="ios.png" alt="iOS logo" style="width: 90%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
-                <img src="supreme.jpg" alt="Supreme Court" style="width: 99%; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.3);">
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </section>
 
-    <!-- APPENDIX -->
-    <section data-section="appendix">
+    <!-- APPENDIX: General -->
+    <!-- WEBSITE & REPLICATION (moved to end) -->
+        <!-- APPENDIX: Introduction -->
+    <section data-section="appendix-intro">
       <section>
-        <h2>Appendix</h2>
-        <ul>
-          <li>Replication: <a href="https://github.com/laurencleek/thesis_replication" target="_blank">GitHub</a></li>
-          <li>Dashboards: <a href="https://centralbanktalk.eu" target="_blank">centralbanktalk.eu</a></li>
-        </ul>
+        <h2>Appendix: Introduction</h2>
+        <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
+          <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
+          <a href="#cbi-map-intro" onclick="document.getElementById('cbi-map-intro').scrollIntoView({behavior:'smooth'});return false;" title="CBI Map" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">CBI Map</a>
+          <a href="#world-avg-cbi-intro" onclick="document.getElementById('world-avg-cbi-intro').scrollIntoView({behavior:'smooth'});return false;" title="World Avg CBI" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">World Avg CBI</a>
+          <a href="#topic-diversity-intro" onclick="document.getElementById('topic-diversity-intro').scrollIntoView({behavior:'smooth'});return false;" title="Topic Diversity" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Diversity</a>
+          <a href="#speaker-position-intro" onclick="document.getElementById('speaker-position-intro').scrollIntoView({behavior:'smooth'});return false;" title="Speaker Position" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Speaker Position</a>
+          <a href="#audiences-over-time-intro" onclick="document.getElementById('audiences-over-time-intro').scrollIntoView({behavior:'smooth'});return false;" title="Audiences Over Time" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Audiences Over Time</a>
+
+        </div>
       </section>
-      <!-- Moved: Guess the Regime slide -->
+      <section id="cbi-map-intro"><h3>CBI Map</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="cbi_map (1)-1.png" alt="CBI Map" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="world-avg-cbi-intro"><h3>World Avg CBI</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="world_avg_cbi (1) (1)-1.png" alt="World Avg CBI" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="topic-diversity-intro"><h3>Topic Diversity</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="topic_diversity (1)-1.png" alt="Topic Diversity" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="speaker-position-intro"><h3>Speaker Position</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="speaker_position (1)-1.png" alt="Speaker Position" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="audiences-over-time-intro"><h3>Audiences Over Time</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="audiences_over_time (2)-1.png" alt="Audiences Over Time" style="max-width:70vw;max-height:55vh;"></div></section>
+
+    </section>
+
+
+
+    <!-- APPENDIX: Chapter 2 -->
+    <section data-section="appendix-ch2">
+
+      <section>
+        <h2>Appendix: Chapter 2</h2>
+
+        <!-- Ultra-compact Appendix Chapter 2 Overview Links -->
+        <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
+          <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
+          <a href="#distribution-speeches-ch2" onclick="document.getElementById('distribution-speeches-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Distribution of Speeches" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Distribution of Speeches</a>
+          <a href="#classification-results-ch2" onclick="document.getElementById('classification-results-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Classification Results" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Classification Results</a>
+          <a href="#indicator-over-time-ch2" onclick="document.getElementById('indicator-over-time-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Face Validation Over Time" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">External Validation Over Time</a>
+          <a href="#events-map-ch2" onclick="document.getElementById('events-map-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Events Map" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Events Map</a>
+
+          <a href="#mechanisms-ch2" onclick="document.getElementById('mechanisms-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Mechanisms" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Mechanisms</a>
+          <a href="#sample-variations-i-ch2" onclick="document.getElementById('sample-variations-i-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Sample Variations I" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Sample Variations I</a>
+          <a href="#sample-variations-ii-ch2" onclick="document.getElementById('sample-variations-ii-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Sample Variations II" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Sample Variations II</a>
+          <a href="#confusion-matrices-ch2" onclick="document.getElementById('confusion-matrices-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Confusion Matrices" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Confusion Matrices</a>
+          <a href="#dataset-comp-map-ch2" onclick="document.getElementById('dataset-comp-map-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Dataset Comparison Map" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Dataset Comparison Map</a>
+          <a href="#gemini-fine-tune-ch2" onclick="document.getElementById('gemini-fine-tune-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Gemini Fine-tune Settings" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Gemini Fine-tune Settings</a>
+          <a href="#indicator-comp-ch2" onclick="document.getElementById('indicator-comp-ch2').scrollIntoView({behavior:'smooth'});return false;" title="External Validation Regimes" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">External Validation Regimes</a>
+          <a href="#dominance-additional-ch2" onclick="document.getElementById('dominance-additional-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Dominance Additional Event Study" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Dominance Additional Event Study</a>
+          <a href="#dominance-continuous-ch2" onclick="document.getElementById('dominance-continuous-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Dominance Continuous" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Dominance Continuous</a>
+          <a href="#dominance-twfe-ch2" onclick="document.getElementById('dominance-twfe-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Dominance TWFE Robustness" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Dominance TWFE Robustness</a>
+          <a href="#coef-plot-did-ch2" onclick="document.getElementById('coef-plot-did-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Coef Plot DID Combined" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coef Plot DID Combined</a>
+          
+          <a href="#placebo-aggregate-ch2" onclick="document.getElementById('placebo-aggregate-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Placebo Aggregate" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Placebo Aggregate</a>
+          <a href="#placebo-individual-ch2" onclick="document.getElementById('placebo-individual-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Placebo Individual" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Placebo Individual</a>
+
+        </div>
+      </section>
+
+        <!-- Added: Distribution of Speeches Slide -->
+  <section id="distribution-speeches-ch2">
+    <h3>Distribution of Speeches</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="distribution_of_speeches-1.png" alt="Distribution of Speeches" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Classification Results Slide -->
+  <section id="classification-results-ch2">
+    <h3>Classification Results</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="classifications-1.png" alt="Classification Results" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+    <section>
+    <h3>Face validation regimes over time</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="indicator_over_time-1.png" alt="Face validation regimes" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Events Map Slide -->
+  <section id="events-map-ch2">
+    <h3>Events Map</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="event_map-1.png" alt="Events Map" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+<section>
+  <div class="ch3-block" style="font-size: 0.52em;">
+    <span class="pill-title">Empirical Analysis: Staggered Difference-in-Differences</span>
+    
+    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.2rem; align-items: start;">
+      
+      <!-- Left column: Main content -->
+      <div>
+        <div class="equation-block fragment" data-fragment-index="" style="padding: 0.9em; margin: 0.5em 0;">
+          <span class="eq-label" style="font-size: 1em; margin-bottom: 0.4em;">Main Event Study Specification</span>
+          $$\psi^m_{ict} = \sum_{k=-5}^{k = -2} \beta_k D^k_{ct} + \sum_{k=0}^{k = 12} \beta_k D^k_{ct} + \mu_c + \theta_t + \epsilon_{ict}$$
+        </div>
+
+        <div class="parameter-grid fragment" data-fragment-index="0" style="grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 0.8rem 0;">
+          <div class="param-card" style="padding: 0.6em 0.8em;">
+            <div class="param-symbol">ψᵐᵢct</div>
+            <div class="param-desc" style="font-size: 0.85em;">Dominance indicator</div>
+          </div>
+          <div class="param-card" style="padding: 0.6em 0.8em;">
+            <div class="param-symbol">Dᵏct</div>
+            <div class="param-desc" style="font-size: 0.85em;">Event indicator</div>
+          </div>
+          <div class="param-card" style="padding: 0.6em 0.8em;">
+            <div class="param-symbol">βₖ</div>
+            <div class="param-desc" style="font-size: 0.85em;">Treatment effects (ATT)</div>
+          </div>
+          <div class="param-card" style="padding: 0.6em 0.8em;">
+            <div class="param-symbol">μc, θt</div>
+            <div class="param-desc" style="font-size: 0.85em;">Fixed effects</div>
+          </div>
+        </div>
+
+        <div class="binning-eq fragment" data-fragment-index="0" style="padding: 0.7em; margin: 0.6em 0;">
+          <div style="margin-bottom: 0.5em; font-weight: 600; color: #28b487; font-size: 0.9em;">Endpoint Binning Strategy</div>
+          $$D^{k}_{ct} = \begin{cases}
+\sum_{j=-5}^{-\infty} d_{c(t-j)} & \text{if } k = -5 \\
+d_{c(t-k)} & \text{if } -5 < k < 12 \\
+\sum_{j=12}^{\infty} d_{c(t-j)} & \text{if } k = 12
+\end{cases}$$
+        </div>
+      </div>
+
+      <!-- Right column: Key features and specs -->
+      <div>
+        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.5em 0;">
+          <span class="insight-label" style="font-size: 0.85em;">Design Features</span>
+          <div style="font-size: 0.9em;">
+            Pre-treatment coefficients test parallel trends. Treatment effects relative to β₋₁ = 0. Standard errors clustered at country level.
+          </div>
+        </div>
+
+        <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.7em; font-size: 0.78em;">
+          <h4 style="font-size: 0.95em; margin-bottom: 0.4em;">Specification Details</h4>
+          <ul style="margin: 0.3em 0; padding-left: 1em;">
+            <li><strong>Treatment:</strong> Binary (d<sub>ct</sub> ∈ {0,1}), min. increase 0.05</li>
+            <li><strong>Events:</strong> Largest change per country only</li>
+            <li><strong>Robustness:</strong> Gardner (2024) two-stage estimator</li>
+            <li><strong>Tests:</strong> Wald tests for leveling & pre-trends</li>
+            <li><strong>Window:</strong> 1985-2023, staggered CBI adoption</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="ch3-block" style="font-size: 0.50em;">
+    <span class="pill-title">Subgroup analysis</span>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start;">
+      
+      <!-- Left column: Augmented model -->
+      <div>
+        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.8em; margin: 0.4em 0;">
+          <span class="eq-label" style="font-size: 0.95em;">Augmented Event Study with Interactions</span>
+          $$\psi^m_{ict} = \sum_{k=-5}^{k = -2} \beta_k D^k_{ct} + \sum_{k=0}^{k = 12} \beta_k D^k_{ct} + \sum_{j=2}^{j=J} \sum_{k=0}^{k = 12} \delta_{jk} D^k_{ct} S^j_{ct} + \mu_c + \theta_t +\epsilon_{ict}$$
+        </div>
+
+        <div class="parameter-grid fragment" data-fragment-index="0" style="grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 0.6rem 0;">
+          <div class="param-card" style="padding: 0.5em 0.7em;">
+            <div class="param-symbol">S^j_{ct}</div>
+            <div class="param-desc" style="font-size: 0.8em;">Subgroup dummies</div>
+          </div>
+          <div class="param-card" style="padding: 0.5em 0.7em;">
+            <div class="param-symbol">δ_{jk}</div>
+            <div class="param-desc" style="font-size: 0.8em;">Interaction coefficients</div>
+          </div>
+        </div>
+
+        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.6em 0;">
+          <span class="insight-label" style="font-size: 0.8em;">Effect Aggregation</span>
+          <div style="font-size: 0.85em;">
+            Use observation-weighted average of post-treatment coefficients to avoid TWFE bias from heterogeneous treatment effects.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: Key findings -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.4em 0;">
+          <h3 style="font-size: 1em; margin-bottom: 0.6em;">Key Findings by Subgroups</h3>
+          
+          <div style="margin-bottom: 0.8em;">
+            <div style="color: #42affa; font-weight: 600; font-size: 0.9em; margin-bottom: 0.3em;">Political Regime</div>
+            <div style="font-size: 0.85em; line-height: 1.3;">
+              <strong style="color: #28cf98;">Democracies:</strong> Larger, more significant effects<br>
+              <strong style="color: #ff6b6b;">Autocracies:</strong> Constrained communication freedom
+            </div>
+          </div>
+
+          <div style="margin-bottom: 0.8em;">
+            <div style="color: #ffb74d; font-weight: 600; font-size: 0.9em; margin-bottom: 0.3em;">Economic Development</div>
+            <div style="font-size: 0.85em; line-height: 1.3;">
+              <strong style="color: #28cf98;">Advanced:</strong> Strong financial dominance increase<br>
+              <strong style="color: #ff6b6b;">Emerging:</strong> Weaker effects, high baseline dominance
+            </div>
+          </div>
+        </div>
+
+        <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.7em;">
+          <h4 style="font-size: 0.9em; margin-bottom: 0.4em;">Theoretical Interpretation</h4>
+          <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.25;">
+            <li><strong>Reputation channel:</strong> More effective in democratic contexts</li>
+            <li><strong>Baseline dominance:</strong> Already high in emerging economies</li>
+            <li><strong>Deregulation argument:</strong> Limited in autocratic settings with direct fiscal influence</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="ch3-block" style="font-size: 0.46em;">
+    <span class="pill-title">Heterogeneity Results: Effect Magnitudes by Subgroups</span>
+    
+    <div class="method-section fragment" data-fragment-index="1" style="padding: 0.8em; margin: 0.5em 0;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+        <thead>
+          <tr style="background: rgba(66,175,250,0.15); border-bottom: 2px solid #42affa;">
+            <th style="text-align: left; padding: 0.5em 0.7em; color: #42affa; font-weight: 600;"></th>
+            <th style="text-align: center; padding: 0.5em 0.7em; color: #42affa; font-weight: 600;">Monetary Dominance</th>
+            <th style="text-align: center; padding: 0.5em 0.7em; color: #42affa; font-weight: 600;">Financial Dominance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: rgba(255,255,255,0.05);">
+            <td colspan="3" style="padding: 0.3em 0.7em; font-weight: 700; color: #ffb74d;">Baseline</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Full sample</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666; font-weight: 600;">-0.1607***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98; font-weight: 600;">0.0548***</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.05);">
+            <td colspan="3" style="padding: 0.3em 0.7em; font-weight: 700; color: #ffb74d;">Supervision Capabilities</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Low</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.1532**</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98;">0.0642***</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Medium</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.1373***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98;">0.0446*</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">High</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.2504***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #c8d0d6;">0.0279</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.05);">
+            <td colspan="3" style="padding: 0.3em 0.7em; font-weight: 700; color: #ffb74d;">Political System</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Autocracy</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.1161**</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98;">0.0495**</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em; font-weight: 600;">Democracy</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666; font-weight: 600;">-0.1747***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98; font-weight: 600;">0.0595***</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.05);">
+            <td colspan="3" style="padding: 0.3em 0.7em; font-weight: 700; color: #ffb74d;">Monetary Sovereignty</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Full sovereignty</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.1417***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98;">0.0556***</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Union or peg</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.2268***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #c8d0d6;">0.0244</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.05);">
+            <td colspan="3" style="padding: 0.3em 0.7em; font-weight: 700; color: #ffb74d;">Economic Development</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Emerging & Developing</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.0644*</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #c8d0d6;">0.0021</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em; font-weight: 600;">Advanced</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666; font-weight: 600;">-0.2229***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98; font-weight: 600;">0.0774***</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.05);">
+            <td colspan="3" style="padding: 0.3em 0.7em; font-weight: 700; color: #ffb74d;">Mandates</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Non-conflicting with price stability</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.1479***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98;">0.0542***</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.3em 0.7em 0.3em 1.2em;">Conflicting objectives</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #ff6666;">-0.2440***</td>
+            <td style="text-align: center; padding: 0.3em 0.7em; color: #28cf98;">0.0588***</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="specification-notes fragment" data-fragment-index="2" style="padding: 0.6em; font-size: 0.7em; text-align: center;">
+      <strong style="color: #42affa;">Note:</strong> Standard errors in parentheses. * p < 0.1; ** p < 0.05; *** p < 0.01. Effects strongest in democracies and advanced economies, confirming Hypothesis 4.
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="ch3-block" style="font-size: 0.48em;">
+    <span class="pill-title">Instrumental Variable Approach</span>
+    
+    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; align-items: start;">
+      
+      <!-- Left column: Model and equation -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.95em; margin-bottom: 0.5em;">Addressing Dynamic Endogeneity</h3>
+          <p style="font-size: 0.9em; line-height: 1.3; margin: 0;">
+            IV approach circumvents biases from time-varying omitted variables and reverse causality (CB communication influencing independence). Uses 2SLS with diffusion-based instruments.
+          </p>
+        </div>
+
+        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.8em; margin: 0.5em 0;">
+          <span class="eq-label" style="font-size: 0.9em;">Second Stage (2SLS)</span>
+          $$\psi^m_{ict} = \rho\, \widetilde{\psi}^m_{ict} + \beta_1\,\textrm{CBI}_{ct} + \beta_2\, \Delta \pi_{ct} + \beta_3\, \Delta u_{ct} + \theta_t + \mu_c + \epsilon_{ict}$$
+        </div>
+
+        <div class="parameter-grid fragment" data-fragment-index="0" style="grid-template-columns: 1fr 1fr; gap: 0.4rem; margin: 0.6rem 0;">
+          <div class="param-card" style="padding: 0.5em 0.6em;">
+            <div class="param-symbol">ψ̃ᵐᵢct</div>
+            <div class="param-desc" style="font-size: 0.8em;">Lagged DV (avg. 25 speeches)</div>
+          </div>
+          <div class="param-card" style="padding: 0.5em 0.6em;">
+            <div class="param-symbol">Δπct, Δuct</div>
+            <div class="param-desc" style="font-size: 0.8em;">Inflation & unemployment changes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: Instruments and findings -->
+      <div>
+        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+          <span class="insight-label" style="font-size: 0.8em;">Three Instruments</span>
+          <div style="font-size: 0.8em; line-height: 1.25;">
+            <strong>1.</strong> Inverse distance-weighted world CBI average<br>
+            <strong>2.</strong> Electoral democracy in 10 nearest neighbors<br>
+            <strong>3.</strong> Domestic judicial independence
+          </div>
+        </div>
+
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">Heterogeneity Results</h3>
+          <div style="font-size: 0.8em; line-height: 1.25;">
+            <div style="margin-bottom: 0.5em;">
+              <strong style="color: #28cf98;">Democracies:</strong> Larger, more significant effects
+            </div>
+            <div style="margin-bottom: 0.5em;">
+              <strong style="color: #ffb74d;">Advanced economies:</strong> Strong financial dominance ↑
+            </div>
+            <div>
+              <strong style="color: #ff6b6b;">Emerging economies:</strong> High baseline dominance limits effects
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.7em; margin-top: 0.8rem;">
+      <h4 style="font-size: 0.85em; margin-bottom: 0.4em;">Methodological Notes</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+        <div>
+          <strong>Lagged DV:</strong> 25-speech average maximizes log-likelihood<br>
+          <strong>Controls:</strong> Inflation/unemployment changes from Fed literature
+        </div>
+        <div>
+          <strong>Identification:</strong> Diffusion processes drive CBI adoption<br>
+          <strong>Caveat:</strong> Exclusion restriction potentially violated by bidirectional diffusion
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="ch3-block" style="font-size: 0.42em;">
+    <span class="pill-title">Instrumental Variable Results: Complete 2SLS Estimation</span>
+    
+    <div class="method-section fragment" data-fragment-index="1" style="padding: 0.6em; margin: 0.3em 0;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.82em;">
+        <thead>
+          <tr style="background: rgba(66,175,250,0.15); border-bottom: 2px solid #42affa;">
+            <th style="text-align: left; padding: 0.4em 0.5em; color: #42affa; font-weight: 600;"></th>
+            <th colspan="2" style="text-align: center; padding: 0.4em 0.5em; color: #42affa; font-weight: 600; border-bottom: 1px solid #42affa;">First Stage</th>
+            <th colspan="2" style="text-align: center; padding: 0.4em 0.5em; color: #42affa; font-weight: 600; border-bottom: 1px solid #42affa;">2SLS Effect on Dominance</th>
+          </tr>
+          <tr style="background: rgba(66,175,250,0.08);">
+            <th style="text-align: left; padding: 0.3em 0.5em; font-size: 0.9em;">Dependent Variables:</th>
+            <th colspan="2" style="text-align: center; padding: 0.3em 0.5em; font-style: italic;">CBI</th>
+            <th style="text-align: center; padding: 0.3em 0.5em;">Monetary</th>
+            <th style="text-align: center; padding: 0.3em 0.5em;">Financial</th>
+          </tr>
+          <tr style="background: rgba(66,175,250,0.08);">
+            <th style="text-align: left; padding: 0.3em 0.5em; font-size: 0.9em;">Model:</th>
+            <th style="text-align: center; padding: 0.3em 0.5em;">(1)</th>
+            <th style="text-align: center; padding: 0.3em 0.5em;">(2)</th>
+            <th style="text-align: center; padding: 0.3em 0.5em;">(3)</th>
+            <th style="text-align: center; padding: 0.3em 0.5em;">(4)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: rgba(255,255,255,0.04);">
+            <td colspan="5" style="padding: 0.25em 0.5em; font-weight: 600; color: #ffb74d; font-style: italic;">Variables</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.2em 0.5em; font-weight: 600;">CBI (instrumented)</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #ff6666; font-weight: 600;">-0.7524*</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98; font-weight: 600;">0.6921**</td>
+          </tr>
+          <tr style="font-size: 0.75em; color: #c8d0d6;">
+            <td></td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">(0.4365)</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">(0.2969)</td>
+          </tr>
+          
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Monetary dominance 25 prior speeches</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.0078</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98; font-weight: 600;">0.4952***</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+          </tr>
+          <tr style="font-size: 0.75em; color: #c8d0d6;">
+            <td></td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">(0.0129)</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">(0.0727)</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">—</td>
+          </tr>
+          
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Financial dominance 25 prior speeches</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">-0.0009</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98; font-weight: 600;">0.3247***</td>
+          </tr>
+          <tr style="font-size: 0.75em; color: #c8d0d6;">
+            <td></td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">(0.0376)</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.1em 0.5em;">(0.0567)</td>
+          </tr>
+          
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Δ Unemployment rate</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.0001</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.0001</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">-0.0016</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.0022</td>
+          </tr>
+          
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Neighbour's electoral democracy₋₁</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.2376</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.2448</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+          </tr>
+          
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Independence judiciary</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98;">0.0056**</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98;">0.0053*</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">—</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.04);">
+            <td colspan="5" style="padding: 0.25em 0.5em; font-weight: 600; color: #ffb74d; font-style: italic;">Fixed Effects</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Country</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.2em 0.5em;">Year</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">✓</td>
+          </tr>
+          
+          <tr style="background: rgba(255,255,255,0.04);">
+            <td colspan="5" style="padding: 0.25em 0.5em; font-weight: 600; color: #ffb74d; font-style: italic;">Fit Statistics</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.2em 0.5em; font-weight: 600;">R²</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98; font-weight: 600;">0.97593</td>
+            <td style="text-align: center; padding: 0.2em 0.5em; color: #28cf98; font-weight: 600;">0.97591</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.21513</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">0.11198</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.2em 0.5em; font-weight: 600;">Observations</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">12,205</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">12,205</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">12,205</td>
+            <td style="text-align: center; padding: 0.2em 0.5em;">12,205</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="key-insight fragment" data-fragment-index="2" style="padding: 0.6em 0.8em; margin: 0.4em 0;">
+      <span class="insight-label" style="font-size: 0.75em;">Strong First Stage & Confirming Results</span>
+      <div style="font-size: 0.8em; line-height: 1.25;">
+        High R² (0.976) indicates strong instruments. 2SLS confirms DiD findings: CBI <strong style="color: #ff6666;">↓ monetary dominance</strong> (-0.75*) and <strong style="color: #28cf98;">↑ financial dominance</strong> (0.69**).
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Added: Dominance Combined Additional Event Study Slide -->
+  <section id="dominance-additional-ch2">
+    <h3>Dominance Combined Additional Event Study</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="dominance_combined_additional_event_study_ests-1.png" alt="Dominance Combined Additional Event Study" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Dominance Combined Continuous Slide -->
+  <section id="dominance-continuous-ch2">
+    <h3>Dominance Combined Continuous</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="dominance_combined_continuous-1.png" alt="Dominance Combined Continuous" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Dominance Combined TWFE Robustness Slide -->
+  <section id="dominance-twfe-ch2">
+    <h3>Dominance Combined TWFE Robustness</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="dominance_combined_twfe_robustness-1.png" alt="Dominance Combined TWFE Robustness" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Coef Plot DID Combined Slide -->
+  <section id="coef-plot-did-ch2">
+    <h3>Coef Plot DID Combined</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="coef_plot_did_combined-1.png" alt="Coef Plot DID Combined" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+
+        <section id="mechanisms-ch2">
+          <div class="ch3-block">
+            <span class="pill-title">Mechanisms</span>
+            <div class="ch3-grid">
+              <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+                <img src="mechanism1.jpg" alt="Mechanism 1" class="methods-img" style="max-height:90vh;">
+              </div>
+              <div class="ch3-card" style="display:flex;align-items:center;justify-content:center;">
+                <img src="mechanism2.jpg" alt="Mechanism 2" class="methods-img" style="max-height:90vh;">
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+  <!-- Added: Sample Variations I Slide -->
+  <section id="sample-variations-i-ch2">
+    <h3>Sample Variations I</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="sample_variations_main-1.png" alt="Sample Variations I" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Sample Variations II Slide -->
+  <section id="sample-variations-ii-ch2">
+    <h3>Sample Variations II</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="sample_variations_appendix-1.png" alt="Sample Variations II" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+
+  <!-- Added: Confusion Matrices Slide -->
+  <section id="confusion-matrices-ch2">
+    <h3>Confusion Matrices</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="confusion_matrices-1.png" alt="Confusion Matrices" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+
+
+      <section>
+    <h3>Distribution of Speeches</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="dataset_comp_map-1.png" alt="Dataset comparison map" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+          <section>
+    <h3>Gemini fine-tune settings</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="gemini_fine_tune_settings_comb-1.png" alt="Gemini fine-tune settings" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+            <section>
+    <h3>External validation regimes</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="indicator_comp-1.png" alt="External validation regimes" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <section>
+  <div class="ch3-block" style="font-size: 0.48em;">
+    <span class="pill-title">Alternative Explanations</span>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start;">
+      
+      <!-- Left column: Main alternative explanations -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">1. Global Financial Crisis Effects</h3>
+          <div style="font-size: 0.85em; line-height: 1.25;">
+            <strong>Concern:</strong> Effects driven by post-2008 global trends<br>
+            <strong>Test:</strong> Cohort-specific effects by independence year<br>
+            <strong style="color: #28cf98;">Result:</strong> Effects positive & significant pre-crisis
+          </div>
+        </div>
+
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">2. Euro Area Confounding</h3>
+          <div style="font-size: 0.85em; line-height: 1.25;">
+            <strong>Concern:</strong> Euro adoption (1998) & SSM (2014)<br>
+            <strong>Test:</strong> Exclude euro area / add ECB as control<br>
+            <strong style="color: #28cf98;">Result:</strong> Robust when euro area excluded
+          </div>
+        </div>
+
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">3. Independence Precedent</h3>
+          <div style="font-size: 0.85em; line-height: 1.25;">
+            <strong>Concern:</strong> Epistemic community effects from first increase<br>
+            <strong>Test:</strong> Use only first independence change per country<br>
+            <strong style="color: #28cf98;">Result:</strong> Similar patterns observed
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: Additional checks -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">4. Audience Targeting</h3>
+          <div style="font-size: 0.85em; line-height: 1.25;">
+            <strong>Concern:</strong> Shift toward financial market audiences<br>
+            <strong>Test:</strong> Event studies with audience indicators<br>
+            <strong style="color: #28cf98;">Result:</strong> Audiences change little; effects hold within audiences
+          </div>
+        </div>
+
+        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+          <span class="insight-label" style="font-size: 0.8em;">5. Supervision Mandate Changes</span>
+          <div style="font-size: 0.8em; line-height: 1.25;">
+            <strong>Placebo test:</strong> Replace CBI with banking supervision changes. No significant association with financial dominance found.
+          </div>
+        </div>
+
+        <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.75em; margin-top: 0.4em;">
+          <h4 style="font-size: 0.85em; margin-bottom: 0.3em;">Data Sources</h4>
+          <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.2;">
+            <li>Masciandaro et al. (2018) supervision data</li>
+            <li>CBIE index policy dimension III (Romelli 2024)</li>
+            <li>Randomization tests following Miller et al. (2021)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em; margin-top: 0.6rem; text-align: center;">
+      <strong style="color: #42affa;">Conclusion:</strong> Effects are not artifacts of global trends, euro area dynamics, audience shifts, or supervisory mandate changes.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="ch3-block" style="font-size: 0.50em;">
+    <span class="pill-title">Robustness Checks</span>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start;">
+      
+      <!-- Left column: Main robustness tests -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">1. Parallel Trends Violations</h3>
+          <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
+            <li>Linear country-specific trends</li>
+            <li>Conditional parallel trends with controls</li>
+            <li><strong style="color: #28cf98;">Result:</strong> Quantitatively similar estimates</li>
+          </ul>
+        </div>
+
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">2. Treatment Definition Flexibility</h3>
+          <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
+            <li>Multiple treatments per country allowed</li>
+            <li>Continuous intensity & direction variation</li>
+            <li><strong style="color: #28cf98;">Result:</strong> Patterns remain unchanged</li>
+          </ul>
+        </div>
+
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">3. Heterogeneity-Robust Estimators</h3>
+          <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
+            <li>Borusyak et al. (2024) imputation</li>
+            <li>Sun & Abraham (2021) cohort effects</li>
+            <li>Cengiz et al. (2019) stacked DiD</li>
+            <li><strong style="color: #28cf98;">Result:</strong> Main findings confirmed</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right column: Additional checks -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">4. Sample Construction</h3>
+          <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
+            <li>Full event window requirements</li>
+            <li>One-year anticipation pre-dating</li>
+            <li>CBI sub-dimension definitions</li>
+            <li><strong style="color: #28cf98;">Result:</strong> Robust across variations</li>
+          </ul>
+        </div>
+
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">5. Alternative CBI Measures</h3>
+          <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
+            <li>LVAU indicator (Garriga 2025)</li>
+            <li>Cukierman et al. (1992) dimensions</li>
+            <li><strong style="color: #28cf98;">Result:</strong> Strong correlation, comparable estimates</li>
+          </ul>
+        </div>
+
+        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+          <span class="insight-label" style="font-size: 0.8em;">6. Falsification Test</span>
+          <div style="font-size: 0.8em; line-height: 1.25;">
+            Randomization procedure: effects lie in <strong style="color: #ff6b6b;">extreme tails</strong> of placebo distributions (<1% probability under null).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em; margin-top: 0.6rem; text-align: center;">
+      <strong style="color: #42affa;">Bottom Line:</strong> Results robust across estimators, sample definitions, CBI measures, and treatment specifications. Placebo tests confirm effects are not artifacts.
+    </div>
+  </div>
+</section>
+
+    <!-- Added: Placebo Aggregate Slide -->
+  <section id="placebo-aggregate-ch2">
+    <h3>Placebo Aggregate</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="placebo_aggregate-1.png" alt="Placebo Aggregate" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+  <!-- Added: Placebo Individual Slide -->
+  <section id="placebo-individual-ch2">
+    <h3>Placebo Individual</h3>
+    <div style="display:flex;align-items:center;justify-content:center;">
+      <img src="placebo_individual-1.png" alt="Placebo Individual" style="max-width:70vw;max-height:55vh;">
+    </div>
+  </section>
+
+    </section>
+
+    <!-- APPENDIX: Chapter 3 -->
+
+    <section data-section="appendix-ch3">
+      <section>
+        <h2>Appendix: Chapter 3</h2>
+
+        <!-- Ultra-compact Appendix Chapter 3 Overview Links -->
+  <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
+          <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
+          <a href="#workflow-bert-ch3" onclick="document.getElementById('workflow-bert-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Workflow BERT" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Workflow BERT</a>
+          <a href="#multiple-topics-ch3" onclick="document.getElementById('multiple-topics-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic Validation" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Validation</a>
+          <a href="#methods-overview-ch3" onclick="document.getElementById('methods-overview-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Methods Overview" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Methods Overview</a>
+          <a href="#markov-analysis-ch3" onclick="document.getElementById('markov-analysis-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Markov Analysis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Markov Analysis</a>
+
+          <a href="#first-movers-ch3" onclick="document.getElementById('first-movers-ch3').scrollIntoView({behavior:'smooth'});return false;" title="NCBs First Movers" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">NCBs First Movers</a>
+          <a href="#topic-transitions-ch3" onclick="document.getElementById('topic-transitions-ch3').scrollIntoView({behavior:'smooth'});return false;" title="ECB Direct Responsive" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">ECB Direct Responsive</a>
+          <a href="#coef-plot-ch3" onclick="document.getElementById('coef-plot-ch3').scrollIntoView({behavior:'smooth'});return false;" title="NCBs Lead 3 Month Lags" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">NCBs Lead 3 Month Lags</a>
+          <a href="#permutations-ch3" onclick="document.getElementById('permutations-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Permutations" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Permutations</a>
+          <a href="#topic-regrouping-ch3" onclick="document.getElementById('topic-regrouping-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic Regrouping" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Regrouping</a>
+          <a href="#coef-plot-crisis-ch3" onclick="document.getElementById('coef-plot-crisis-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Crisis</a>
+          <a href="#coef-plot-leads-ch3" onclick="document.getElementById('coef-plot-leads-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Leads" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Leads</a>
+          <a href="#coef-plot-main-half-ch3" onclick="document.getElementById('coef-plot-main-half-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Main Half" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Main Half</a>
+          <a href="#coef-plot-half-yearly-ch3" onclick="document.getElementById('coef-plot-half-yearly-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Half Yearly" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Half Yearly</a>
+          <a href="#crisis-topic-transitions-panel-ch3" onclick="document.getElementById('crisis-topic-transitions-panel-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Crisis Topic Transitions Panel" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Crisis Topic Transitions Panel</a>
+          <a href="#figure-a1-ch3" onclick="document.getElementById('figure-a1-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Speeches frequency" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Speeches frequency</a>
+          <a href="#figure-a2-part1-ch3" onclick="document.getElementById('figure-a2-part1-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic word clouds I" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Wordcloud I</a>
+          <a href="#figure-a2-part2-ch3" onclick="document.getElementById('figure-a2-part2-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic word clouds II" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Wordcloud II</a>
+          <a href="#figure-a3-ch3" onclick="document.getElementById('figure-a3-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Pre-post crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">pre/post crisis coefficient plot</a>
+          <a href="#figure-climate-transition-ch3" onclick="document.getElementById('figure-climate-transition-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Figure Climate Transition" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Figure Climate Transition</a>
+          <a href="#figure-crisis-transition-ch3" onclick="document.getElementById('figure-crisis-transition-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Figure Crisis Transition" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Figure Crisis Transition</a>
+          <a href="#transition-matrix-robustness-ch3" onclick="document.getElementById('transition-matrix-robustness-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Transition Matrix Robustness" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Transition Matrix Robustness</a>
+
+        </div>
+      </section>
+      <section id="workflow-bert-ch3" class="ch3-fig-slide"><h3>Workflow BERT</h3><img src="workflow_bert (2).jpg" alt="Workflow BERT"></section>
+      <section id="multiple-topics-ch3" class="ch3-fig-slide"><h3>Topics validation</h3><img src="multiple_topics_plot.png" alt="Topics Validation"></section>
+      <section id="methods-overview-ch3" class="ch3-fig-slide"><h3>Methods Overview</h3><img src="methods_overview1 (2).png" alt="Methods Overview"></section>
+
+<section id="markov-analysis-ch3">
+  <div class="ch3-block" style="font-size: 0.46em;">
+    <span class="pill-title">Markov Chain Analysis: Measuring Responsiveness</span>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start;">
+      
+      <!-- Left column: First-mover definition and basic setup -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">First-Mover Identification</h3>
+          <div style="font-size: 0.85em; line-height: 1.3;">
+            <strong>Threshold criteria:</strong><br>
+            • Topic discussed in ≥25% of speech<br>
+            • ≥3 other CBs discuss topic in subsequent year<br>
+            <strong style="color: #42affa;">Purpose:</strong> Identify main topics with follow-up (not noise)
+          </div>
+        </div>
+
+        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.8em; margin: 0.5em 0;">
+          <span class="eq-label" style="font-size: 0.9em;">Transition Count</span>
+          $$m_{ab \mid k} = \mathrm{count}\{t : CB_t = a, CB_{t+1} = b, T_t = k\}$$
+          <div style="font-size: 0.8em; color: #c8d0d6; margin-top: 0.4em;">
+            How often bank <em>a</em> is followed by bank <em>b</em> for topic <em>k</em>
+          </div>
+        </div>
+
+        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.8em; margin: 0.5em 0;">
+          <span class="eq-label" style="font-size: 0.9em;">Conditional Transition Probability</span>
+          $$P_{ab \mid k} = \frac{m_{ab \mid k}}{\displaystyle \sum_{c \in \mathcal{B}} m_{ac \mid k}}$$
+          <div style="font-size: 0.8em; color: #c8d0d6; margin-top: 0.4em;">
+            Row-stochastic matrix: each row sums to 1
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: Time-varying approach -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">Time-Varying Implementation</h3>
+          <div style="font-size: 0.85em; line-height: 1.3;">
+            <strong>30-day moving window</strong> to:<br>
+            • Smooth short-term fluctuations<br>
+            • Capture communication cycles<br>
+            • Ensure sufficient observations<br>
+            • Exclude non-stationary effects
+          </div>
+        </div>
+
+        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.8em; margin: 0.5em 0;">
+          <span class="eq-label" style="font-size: 0.9em;">Sliding Window Probabilities</span>
+          $$m_{ab \mid k}^{(w)} = \mathrm{count}\{t \in \text{window } w : CB_t = a, CB_{t+1} = b, T_t = k\}$$
+          $$P_{ab \mid k}^{(w)} = \frac{m_{ab \mid k}^{(w)}}{\displaystyle \sum_{c \in \mathcal{B}} m_{ac \mid k}^{(w)}}$$
+        </div>
+
+        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+          <span class="insight-label" style="font-size: 0.8em;">Markov Property</span>
+          <div style="font-size: 0.8em; line-height: 1.25;">
+            Next state depends only on present state. Enables measurement of <strong style="color: #42affa;">direct responsiveness</strong> between central banks.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.7em; text-align: center;">
+      <strong style="color: #42affa;">Robustness:</strong> Alternative windows tested (7, 14, 60, 90 days). Uses highest topic probability from BERTopic. Discrete time implementation for simplicity.
+    </div>
+  </div>
+</section>
+
+<section id="regression-models">
+  <div class="ch3-block" style="font-size: 0.44em;">
+    <span class="pill-title">Regression Models: ECB Responsiveness to NCBs</span>
+    
+    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; align-items: start;">
+      
+      <!-- Left column: Three models -->
+      <div>
+        <div class="equation-block fragment" data-fragment-index="1" style="padding: 0.7em; margin: 0.4em 0;">
+          <span class="eq-label" style="font-size: 0.85em;">Model A: Baseline Responsiveness</span>
+          $$EB_{t,p} = \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \epsilon_{t,p}$$
+          <div style="font-size: 0.75em; color: #c8d0d6; margin-top: 0.3em;">Tests general ECB responsiveness (H3.1)</div>
+        </div>
+
+        <div class="equation-block fragment" data-fragment-index="2" style="padding: 0.7em; margin: 0.4em 0;">
+          <span class="eq-label" style="font-size: 0.85em;">Model B: Topic Heterogeneity</span>
+          $$EB_{t,p} = \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \sum_{j=2}^{T} \beta_{2,j} (D_{p,j} \times NCB_{t-1,p}) + \epsilon_{t,p}$$
+          <div style="font-size: 0.75em; color: #c8d0d6; margin-top: 0.3em;">Topic-specific slopes for 'new' vs 'old' topics (H1)</div>
+        </div>
+
+        <div class="equation-block fragment" data-fragment-index="3" style="padding: 0.7em; margin: 0.4em 0;">
+          <span class="eq-label" style="font-size: 0.85em;">Model C: Pressure Interactions</span>
+          $$\begin{align}
+EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
+& + \sum_{j=2}^{T} \beta_{2,j} (D_{p,j} \times NCB_{t-1,p}) \\
+& + \sum_{j=2}^{T} \beta_{3,j} (C_t \times NCB_{t-1,p} \times D_{p,j}) \\
+& + \sum_{j=2}^{T} \beta_{4,j} (C_t \times D_{p,j}) + \epsilon_{t,p}
+\end{align}$$
+          <div style="font-size: 0.75em; color: #c8d0d6; margin-top: 0.3em;">Three-way interactions test pressure effects (H2, H3)</div>
+        </div>
+      </div>
+
+      <!-- Right column: Pressure proxies and controls -->
+      <div>
+        <div class="method-section fragment" data-fragment-index="4" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+          <h3 style="font-size: 0.85em; margin-bottom: 0.5em;">Pressure Proxies (Ct)</h3>
+          <div style="font-size: 0.8em; line-height: 1.25;">
+            <strong style="color: #42affa;">Economic:</strong> Real GDP growth, inflation<br>
+            <strong style="color: #ffb74d;">Public:</strong> ECB trust (Eurobarometer), Google Trends<br>
+            <strong style="color: #28b487;">Salience:</strong> "ECB" search interest (0-100 scale)
+          </div>
+        </div>
+
+        <div class="key-insight fragment" data-fragment-index="5" style="padding: 0.6em 0.7em; margin: 0.4em 0;">
+          <span class="insight-label" style="font-size: 0.75em;">Index Construction</span>
+          $$I_{b,q,t} = \frac{1}{|S_{b,q}|} \sum_{s \in S_{b,q}} p_{s,t}$$
+          <div style="font-size: 0.75em; margin-top: 0.3em;">Average topic proportion across all speeches in quarter q</div>
+        </div>
+
+        <div class="specification-notes fragment" data-fragment-index="6" style="padding: 0.6em; font-size: 0.7em;">
+          <h4 style="font-size: 0.8em; margin-bottom: 0.4em;">Technical Details</h4>
+          <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.2;">
+            <li><strong>Controls:</strong> GDP growth, inflation (Fed literature)</li>
+            <li><strong>Standard errors:</strong> Panel-corrected (Beck & Katz 2006)</li>
+            <li><strong>Counterfactuals:</strong> Contemporaneous, no correlation, reverse causality</li>
+            <li><strong>Robustness:</strong> Lead specifications test reverse causality</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="specification-notes fragment" data-fragment-index="7" style="padding: 0.5em; font-size: 0.68em; text-align: center;">
+      <strong style="color: #42affa;">Progressive Testing:</strong> Model A → general responsiveness | Model B → topic differences | Model C → pressure conditions. Three counterfactuals examined.
+    </div>
+  </div>
+</section>
+
+      <section id="first-movers-ch3" class="ch3-fig-slide"><h3>NCBs first movers</h3><img src="first_movers.jpg" alt="First Movers"></section>
+      <section id="topic-transitions-ch3" class="ch3-fig-slide"><h3>ECB direct responsive</h3><img src="topic_transitions.jpg" alt="Topic Transitions"></section>
+      <section id="coef-plot-ch3" class="ch3-fig-slide"><h3>NCBs lead 3 month lags</h3><img src="coefficient_plot.jpg" alt="Coefficient Plot"></section>
+      <section id="permutations-ch3" class="ch3-fig-slide"><h3>Permutations</h3><img src="permutations.png" alt="Permutations" style="max-width:70vw;max-height:55vh;"></section>
+      <section id="topic-regrouping-ch3" class="ch3-fig-slide"><h3>Topic Regrouping</h3><img src="topic_regrouping.png" alt="Topic Regrouping" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="coef-plot-crisis-ch3" class="ch3-fig-slide"><h3>Coefficient Plot Crisis</h3><img src="coefficient_plot_crisis-1.png" alt="Coefficient Plot Crisis" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="coef-plot-leads-ch3" class="ch3-fig-slide"><h3>Coefficient Plot Leads</h3><img src="coefficient_plot_leads-1.png" alt="Coefficient Plot Leads" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="coef-plot-main-half-ch3" class="ch3-fig-slide"><h3>Coefficient Plot Main Half</h3><img src="coefficient_plot_main_half-1.png" alt="Coefficient Plot Main Half" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="coef-plot-half-yearly-ch3" class="ch3-fig-slide"><h3>Coefficient Plot Half Yearly</h3><img src="coefficient_plot_main_halfyearly-1.png" alt="Coefficient Plot Half Yearly" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="crisis-topic-transitions-panel-ch3" class="ch3-fig-slide"><h3>Crisis Topic Transitions Panel</h3><img src="crisis_topic_transitions_panel-1.png" alt="Crisis Topic Transitions Panel" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="figure-a1-ch3" class="ch3-fig-slide"><h3>Speeches frequency</h3><img src="figure_a1-1.png" alt="Speeches frequency" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="figure-a2-part1-ch3" class="ch3-fig-slide"><h3>Topic word clouds I</h3><img src="figure_a2_part2-1.png" alt="Figure A2 Part 1" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="figure-a2-part2-ch3" class="ch3-fig-slide"><h3>Topic word clouds II</h3><img src="figure_a2_part1-1.png" alt="Figure A2 Part 2" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="figure-a3-ch3" class="ch3-fig-slide"><h3>Pre and post crisis coefficient plots</h3><img src="figure_a3-1.png" alt="Figure A3" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="figure-climate-transition-ch3" class="ch3-fig-slide"><h3>Figure Climate Transition</h3><img src="figure_climate_transition-1.png" alt="Figure Climate Transition" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="figure-crisis-transition-ch3" class="ch3-fig-slide"><h3>Figure Crisis Transition</h3><img src="figure_crisis_transition-1.png" alt="Figure Crisis Transition" style="max-width:70vw;max-height:55vh;"></section>
+  <section id="transition-matrix-robustness-ch3" class="ch3-fig-slide"><h3>Transition Matrix Robustness</h3><img src="transition_matrix_robustness-1.png" alt="Transition Matrix Robustness" style="max-width:70vw;max-height:55vh;"></section>
+    </section>
+
+    <!-- APPENDIX: Chapter 4 -->
+    <section data-section="appendix-ch4">
+      <section>
+        <h2>Appendix: Chapter 4</h2>
+        <!-- Ultra-compact Appendix Chapter 4 Overview Links (puzzle removed) -->
+        <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
+          <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
+          <a href="#confusion-matrices-ch4" onclick="document.getElementById('confusion-matrices-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Confusion Matrices" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Confusion Matrices</a>
+          <a href="#crisis-ch4" onclick="document.getElementById('crisis-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Crisis</a>
+          <a href="#democracy-ch4" onclick="document.getElementById('democracy-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Democracy" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Democracy</a>
+          <a href="#gdpppp-ch4" onclick="document.getElementById('gdpppp-ch4').scrollIntoView({behavior:'smooth'});return false;" title="GDP PPP" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">GDP PPP</a>
+          <a href="#inflation-ch4" onclick="document.getElementById('inflation-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Inflation" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Inflation</a>
+          <a href="#normative-by-group-ch4" onclick="document.getElementById('normative-by-group-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Normative by Group" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Normative by Group</a>
+          <a href="#normative-by-topic-ch4" onclick="document.getElementById('normative-by-topic-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Normative by Topic" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Normative by Topic</a>
+          <a href="#polarization-ch4" onclick="document.getElementById('polarization-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Polarization" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Polarization</a>
+          <a href="#sentence-count-l1-l2-r-ch4" onclick="document.getElementById('sentence-count-l1-l2-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Sentence Count L1 L2 R" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Sentence Count L1 L2 R</a>
+          <a href="#sentence-count-l3-r-ch4" onclick="document.getElementById('sentence-count-l3-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Sentence Count L3 R" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Sentence Count L3 R</a>
+          <a href="#spreads-ch4" onclick="document.getElementById('spreads-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Spreads" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Spreads</a>
+          <a href="#stability-r-ch4" onclick="document.getElementById('stability-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Stability R" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Stability R</a>
+          <a href="#temperature-count-l1-l2-r-ch4" onclick="document.getElementById('temperature-count-l1-l2-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Temperature Count L1 L2 R" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Temperature Count L1 L2 R</a>
+          <a href="#temperature-l1-l2-r-ch4" onclick="document.getElementById('temperature-l1-l2-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Temperature L1 L2 R" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Temperature L1 L2 R</a>
+          <a href="#temperature-l3-r-ch4" onclick="document.getElementById('temperature-l3-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Temperature L3 R" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Temperature L3 R</a>
+          <a href="#topics-ch4" onclick="document.getElementById('topics-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Topics" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topics</a>
+        </div>
+      </section>
+      <!-- Figure slides for Chapter 4 appendix -->
+      <section id="confusion-matrices-ch4"><h3>Confusion Matrices</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="confusion_matrices (1)-1.png" alt="Confusion Matrices" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="crisis-ch4"><h3>Crisis</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="crisis (1)-1.png" alt="Crisis" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="democracy-ch4"><h3>Democracy</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="democracy-1.png" alt="Democracy" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="gdpppp-ch4"><h3>GDP PPP</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="gdpppp-1.png" alt="GDP PPP" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="inflation-ch4"><h3>Inflation</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="inflation-1.png" alt="Inflation" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="normative-by-group-ch4"><h3>Normative by Group</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="normative_by_group (2)-1.png" alt="Normative by Group" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="normative-by-topic-ch4"><h3>Normative by Topic</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="normative_by_topic-1.png" alt="Normative by Topic" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="polarization-ch4"><h3>Polarization</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="polarization-1.png" alt="Polarization" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="sentence-count-l1-l2-r-ch4"><h3>Sentence Count L1 L2 R</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="sentence_count_l1_l2_r-1.png" alt="Sentence Count L1 L2 R" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="sentence-count-l3-r-ch4"><h3>Sentence Count L3 R</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="sentence_count_l3_r-1.png" alt="Sentence Count L3 R" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="spreads-ch4"><h3>Spreads</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="spreads-1.png" alt="Spreads" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="stability-r-ch4"><h3>Stability R</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="stability_r (1)-1.png" alt="Stability R" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="temperature-count-l1-l2-r-ch4"><h3>Temperature Count L1 L2 R</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="temperature_count_l1_l2_r-1.png" alt="Temperature Count L1 L2 R" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="temperature-l1-l2-r-ch4"><h3>Temperature L1 L2 R</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="temperature_l1_l2_r-1.png" alt="Temperature L1 L2 R" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="temperature-l3-r-ch4"><h3>Temperature L3 R</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="temperature_l3_r-1.png" alt="Temperature L3 R" style="max-width:70vw;max-height:55vh;"></div></section>
+      <section id="topics-ch4"><h3>Topics</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="topics-1.png" alt="Topics" style="max-width:70vw;max-height:55vh;"></div></section>
       <section>
         <h3 style="margin-bottom:1.2rem;">Guess the Regime</h3>
         <div class="gr-panel" style="margin-bottom:1.2rem;">
@@ -2815,6 +3966,22 @@
         </script>
       </section>
     </section>
+    <!-- WEBSITE & REPLICATION (moved to end, renamed) -->
+    <section data-section="website-replication">
+      <section>
+        <h2>Website & Replication</h2>
+        <ul>
+          <li>Replication: <a href="https://github.com/laurencleek/thesis_replication" target="_blank">GitHub</a></li>
+          <li>Dashboards: <a href="https://centralbanktalk.eu" target="_blank">centralbanktalk.eu</a></li>
+        </ul>
+      </section>
+      <section style="padding:0;margin:0;">
+        <iframe src="https://centralbanktalk.eu" style="position:fixed;top:0;left:0;width:100vw;height:100vh;border:none;margin:0;padding:0;z-index:9999;" allowfullscreen title="centralbanktalk.eu embedded"></iframe>
+      </section>
+    </section>
+
+    <!-- APPENDIX: Conclusion -->
+
   </div></div>
   <script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js"></script>
   <script src="https://unpkg.com/reveal.js@5.2.1/plugin/zoom/zoom.js"></script>
