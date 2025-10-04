@@ -2235,12 +2235,7 @@
     </div>
   </section>
 
-  <!-- NOW SECOND: Analytical framework slide -->
-  <section class="intro-slide">
-    <h2>Analytical framework</h2>
-    <img src="core_arg.png" alt="Core argument schematic"
-         style="width:90%;max-width:900px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.4);margin-top:.5rem">
-  </section>
+
 
 
 </section> <!-- end of intro (Argument + Contributions to Theory stack) -->
@@ -2346,7 +2341,7 @@
  
     </div>
     <div class="pub-citation fragment" data-fragment-index="3">
-      * Published as: Leek, L., &amp; Bischl, S. (2025). How central bank independence shapes monetary policy communication.
+      * Published as: Leek, L., &amp; Bischl, S. (2025). How Central Bank Independence Shapes Monetary Policy Communication: A Large Language Model Application
       <i>European Journal of Political Economy, 87</i>, 102668.
       <a href="https://doi.org/10.1016/j.ejpoleco.2025.102668" target="_blank" rel="noopener">doi.org/10.1016/j.ejpoleco.2025.102668</a>
     </div>
@@ -2841,15 +2836,13 @@
               </div>
               <div class="grid-item">
                 <h4>3. Government Coordination</h4>
-                <p>Macro-economic policy coordination - link with actual policies (fiscal & financial).</p>
+                <p>Macroeconomic policy coordination - link with actual policies (fiscal & financial).</p>
               </div>
 
                <div class="grid-item">
                 <h4>4. LLM usage</h4>
-                <p>LLM Reproducibility, bias, environmental costs</p>
+                <p>LLM Reproducibility (bias, environmental costs)</p>
               </div>
-
-
 
 
             </div>
@@ -2868,6 +2861,8 @@
         <h2>Appendix: Introduction</h2>
         <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
           <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
+                    <a href="#intro-slide" onclick="document.getElementById('intro-slide').scrollIntoView({behavior:'smooth'});return false;" title="Analytical Framework" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Analytical Framework</a>
+
           <a href="#cbi-map-intro" onclick="document.getElementById('cbi-map-intro').scrollIntoView({behavior:'smooth'});return false;" title="CBI Map" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">CBI Map</a>
           <a href="#world-avg-cbi-intro" onclick="document.getElementById('world-avg-cbi-intro').scrollIntoView({behavior:'smooth'});return false;" title="World Avg CBI" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">World Avg CBI</a>
           <a href="#topic-diversity-intro" onclick="document.getElementById('topic-diversity-intro').scrollIntoView({behavior:'smooth'});return false;" title="Topic Diversity" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Diversity</a>
@@ -2876,6 +2871,11 @@
 
         </div>
       </section>
+            <section id="intro-slide">
+    <h2>Analytical framework</h2>
+    <img src="core_arg.png" alt="Core argument schematic"
+         style="width:90%;max-width:900px;border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.4);margin-top:.5rem">
+  </section>
       <section id="cbi-map-intro"><h3>CBI Map</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="cbi_map (1)-1.png" alt="CBI Map" style="max-width:70vw;max-height:55vh;"></div></section>
       <section id="world-avg-cbi-intro"><h3>World Avg CBI</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="world_avg_cbi (1) (1)-1.png" alt="World Avg CBI" style="max-width:70vw;max-height:55vh;"></div></section>
       <section id="topic-diversity-intro"><h3>Topic Diversity</h3><div style="display:flex;align-items:center;justify-content:center;"><img src="topic_diversity (1)-1.png" alt="Topic Diversity" style="max-width:70vw;max-height:55vh;"></div></section>
@@ -3117,12 +3117,12 @@
       
       <!-- Left column: Main content -->
       <div>
-        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.9em; margin: 0.5em 0;">
+        <div class="equation-block" data-fragment-index="0" style="padding: 0.9em; margin: 0.5em 0;">
           <span class="eq-label" style="font-size: 1em; margin-bottom: 0.4em;">Main Event Study Specification</span>
           $$\psi^m_{ict} = \sum_{k=-5}^{k = -2} \beta_k D^k_{ct} + \sum_{k=0}^{k = 12} \beta_k D^k_{ct} + \mu_c + \theta_t + \epsilon_{ict}$$
         </div>
 
-        <div class="parameter-grid fragment" data-fragment-index="0" style="grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 0.8rem 0;">
+        <div class="parameter-grid" data-fragment-index="0" style="grid-template-columns: 1fr 1fr; gap: 0.6rem; margin: 0.8rem 0;">
           <div class="param-card" style="padding: 0.6em 0.8em;">
             <div class="param-symbol">ψᵐᵢct</div>
             <div class="param-desc" style="font-size: 0.85em;">Dominance indicator</div>
@@ -3141,7 +3141,7 @@
           </div>
         </div>
 
-        <div class="binning-eq fragment" data-fragment-index="0" style="padding: 0.7em; margin: 0.6em 0;">
+        <div class="binning-eq" data-fragment-index="0" style="padding: 0.7em; margin: 0.6em 0;">
           <div style="margin-bottom: 0.5em; font-weight: 600; color: #28b487; font-size: 0.9em;">Endpoint Binning Strategy</div>
           $$D^{k}_{ct} = \begin{cases}
 \sum_{j=-5}^{-\infty} d_{c(t-j)} & \text{if } k = -5 \\
@@ -3153,14 +3153,14 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
 
       <!-- Right column: Key features and specs -->
       <div>
-        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.5em 0;">
+        <div class="key-insight" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.5em 0;">
           <span class="insight-label" style="font-size: 0.85em;">Design Features</span>
           <div style="font-size: 0.9em;">
             Pre-treatment coefficients test parallel trends. Treatment effects relative to β₋₁ = 0. Standard errors clustered at country level.
           </div>
         </div>
 
-        <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.7em; font-size: 0.78em;">
+        <div class="specification-notes" data-fragment-index="0" style="padding: 0.7em; font-size: 0.78em;">
           <h4 style="font-size: 0.95em; margin-bottom: 0.4em;">Specification Details</h4>
           <ul style="margin: 0.3em 0; padding-left: 1em;">
             <li><strong>Treatment:</strong> Binary (d<sub>ct</sub> ∈ {0,1}), min. increase 0.05</li>
@@ -3184,12 +3184,12 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       
       <!-- Left column: Augmented model -->
       <div>
-        <div class="equation-block fragment" data-fragment-index="1" style="padding: 0.8em; margin: 0.4em 0;">
+        <div class="equation-block" data-fragment-index="1" style="padding: 0.8em; margin: 0.4em 0;">
           <span class="eq-label" style="font-size: 0.95em;">Augmented Event Study with Interactions</span>
           $$\psi^m_{ict} = \sum_{k=-5}^{k = -2} \beta_k D^k_{ct} + \sum_{k=0}^{k = 12} \beta_k D^k_{ct} + \sum_{j=2}^{j=J} \sum_{k=0}^{k = 12} \delta_{jk} D^k_{ct} S^j_{ct} + \mu_c + \theta_t +\epsilon_{ict}$$
         </div>
 
-        <div class="parameter-grid fragment" data-fragment-index="1" style="grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 0.6rem 0;">
+        <div class="parameter-grid" data-fragment-index="1" style="grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 0.6rem 0;">
           <div class="param-card" style="padding: 0.5em 0.7em;">
             <div class="param-symbol">S^j_{ct}</div>
             <div class="param-desc" style="font-size: 0.8em;">Subgroup dummies</div>
@@ -3200,7 +3200,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="key-insight fragment" data-fragment-index="1" style="padding: 0.7em 0.9em; margin: 0.6em 0;">
+        <div class="key-insight" data-fragment-index="1" style="padding: 0.7em 0.9em; margin: 0.6em 0;">
           <span class="insight-label" style="font-size: 0.8em;">Effect Aggregation</span>
           <div style="font-size: 0.85em;">
             Use observation-weighted average of post-treatment coefficients to avoid TWFE bias from heterogeneous treatment effects.
@@ -3210,7 +3210,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
 
       <!-- Right column: Key findings -->
       <div>
-        <div class="method-section fragment" data-fragment-index="1" style="padding: 0.8em 1em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="1" style="padding: 0.8em 1em; margin: 0.4em 0;">
           <h3 style="font-size: 1em; margin-bottom: 0.6em;">Key Findings by Subgroups</h3>
           
           <div style="margin-bottom: 0.8em;">
@@ -3230,7 +3230,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="specification-notes fragment" data-fragment-index="1" style="padding: 0.6em; font-size: 0.7em;">
+        <div class="specification-notes" data-fragment-index="1" style="padding: 0.6em; font-size: 0.7em;">
           <h4 style="font-size: 0.9em; margin-bottom: 0.4em;">Theoretical Interpretation</h4>
           <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.25;">
             <li><strong>Reputation channel:</strong> More effective in democratic contexts</li>
@@ -3247,8 +3247,8 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <div class="ch3-block" style="font-size: 0.46em;">
     <span class="pill-title">Heterogeneity Results: Effect Magnitudes by Subgroups</span>
     
-    <div class="method-section fragment" data-fragment-index="1" style="padding: 0.8em; margin: 0.5em 0;">
-      <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+    <div class="method-section" data-fragment-index="1" style="padding: 0.8em; margin: 0.5em 0;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.7em;">
         <thead>
           <tr style="background: rgba(66,175,250,0.15); border-bottom: 2px solid #42affa;">
             <th style="text-align: left; padding: 0.5em 0.7em; color: #42affa; font-weight: 600;"></th>
@@ -3344,7 +3344,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       </table>
     </div>
     
-    <div class="specification-notes fragment" data-fragment-index="1" style="padding: 0.6em; font-size: 0.7em; text-align: center;">
+    <div class="specification-notes" data-fragment-index="1" style="padding: 0.6em; font-size: 0.7em; text-align: center;">
       <strong style="color: #42affa;">Note:</strong> Standard errors in parentheses. * p < 0.1; ** p < 0.05; *** p < 0.01. Effects strongest in democracies and advanced economies, confirming Hypothesis 4.
     </div>
   </div>
@@ -3359,19 +3359,19 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       
       <!-- Left column: Model and equation -->
       <div>
-        <div class="method-section fragment" data-fragment-index="1" style="padding: 0.8em 1em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="1" style="padding: 0.8em 1em; margin: 0.4em 0;">
           <h3 style="font-size: 0.95em; margin-bottom: 0.5em;">Addressing Dynamic Endogeneity</h3>
           <p style="font-size: 0.9em; line-height: 1.3; margin: 0;">
             IV approach circumvents biases from time-varying omitted variables and reverse causality (CB communication influencing independence). Uses 2SLS with diffusion-based instruments.
           </p>
         </div>
 
-        <div class="equation-block fragment" data-fragment-index="1" style="padding: 0.8em; margin: 0.5em 0;">
+        <div class="equation-block" data-fragment-index="1" style="padding: 0.8em; margin: 0.5em 0;">
           <span class="eq-label" style="font-size: 0.9em;">Second Stage (2SLS)</span>
           $$\psi^m_{ict} = \rho\, \widetilde{\psi}^m_{ict} + \beta_1\,\textrm{CBI}_{ct} + \beta_2\, \Delta \pi_{ct} + \beta_3\, \Delta u_{ct} + \theta_t + \mu_c + \epsilon_{ict}$$
         </div>
 
-        <div class="parameter-grid fragment" data-fragment-index="0" style="grid-template-columns: 1fr 1fr; gap: 0.4rem; margin: 0.6rem 0;">
+        <div class="parameter-grid" data-fragment-index="1" style="grid-template-columns: 1fr 1fr; gap: 0.4rem; margin: 0.6rem 0;">
           <div class="param-card" style="padding: 0.5em 0.6em;">
             <div class="param-symbol">ψ̃ᵐᵢct</div>
             <div class="param-desc" style="font-size: 0.8em;">Lagged DV (avg. 25 speeches)</div>
@@ -3385,7 +3385,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
 
       <!-- Right column: Instruments and findings -->
       <div>
-        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+        <div class="key-insight" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
           <span class="insight-label" style="font-size: 0.8em;">Three Instruments</span>
           <div style="font-size: 0.8em; line-height: 1.25;">
             <strong>1.</strong> Inverse distance-weighted world CBI average<br>
@@ -3394,7 +3394,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">Heterogeneity Results</h3>
           <div style="font-size: 0.8em; line-height: 1.25;">
             <div style="margin-bottom: 0.5em;">
@@ -3411,7 +3411,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       </div>
     </div>
 
-    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.7em; margin-top: 0.8rem;">
+    <div class="specification-notes" data-fragment-index="0" style="padding: 0.6em; font-size: 0.7em; margin-top: 0.8rem;">
       <h4 style="font-size: 0.85em; margin-bottom: 0.4em;">Methodological Notes</h4>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
         <div>
@@ -3432,7 +3432,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <div class="ch3-block" style="font-size: 0.42em;">
     <span class="pill-title">Instrumental Variable Results: Complete 2SLS Estimation</span>
     
-    <div class="method-section fragment" data-fragment-index="1" style="padding: 0.6em; margin: 0.3em 0;">
+    <div class="method-section" data-fragment-index="1" style="padding: 0.6em; margin: 0.3em 0;">
       <table style="width: 100%; border-collapse: collapse; font-size: 0.82em;">
         <thead>
           <tr style="background: rgba(66,175,250,0.15); border-bottom: 2px solid #42affa;">
@@ -3576,7 +3576,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       
       <!-- Left column: Validity tests -->
       <div>
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">1. Instrument Relevance</h3>
           <div style="font-size: 0.85em; line-height: 1.3;">
             <strong style="color: #28cf98;">F-statistics:</strong><br>
@@ -3586,7 +3586,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">2. Over-identification Tests</h3>
           <div style="font-size: 0.85em; line-height: 1.3;">
             <strong>Sargan test p-values:</strong><br>
@@ -3596,7 +3596,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.6em 0.8em; margin: 0.4em 0;">
+        <div class="key-insight" data-fragment-index="0" style="padding: 0.6em 0.8em; margin: 0.4em 0;">
           <span class="insight-label" style="font-size: 0.75em;">Caveat: LATE vs ATE</span>
           <div style="font-size: 0.8em; line-height: 1.25;">
             Over-identification assumes instruments identify same parameter. Different instruments may yield different LATEs due to heterogeneous treatment effects.
@@ -3606,7 +3606,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
 
       <!-- Right column: Single instrument robustness -->
       <div>
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
           <h3 style="font-size: 0.85em; margin-bottom: 0.5em;">3. Single Instrument Robustness</h3>
           <div style="font-size: 0.8em; line-height: 1.25;">
             <strong>Using only world CBI diffusion:</strong><br>
@@ -3616,7 +3616,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
           <h3 style="font-size: 0.85em; margin-bottom: 0.5em;">4. Instrument Correlation</h3>
           <div style="font-size: 0.8em; line-height: 1.25;">
             <strong>Democracy vs Judicial Independence:</strong><br>
@@ -3625,7 +3625,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="equation-block fragment" data-fragment-index="0" style="padding: 0.6em; margin: 0.4em 0;">
+        <div class="equation-block" data-fragment-index="0" style="padding: 0.6em; margin: 0.4em 0;">
           <span class="eq-label" style="font-size: 0.8em;">2SLS Matrix Form</span>
           $$\hat\beta_{\rm IV} = (Z'X)^{-1}Z'y$$
           <div style="font-size: 0.75em; color: #c8d0d6; margin-top: 0.3em;">
@@ -3635,7 +3635,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       </div>
     </div>
     
-    <div class="specification-notes fragment" data-fragment-index="7" style="padding: 0.5em; font-size: 0.68em; text-align: center;">
+    <div class="specification-notes" data-fragment-index="7" style="padding: 0.5em; font-size: 0.68em; text-align: center;">
       <strong style="color: #42affa;">Validity Assessment:</strong> Strong instruments (F > 300), exogeneity not rejected, robust to single instrument, low instrument correlation. Used as additional check for DiD analysis.
     </div>
   </div>
@@ -3667,7 +3667,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       
       <!-- Left column: Main robustness tests -->
       <div>
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">1. Parallel Trends Violations</h3>
           <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
             <li>Linear country-specific trends</li>
@@ -3676,7 +3676,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </ul>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">2. Treatment Definition Flexibility</h3>
           <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
             <li>Multiple treatments per country allowed</li>
@@ -3685,7 +3685,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </ul>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">3. Heterogeneity-Robust Estimators</h3>
           <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
             <li>Borusyak et al. (2024) imputation</li>
@@ -3698,7 +3698,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
 
       <!-- Right column: Additional checks -->
       <div>
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">4. Sample Construction</h3>
           <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
             <li>Full event window requirements</li>
@@ -3708,7 +3708,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </ul>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">5. Alternative CBI Measures</h3>
           <ul style="font-size: 0.85em; margin: 0; padding-left: 1em; line-height: 1.2;">
             <li>LVAU indicator (Garriga 2025)</li>
@@ -3717,7 +3717,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </ul>
         </div>
 
-        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+        <div class="key-insight" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
           <span class="insight-label" style="font-size: 0.8em;">6. Falsification Test</span>
           <div style="font-size: 0.8em; line-height: 1.25;">
             Randomization procedure: effects lie in <strong style="color: #ff6b6b;">extreme tails</strong> of placebo distributions (<1% probability under null).
@@ -3726,7 +3726,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       </div>
     </div>
 
-    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em; margin-top: 0.6rem; text-align: center;">
+    <div class="specification-notes" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em; margin-top: 0.6rem; text-align: center;">
       <strong style="color: #42affa;">Bottom Line:</strong> Results robust across estimators, sample definitions, CBI measures, and treatment specifications. Placebo tests confirm effects are not artifacts.
     </div>
   </div>
@@ -3736,7 +3736,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="dominance-twfe-ch2">
     <h3>Event Study Robustness</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="dominance_combined_twfe_robustness-1.png" alt="Dominance Combined TWFE Robustness" style="max-width:70vw;max-height:55vh;">
+      <img src="dominance_combined_twfe_robustness-1.png" alt="Dominance Combined TWFE Robustness" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
@@ -3745,7 +3745,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="dominance-additional-ch2">
     <h3>Alternative Event Study</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="dominance_combined_additional_event_study_ests-1.png" alt="Dominance Combined Additional Event Study" style="max-width:70vw;max-height:55vh;">
+      <img src="dominance_combined_additional_event_study_ests-1.png" alt="Dominance Combined Additional Event Study" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
@@ -3753,7 +3753,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="dominance-continuous-ch2">
     <h3>Continuous Event Study</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="dominance_combined_continuous-1.png" alt="Dominance Combined Continuous" style="max-width:70vw;max-height:55vh;">
+      <img src="dominance_combined_continuous-1.png" alt="Dominance Combined Continuous" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
@@ -3763,7 +3763,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="coef-plot-did-ch2">
     <h3>Event study CBI disaggregrated</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="coef_plot_did_combined-1.png" alt="Coef Plot DID Combined" style="max-width:70vw;max-height:55vh;">
+      <img src="coef_plot_did_combined-1.png" alt="Coef Plot DID Combined" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
@@ -3771,7 +3771,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="placebo-aggregate-ch2">
     <h3>Placebo Aggregate</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="placebo_aggregate-1.png" alt="Placebo Aggregate" style="max-width:70vw;max-height:55vh;">
+      <img src="placebo_aggregate-1.png" alt="Placebo Aggregate" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
@@ -3779,19 +3779,19 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="placebo-individual-ch2">
     <h3>Placebo Individual</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="placebo_individual-1.png" alt="Placebo Individual" style="max-width:70vw;max-height:55vh;">
+      <img src="placebo_individual-1.png" alt="Placebo Individual" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
   <section id="alternative-ch2"> 
-  <div class="ch3-block" style="font-size: 0.48em;">
-    <span class="pill-title">Alternative Explanations</span>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start;">
+    <div class="ch3-block" style="font-size: 0.48em;">
+      <span class="pill-title">Alternative Explanations</span>
       
-      <!-- Left column: Main alternative explanations -->
-      <div>
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start;">
+        
+        <!-- Left column: Main alternative explanations -->
+        <div>
+          <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">1. Global Financial Crisis Effects</h3>
           <div style="font-size: 0.85em; line-height: 1.25;">
             <strong>Concern:</strong> Effects driven by post-2008 global trends<br>
@@ -3800,7 +3800,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">2. Euro Area Confounding</h3>
           <div style="font-size: 0.85em; line-height: 1.25;">
             <strong>Concern:</strong> Euro adoption (1998) & SSM (2014)<br>
@@ -3809,7 +3809,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">3. Independence Precedent</h3>
           <div style="font-size: 0.85em; line-height: 1.25;">
             <strong>Concern:</strong> Epistemic community effects from first increase<br>
@@ -3821,7 +3821,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
 
       <!-- Right column: Additional checks -->
       <div>
-        <div class="method-section fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+        <div class="method-section" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
           <h3 style="font-size: 0.9em; margin-bottom: 0.5em;">4. Audience Targeting</h3>
           <div style="font-size: 0.85em; line-height: 1.25;">
             <strong>Concern:</strong> Shift toward financial market audiences<br>
@@ -3830,14 +3830,14 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           </div>
         </div>
 
-        <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+        <div class="key-insight" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
           <span class="insight-label" style="font-size: 0.8em;">5. Supervision Mandate Changes</span>
           <div style="font-size: 0.8em; line-height: 1.25;">
             <strong>Placebo test:</strong> Replace CBI with banking supervision changes. No significant association with financial dominance found.
           </div>
         </div>
 
-        <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.75em; margin-top: 0.4em;">
+        <div class="specification-notes" data-fragment-index="0" style="padding: 0.6em; font-size: 0.75em; margin-top: 0.4em;">
           <h4 style="font-size: 0.85em; margin-bottom: 0.3em;">Data Sources</h4>
           <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.2;">
             <li>Masciandaro et al. (2018) supervision data</li>
@@ -3848,7 +3848,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       </div>
     </div>
 
-    <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em; margin-top: 0.6rem; text-align: center;">
+    <div class="specification-notes" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em; margin-top: 0.6rem; text-align: center;">
       <strong style="color: #42affa;">Conclusion:</strong> Effects are not artifacts of global trends, euro area dynamics, audience shifts, or supervisory mandate changes.
     </div>
   </div>
@@ -3859,7 +3859,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="sample-variations-i-ch2">
     <h3>Alt explanations I</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="sample_variations_main-1.png" alt="Sample Variations I" style="max-width:70vw;max-height:55vh;">
+      <img src="sample_variations_main-1.png" alt="Sample Variations I" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
@@ -3867,30 +3867,30 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
   <section id="sample-variations-ii-ch2">
     <h3>Alt explanations II</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="sample_variations_appendix-1.png" alt="Sample Variations II" style="max-width:70vw;max-height:55vh;">
+      <img src="sample_variations_appendix-1.png" alt="Sample Variations II" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
     <section id="audiences-effect-ch2">
     <h3>Effect on audiences</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="effect_on_audience.png" alt="Effect on audience" style="max-width:70vw;max-height:55vh;">
+      <img src="effect_on_audience.png" alt="Effect on audience" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
 
   <section id="supervision-placebo-ch2">
-  <div class="ch3-block" style="font-size: 0.50em;">
-    <span class="pill-title">Placebo Test: Supervision Mandate Changes</span>
-    
-    <div class="method-section fragment" data-fragment-index="0" style="padding: 0.0em 0.9em; margin: 0.5em 0;">
+    <div class="ch3-block" style="font-size: 0.50em;">
+      <span class="pill-title">Placebo Test: Supervision Mandate Changes</span>
+      
+      <div class="method-section" data-fragment-index="0" style="padding: 0.0em 0.9em; margin: 0.5em 0;">
       <div style="font-size: 0.9em; line-height: 1.3;">
         <strong style="color: #ffb74d;">Question:</strong> Are effects driven by changes in supervisory powers rather than CBI?<br>
         <strong style="color: #42affa;">Approach:</strong> Replace CBI events with banking supervision changes
       </div>
     </div>
     
-    <div class="method-section fragment" data-fragment-index="0" style="padding: 0.0em; margin: 0.4em 0;">
+    <div class="method-section" data-fragment-index="0" style="padding: 0.0em; margin: 0.4em 0;">
       <table style="width: 90%; margin: 0 auto; border-collapse: collapse; font-size: 0.85em;">
         <thead>
           <tr style="background: rgba(66,175,250,0.15); border-bottom: 2px solid #42affa;">
@@ -3953,7 +3953,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
       </table>
     </div>
     
-    <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.6em 0;">
+    <div class="key-insight" data-fragment-index="0" style="padding: 0.8em 1em; margin: 0.6em 0;">
       <span class="insight-label" style="font-size: 0.85em;">Placebo Test Result</span>
       <div style="font-size: 0.95em; line-height: 1.4;">
         <strong style="color: #28cf98;">No significant association</strong> between banking supervision changes and financial dominance communication. Effects are <strong style="color: #42affa;">due to CBI changes, not supervisory mandate shifts</strong>.
@@ -3964,7 +3964,7 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
     <section id="cbi-level-ch2">
     <h3>CBI level</h3>
     <div style="display:flex;align-items:center;justify-content:center;">
-      <img src="cbi_level.png" alt="CBI level" style="max-width:70vw;max-height:55vh;">
+      <img src="cbi_level.png" alt="CBI level" style="max-width:85vw;max-height:75vh;">
     </div>
   </section>
 
