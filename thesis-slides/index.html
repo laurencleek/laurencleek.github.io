@@ -2903,6 +2903,9 @@
           <a href="#confusion-matrices-ch2" onclick="document.getElementById('confusion-matrices-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Confusion Matrices" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Confusion Matrices</a>
           <a href="#dataset-comp-map-ch2" onclick="document.getElementById('dataset-comp-map-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Dataset Comparison Map" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Dataset Comparison Map</a>
           <a href="#gemini-fine-tune-ch2" onclick="document.getElementById('gemini-fine-tune-ch2').scrollIntoView({behavior:'smooth'});return false;" title="Gemini Fine-tune Settings" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Gemini Fine-tune Settings</a>
+          <a href="#final-parameters" onclick="document.getElementById('final-parameters').scrollIntoView({behavior:'smooth'});return false;" title="Gemini model Configurations" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Gemini Model Configurations</a>
+
+          
           <a href="#llm-validition-ch2" onclick="document.getElementById('llm-validition-ch2').scrollIntoView({behavior:'smooth'});return false;" title="LLM validation" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">LLM Performance</a>
           <a href="#indicator-comp-ch2" onclick="document.getElementById('indicator-comp-ch2').scrollIntoView({behavior:'smooth'});return false;" title="External Validation Regimes" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">External Validation Regimes</a>
           
@@ -2990,6 +2993,72 @@
       <img src="gemini_fine_tune_settings_comb-1.png" alt="Gemini fine-tune settings" style="max-width:70vw;max-height:55vh;">
     </div>
   </section>
+
+<section id="final-parameters">
+                <div class="ch3-block" style="font-size: 0.39em;">
+                    <span class="pill-title">Final Model Configurations</span>
+                    
+                    <div class="method-section" data-fragment-index="1">
+                        <table class="parameter-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60%;">Parameter</th>
+                                    <th style="width: 20%;">Final Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" class="category-header" style="background: linear-gradient(135deg, #ffb74d 0%, #ff9800 100%); color: white; font-weight: bold; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px;">Optimization Settings</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Epochs</td>
+                                    <td class="value-col">7</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Learning rate</td>
+                                    <td class="value-col">0.0005</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Batch size</td>
+                                    <td class="value-col">2</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="2" class="category-header" style="background: linear-gradient(135deg, #28cf98 0%, #2ed573 100%); color: white; font-weight: bold; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px;">Prompt Engineering</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Sentences per prompt</td>
+                                    <td class="value-col">5</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Temperature</td>
+                                    <td class="value-col">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Format instructions</td>
+                                    <td class="value-col">yes</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="2" class="category-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: bold; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px;">Dataset Composition</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Synthetic sentences</td>
+                                    <td class="value-col">no</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Upsample factor</td>
+                                    <td class="value-col">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="subcategory">Randomise epochs</td>
+                                    <td class="value-col">yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+</section>
 
   <section id="llm-validition-ch2">
   <div class="ch3-block" style="font-size: 0.44em;">
@@ -4031,8 +4100,19 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
         <!-- Ultra-compact Appendix Chapter 3 Overview Links -->
   <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
           <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
+          
+                    <div class="section-header">Topic Model</div>
+
           <a href="#workflow-bert-ch3" onclick="document.getElementById('workflow-bert-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Workflow BERT" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Workflow BERT</a>
           <a href="#multiple-topics-ch3" onclick="document.getElementById('multiple-topics-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic Validation" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Validation</a>
+          <a href="#topic-regrouping-ch3" onclick="document.getElementById('topic-regrouping-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic Regrouping" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Regrouping</a>
+          <a href="#speeches-freq" onclick="document.getElementById('speeches-freq').scrollIntoView({behavior:'smooth'});return false;" title="Speeches Frequency" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Speeches Frequency</a>
+          <a href="#figure-a2-part1-ch3" onclick="document.getElementById('figure-a2-part1-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic word clouds I" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Wordcloud I</a>
+          <a href="#figure-a2-part2-ch3" onclick="document.getElementById('figure-a2-part2-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic word clouds II" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Wordcloud II</a>
+          <a href="#bertopic-pipeline" onclick="document.getElementById('bertopic-pipeline').scrollIntoView({behavior:'smooth'});return false;" title="BERTopic pipeline" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Bertopic Pipeline</a>
+
+                    <div class="section-header">Methods and Results</div>
+
           <a href="#methods-overview-ch3" onclick="document.getElementById('methods-overview-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Methods Overview" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Methods Overview</a>
           <a href="#markov-analysis-ch3" onclick="document.getElementById('markov-analysis-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Markov Analysis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Markov Analysis</a>
           <a href="#regression-models" onclick="document.getElementById('regression-models').scrollIntoView({behavior:'smooth'});return false;" title="Regression Analysis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Regression Analysis</a>
@@ -4041,24 +4121,100 @@ d_{c(t-k)} & \text{if } -5 < k < 12 \\
           <a href="#topic-transitions-ch3" onclick="document.getElementById('topic-transitions-ch3').scrollIntoView({behavior:'smooth'});return false;" title="ECB Direct Responsive" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">ECB Direct Responsive</a>
           <a href="#coef-plot-ch3" onclick="document.getElementById('coef-plot-ch3').scrollIntoView({behavior:'smooth'});return false;" title="NCBs Lead 3 Month Lags" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">NCBs Lead 3 Month Lags</a>
           <a href="#permutations-ch3" onclick="document.getElementById('permutations-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Permutations" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Permutations</a>
-          <a href="#topic-regrouping-ch3" onclick="document.getElementById('topic-regrouping-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic Regrouping" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Regrouping</a>
+          
           <a href="#coef-plot-crisis-ch3" onclick="document.getElementById('coef-plot-crisis-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Crisis</a>
           <a href="#coef-plot-leads-ch3" onclick="document.getElementById('coef-plot-leads-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Leads" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Leads</a>
           <a href="#coef-plot-half-yearly-ch3" onclick="document.getElementById('coef-plot-half-yearly-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coefficient Plot Half Yearly" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coefficient Plot Half Yearly</a>
           <a href="#crisis-topic-transitions-panel-ch3" onclick="document.getElementById('crisis-topic-transitions-panel-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Crisis Topic Transitions Panel" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Crisis Topic Transitions Panel</a>
-          <a href="#figure-a1-ch3" onclick="document.getElementById('figure-a1-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Speeches frequency" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Speeches frequency</a>
-          <a href="#figure-a2-part1-ch3" onclick="document.getElementById('figure-a2-part1-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic word clouds I" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Wordcloud I</a>
-          <a href="#figure-a2-part2-ch3" onclick="document.getElementById('figure-a2-part2-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Topic word clouds II" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Wordcloud II</a>
-          <a href="#figure-a3-ch3" onclick="document.getElementById('figure-a3-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Pre-post crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">pre/post crisis coefficient plot</a>
+          <a href="#figure-a3-ch3" onclick="document.getElementById('figure-a3-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Pre-post crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Pre/post crisis coefficient plot</a>
           <a href="#figure-climate-transition-ch3" onclick="document.getElementById('figure-climate-transition-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Figure Climate Transition" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Figure Climate Transition</a>
           <a href="#figure-crisis-transition-ch3" onclick="document.getElementById('figure-crisis-transition-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Figure Crisis Transition" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Figure Crisis Transition</a>
           <a href="#transition-matrix-robustness-ch3" onclick="document.getElementById('transition-matrix-robustness-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Transition Matrix Robustness" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Transition Matrix Robustness</a>
+          
+          <div class="section-header">Scope and Alternative</div>
+          <a href="#ncb-sintra-interaction" onclick="document.getElementById('ncb-sintra-interaction').scrollIntoView({behavior:'smooth'});return false;" title="Sintra effects" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Sintra effects</a>
+          <a href="#coalition-ch3" onclick="document.getElementById('coalition-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Coalition effects" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Coalition effects</a>
+          <a href="#crisis-topics-ch3" onclick="document.getElementById('crisis-topics-ch3').scrollIntoView({behavior:'smooth'});return false;" title="Crisis Topic Transitions" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Crisis Topic Transitions</a>
+          <a href="#markov-topics" onclick="document.getElementById('markov-topics').scrollIntoView({behavior:'smooth'});return false;" title="Markov Topic Transitions" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Markov Topic Transitions</a>
+          <a href="#topic-unity-climate" onclick="document.getElementById('topic-unity-climate').scrollIntoView({behavior:'smooth'});return false;" title="Topic Unity Climate" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Unity Climate</a>
+          <a href="#topic-unity-monetary" onclick="document.getElementById('topic-unity-monetary').scrollIntoView({behavior:'smooth'});return false;" title="Topic Unity Monetary" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topic Unity Monetary</a>
 
+          
         </div>
       </section>
       <section id="workflow-bert-ch3" class="ch3-fig-slide"><h3>Workflow BERT</h3><img src="workflow_bert (2).jpg" alt="Workflow BERT"></section>
       <section id="multiple-topics-ch3" class="ch3-fig-slide"><h3>Topics validation</h3><img src="multiple_topics_plot.png" alt="Topics Validation"></section>
       <section id="methods-overview-ch3" class="ch3-fig-slide"><h3>Methods Overview</h3><img src="methods_overview1 (2).png" alt="Methods Overview"></section>
+
+<section id="bertopic-pipeline">
+    <div class="ch3-block" style="font-size: 0.38em;">
+        <span class="pill-title">BERTopic Model Pipeline</span>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; align-items: start;">
+            
+            <!-- Left column: Core pipeline steps -->
+            <div>
+                <div style="background: #1a1a1a; border-radius: 8px; border-left: 4px solid #28cf98; padding: 0.5em 0.7em; margin: 0.3em 0;" data-fragment-index="0">
+                    <h3 style="font-size: 1em; margin-bottom: 0.4em; color: #ffffff; font-weight: 700;">Core Pipeline Steps</h3>
+                    
+                    <div style="background: rgba(40, 207, 152, 0.2); border-radius: 6px; padding: 0.4em 0.5em; margin: 0.25em 0; border-left: 3px solid #28cf98; border: 1px solid #28cf98;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.2em;">
+                            <span style="background: #28cf98; color: #000000; padding: 0.2em 0.4em; border-radius: 50%; font-weight: 700; font-size: 0.8em; margin-right: 0.4em; min-width: 1.4em; text-align: center;">1</span>
+                            <span style="font-weight: 700; color: #ffffff; font-size: 0.9em;">Document Embeddings</span>
+                        </div>
+                        <div style="font-size: 0.8em; line-height: 1.3; color: #e0e0e0; margin-left: 1.8em;">
+                            all-MiniLM-L6-v2 generates 384-dimensional vectors
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(40, 207, 152, 0.2); border-radius: 6px; padding: 0.4em 0.5em; margin: 0.25em 0; border-left: 3px solid #28cf98; border: 1px solid #28cf98;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.2em;">
+                            <span style="background: #28cf98; color: #000000; padding: 0.2em 0.4em; border-radius: 50%; font-weight: 700; font-size: 0.8em; margin-right: 0.4em; min-width: 1.4em; text-align: center;">2</span>
+                            <span style="font-weight: 700; color: #ffffff; font-size: 0.9em;">Text Vectorization</span>
+                        </div>
+                        <div style="font-size: 0.8em; line-height: 1.3; color: #e0e0e0; margin-left: 1.8em;">
+                            CountVectorizer with n-grams (2-4), stopword filtering
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(40, 207, 152, 0.2); border-radius: 6px; padding: 0.4em 0.5em; margin: 0.25em 0; border-left: 3px solid #28cf98; border: 1px solid #28cf98;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.2em;">
+                            <span style="background: #28cf98; color: #000000; padding: 0.2em 0.4em; border-radius: 50%; font-weight: 700; font-size: 0.8em; margin-right: 0.4em; min-width: 1.4em; text-align: center;">3</span>
+                            <span style="font-weight: 700; color: #ffffff; font-size: 0.9em;">Dimensionality Reduction</span>
+                        </div>
+                        <div style="font-size: 0.8em; line-height: 1.3; color: #e0e0e0; margin-left: 1.8em;">
+                            UMAP (5 components, cosine distance)
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(40, 207, 152, 0.2); border-radius: 6px; padding: 0.4em 0.5em; margin: 0.25em 0; border-left: 3px solid #28cf98; border: 1px solid #28cf98;">
+                        <div style="display: flex; align-items: center; margin-bottom: 0.2em;">
+                            <span style="background: #28cf98; color: #000000; padding: 0.2em 0.4em; border-radius: 50%; font-weight: 700; font-size: 0.8em; margin-right: 0.4em; min-width: 1.4em; text-align: center;">4</span>
+                            <span style="font-weight: 700; color: #ffffff; font-size: 0.9em;">Topic Clustering</span>
+                        </div>
+                        <div style="font-size: 0.8em; line-height: 1.3; color: #e0e0e0; margin-left: 1.8em;">
+                            BERTopic with c-TF-IDF refinement
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column: Technical specifications -->
+            <div>
+                <div class="method-section" data-fragment-index="1" style="padding: 0.5em 0.7em; margin: 0.3em 0;">
+                    <h3 style="font-size: 1em; margin-bottom: 0.4em;">Quality Features</h3>
+                    <div style="font-size: 0.75em; line-height: 1.2;">
+                        • <strong>Efficiency:</strong> Distilled BERT model<br>
+                        • <strong>Noise reduction:</strong> Multi-word filtering<br>
+                        • <strong>Coherence:</strong> Two-step outlier removal<br>
+                        • <strong>Analysis:</strong> Temporal trend extraction
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <section id="markov-analysis-ch3">
   <div class="ch3-block" style="font-size: 0.46em;">
@@ -4267,14 +4423,132 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
   <section id="coef-plot-leads-ch3" class="ch3-fig-slide"><h3>Coefficient Plot Leads</h3><img src="coefficient_plot_leads-1.png" alt="Coefficient Plot Leads" style="max-width:85vw;max-height:65vh;"></section>
   <section id="coef-plot-half-yearly-ch3" class="ch3-fig-slide"><h3>Coefficient Plot Half Yearly</h3><img src="coefficient_plot_main_halfyearly-1.png" alt="Coefficient Plot Half Yearly" style="max-width:85vw;max-height:65vh;"></section>
   <section id="crisis-topic-transitions-panel-ch3" class="ch3-fig-slide"><h3>Crisis Topic Transitions Panel</h3><img src="crisis_topic_transitions_panel-1.png" alt="Crisis Topic Transitions Panel" style="max-width:85vw;max-height:65vh;"></section>
-  <section id="figure-a1-ch3" class="ch3-fig-slide"><h3>Speeches frequency</h3><img src="figure_a1-1.png" alt="Speeches frequency" style="max-width:85vw;max-height:65vh;"></section>
+  <section id="speeches-freq" class="ch3-fig-slide"><h3>Speeches frequency</h3><img src="figure_a1-1.png" alt="Speeches frequency" style="max-width:85vw;max-height:65vh;"></section>
   <section id="figure-a2-part1-ch3" class="ch3-fig-slide"><h3>Topic word clouds I</h3><img src="figure_a2_part2-1.png" alt="Figure A2 Part 1" style="max-width:85vw;max-height:65vh;"></section>
   <section id="figure-a2-part2-ch3" class="ch3-fig-slide"><h3>Topic word clouds II</h3><img src="figure_a2_part1-1.png" alt="Figure A2 Part 2" style="max-width:85vw;max-height:65vh;"></section>
   <section id="figure-a3-ch3" class="ch3-fig-slide"><h3>Pre and post crisis coefficient plots</h3><img src="figure_a3-1.png" alt="Figure A3" style="max-width:85vw;max-height:65vh;"></section>
   <section id="figure-climate-transition-ch3" class="ch3-fig-slide"><h3>Figure Climate Transition</h3><img src="figure_climate_transition-1.png" alt="Figure Climate Transition" style="max-width:70vw;max-height:55vh;"></section>
   <section id="figure-crisis-transition-ch3" class="ch3-fig-slide"><h3>Figure Crisis Transition</h3><img src="figure_crisis_transition-1.png" alt="Figure Crisis Transition" style="max-width:70vw;max-height:55vh;"></section>
   <section id="transition-matrix-robustness-ch3" class="ch3-fig-slide"><h3>Transition Matrix Robustness</h3><img src="transition_matrix_robustness-1.png" alt="Transition Matrix Robustness" style="max-width:85vw;max-height:65vh;"></section>
-    </section>
+    
+<section id="ncb-sintra-interaction">
+    <div class="ch3-block" style="font-size: 0.38em;">
+        <span class="pill-title">Impact of NCB Topic × Sintra Interaction on ECB Responsiveness</span>
+        
+        <div class="method-section" data-fragment-index="1" style="padding: 0.6em;">
+            <table style="width: 95%; border-collapse: collapse; font-size: 0.85em; margin: 0 auto;">
+                <thead>
+                    <tr style="background: rgba(66,175,250,0.15); border-bottom: 2px solid #42affa;">
+                        <th style="text-align: left; padding: 0.4em 0.3em; color: #42affa; font-weight: 600; width: 25%;">Topic</th>
+                        <th style="text-align: center; padding: 0.4em 0.3em; color: #42affa; font-weight: 600; width: 15%;">FR</th>
+                        <th style="text-align: center; padding: 0.4em 0.3em; color: #42affa; font-weight: 600; width: 15%;">IT</th>
+                        <th style="text-align: center; padding: 0.4em 0.3em; color: #42affa; font-weight: 600; width: 15%;">ES</th>
+                        <th style="text-align: center; padding: 0.4em 0.3em; color: #42affa; font-weight: 600; width: 15%;">DE</th>
+                        <th style="text-align: center; padding: 0.4em 0.3em; color: #42affa; font-weight: 600; width: 15%;">NL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Monetary Policy</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.336<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.280)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.332<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.238)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.039<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.209)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.188<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.212)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.045<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.250)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Economic Indicators</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.221<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.149)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.344<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.860)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-1.534<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.959)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.275<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.199)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.203<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.292)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Financial Markets</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.143<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.091)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #42affa; font-weight: 600;">-0.742**</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.310)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.144<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.480)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #42affa; font-weight: 600;">-0.355**</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.147)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.270<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.196)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Banking Supervision</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.200<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.248)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #ff6666; font-weight: 600;">-1.183***</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.404)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.039<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.115)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.030<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.161)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.055<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.074)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Digital Finance</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.029<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.227)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.098<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.142)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.183<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.129)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.001<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.163)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.013<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.064)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">International Economics</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.016<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.183)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.266<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.284)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.160<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.584)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #42affa; font-weight: 600;">-0.635**</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.297)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.129<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.230)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Crisis Management</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.045<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.096)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.128<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.263)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.655<br><span style="font-size: 0.75em; color: #c8d0d6;">(1.322)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.127<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.173)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.297<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.380)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Climate</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.078<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.403)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #28cf98; font-weight: 600;">0.040*</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.023)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #28cf98; font-weight: 600;">-0.230*</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.120)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.451<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.522)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.032<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.096)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">Payment Systems</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.053<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.076)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.320<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.270)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #42affa; font-weight: 600;">1.121**</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.525)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.061<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.064)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.158<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.386)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.2em 0.3em; font-weight: 500;">National Economy</td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #42affa; font-weight: 600;">-0.512**</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.240)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.053<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.035)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">0.008<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.036)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;">-0.012<br><span style="font-size: 0.75em; color: #c8d0d6;">(0.044)</span></td>
+                        <td style="text-align: center; padding: 0.2em 0.3em;"><span style="color: #42affa; font-weight: 600;">-0.692**</span><br><span style="font-size: 0.75em; color: #c8d0d6;">(0.310)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="specification-notes" data-fragment-index="0" style="padding: 0.5em; font-size: 0.7em;">
+            <div style="font-weight: bold; margin-bottom: 0.3em;">Note:</div>
+            Coefficients and clustered standard errors for the interaction term NCB Topic × Sintra. Standard errors in parentheses. * p < 0.1, ** p < 0.05, *** p < 0.01.
+        </div>
+    </div>
+</section>
+
+
+  <section id="coalition-ch3" class="ch3-fig-slide"><h3>Coalition</h3><img src="coalition_interaction_grid.png" alt="Topic Transitions" style="max-width:85vw;max-height:65vh;"></section>
+  <section id="crisis-topics-ch3" class="ch3-fig-slide"><h3>Coalition Topic Transition</h3><img src="crisis_topic_transitions_panel-1.png" alt="Topic Transitions" style="max-width:85vw;max-height:65vh;"></section>
+  <section id="markov-topics" class="ch3-fig-slide"><h3>Markov Topic transitions</h3><img src="figure_markov_transition.png" alt="Topic Transitions" style="max-width:85vw;max-height:65vh;"></section>
+
+  <section id="topic-unity-climate" class="ch3-fig-slide"><h3>Topic unity Climate</h3><img src="intra_topic_distance_topic_5.png" alt="Topic Transitions" style="max-width:85vw;max-height:55vh;"></section>
+  <section id="topic-unity-monetary" class="ch3-fig-slide"><h3>Topic unity Monetary</h3><img src="intra_topic_distance_topic_0.png" alt="Topic Transitions" style="max-width:85vw;max-height:55vh;"></section>
+
+</section>
+  
 
     <!-- APPENDIX: Chapter 4 -->
     <section data-section="appendix-ch4">
@@ -4284,15 +4558,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
         <div style="margin:0.5em 0 1em 0; display:flex; flex-wrap:wrap; gap:0.1em; justify-content:center; align-items:center; font-size:0.65em;">
           <span style="font-weight:500; margin-right:0.4em; color:#888;">Jump:</span>
           <a href="#classification-examples-ch4" onclick="document.getElementById('classification-examples-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Classification examples" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Classification examples</a>
-
           <a href="#confusion-matrices-ch4" onclick="document.getElementById('confusion-matrices-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Confusion Matrices" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Confusion Matrices</a>
-          <a href="#crisis-ch4" onclick="document.getElementById('crisis-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Crisis</a>
-          <a href="#democracy-ch4" onclick="document.getElementById('democracy-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Democracy" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Democracy</a>
-          <a href="#gdpppp-ch4" onclick="document.getElementById('gdpppp-ch4').scrollIntoView({behavior:'smooth'});return false;" title="GDP PPP" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">GDP PPP</a>
-          <a href="#inflation-ch4" onclick="document.getElementById('inflation-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Inflation" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Inflation</a>
-          <a href="#normative-by-group-ch4" onclick="document.getElementById('normative-by-group-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Normative by Group" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Normative by Group</a>
-          <a href="#normative-by-topic-ch4" onclick="document.getElementById('normative-by-topic-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Normative by Topic" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Normative by Topic</a>
-          <a href="#polarization-ch4" onclick="document.getElementById('polarization-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Polarization" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Polarization</a>
           <a href="#sentence-count-l1-l2-r-ch4" onclick="document.getElementById('sentence-count-l1-l2-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Accuracy Tokens L1 L2" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Accuracy Tokens L1 L2</a>
           <a href="#sentence-count-l3-r-ch4" onclick="document.getElementById('sentence-count-l3-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Accuracy Tokens L3" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Accuracy Tokens L3</a>
           <a href="#spreads-ch4" onclick="document.getElementById('spreads-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Spreads" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Spreads</a>
@@ -4301,8 +4567,20 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
           <a href="#temperature-l3-r-ch4" onclick="document.getElementById('temperature-l3-r-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Temperature L3" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Temperature L3</a>
           <a href="#topics-ch4" onclick="document.getElementById('topics-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Topics" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Topics</a>
           <a href="#model-architectures" onclick="document.getElementById('topics-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Model Architectures" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Model Architectures</a>
+          <a href="#classification-shares" onclick="document.getElementById('classification-shares').scrollIntoView({behavior:'smooth'});return false;" title="Classification Shares" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Classification Shares</a>
+          <a href="#class-imbalance" onclick="document.getElementById('class-imbalance').scrollIntoView({behavior:'smooth'});return false;" title="Class Imbalance" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Class Imbalance</a>
+          <a href="#guess-the-regime" onclick="document.getElementById('guess-the-regime').scrollIntoView({behavior:'smooth'});return false;" title="Guess the regime" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Guess the regime</a>
 
-       
+          <div class="section-header">Descriptive variation</div>
+
+          <a href="#crisis-ch4" onclick="document.getElementById('crisis-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Crisis" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Crisis</a>
+          <a href="#democracy-ch4" onclick="document.getElementById('democracy-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Democracy" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Democracy</a>
+          <a href="#gdpppp-ch4" onclick="document.getElementById('gdpppp-ch4').scrollIntoView({behavior:'smooth'});return false;" title="GDP PPP" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">GDP PPP</a>
+          <a href="#inflation-ch4" onclick="document.getElementById('inflation-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Inflation" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Inflation</a>
+          <a href="#normative-by-group-ch4" onclick="document.getElementById('normative-by-group-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Normative by Group" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Normative by Group</a>
+          <a href="#normative-by-topic-ch4" onclick="document.getElementById('normative-by-topic-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Normative by Topic" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Normative by Topic</a>
+          <a href="#polarization-ch4" onclick="document.getElementById('polarization-ch4').scrollIntoView({behavior:'smooth'});return false;" title="Polarization" style="background:#f2f4f8; border-radius:2px; padding:0.08em 0.3em; text-decoration:none; color:#2a4a7b; border:1px solid #d0d7e2; font-weight:500;">Polarization</a>
+
         </div>
       </section>
 
@@ -4451,7 +4729,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                         
                         <!-- Encoder-Only Models -->
                         <div>
-                            <div class="method-section encoder-card fragment" data-fragment-index="0" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+                            <div class="method-section encoder-card " style="padding: 0.7em 0.9em; margin: 0.4em 0;">
                                 <h3 style="font-size: 0.9em; margin-bottom: 0.5em; color: #42affa;">🔍 Encoder-Only Models</h3>
                                 <div style="font-size: 0.8em; line-height: 1.25;">
                                     <strong>Examples:</strong> BERT, RoBERTa, FinBERT<br>
@@ -4459,7 +4737,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                                 </div>
                             </div>
 
-                            <div class="key-insight fragment" data-fragment-index="0" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+                            <div class="key-insight"  style="padding: 0.7em 0.8em; margin: 0.4em 0;">
                                 <span class="insight-label" style="font-size: 0.75em; background: #28cf98;">✅ Advantages</span>
                                 <div style="font-size: 0.8em; line-height: 1.25;">
                                     • <strong>Superior classification</strong> accuracy<br>
@@ -4469,7 +4747,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                                 </div>
                             </div>
 
-                            <div class="specification-notes fragment" data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em;">
+                            <div class="specification-notes " data-fragment-index="0" style="padding: 0.6em; font-size: 0.72em;">
                                 <h4 style="font-size: 0.8em; margin-bottom: 0.3em; color: #ff6b6b;">❌ Disadvantages</h4>
                                 <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.2;">
                                     <li>No text generation capability</li>
@@ -4481,7 +4759,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
 
                         <!-- Decoder-Only Models -->
                         <div>
-                            <div class="method-section decoder-card fragment" data-fragment-index="1" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+                            <div class="method-section decoder-card" data-fragment-index="1" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
                                 <h3 style="font-size: 0.9em; margin-bottom: 0.5em; color: #ff6b6b;">📝 Decoder-Only Models</h3>
                                 <div style="font-size: 0.8em; line-height: 1.25;">
                                     <strong>Examples:</strong> GPT-4, Claude, Gemini<br>
@@ -4489,7 +4767,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                                 </div>
                             </div>
 
-                            <div class="key-insight fragment" data-fragment-index="1" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+                            <div class="key-insight" data-fragment-index="1" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
                                 <span class="insight-label" style="font-size: 0.75em; background: #28cf98;">✅ Advantages</span>
                                 <div style="font-size: 0.8em; line-height: 1.25;">
                                     • <strong>Flexible output</strong> + explanations<br>
@@ -4499,7 +4777,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                                 </div>
                             </div>
 
-                            <div class="specification-notes fragment" data-fragment-index="1" style="padding: 0.6em; font-size: 0.72em;">
+                            <div class="specification-notes" data-fragment-index="1" style="padding: 0.6em; font-size: 0.72em;">
                                 <h4 style="font-size: 0.8em; margin-bottom: 0.3em; color: #ff6b6b;">❌ Disadvantages</h4>
                                 <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.2;">
                                     <li>High computational cost</li>
@@ -4512,7 +4790,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
 
                         <!-- Encoder-Decoder Models -->
                         <div>
-                            <div class="method-section both-card fragment" data-fragment-index="2" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
+                            <div class="method-section both-card" data-fragment-index="2" style="padding: 0.7em 0.9em; margin: 0.4em 0;">
                                 <h3 style="font-size: 0.9em; margin-bottom: 0.5em; color: #28cf98;">🔄 Encoder-Decoder Models</h3>
                                 <div style="font-size: 0.8em; line-height: 1.25;">
                                     <strong>Examples:</strong> T5, BART, Flan-T5<br>
@@ -4520,7 +4798,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                                 </div>
                             </div>
 
-                            <div class="key-insight fragment" data-fragment-index="2" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
+                            <div class="key-insight" data-fragment-index="2" style="padding: 0.7em 0.8em; margin: 0.4em 0;">
                                 <span class="insight-label" style="font-size: 0.75em; background: #28cf98;">✅ Advantages</span>
                                 <div style="font-size: 0.8em; line-height: 1.25;">
                                     • <strong>Best of both worlds</strong><br>
@@ -4530,7 +4808,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                                 </div>
                             </div>
 
-                            <div class="specification-notes fragment" data-fragment-index="2" style="padding: 0.6em; font-size: 0.72em;">
+                            <div class="specification-notes" data-fragment-index="2" style="padding: 0.6em; font-size: 0.72em;">
                                 <h4 style="font-size: 0.8em; margin-bottom: 0.3em; color: #ff6b6b;">❌ Disadvantages</h4>
                                 <ul style="margin: 0.2em 0; padding-left: 1em; line-height: 1.2;">
                                     <li>Higher model complexity</li>
@@ -4542,7 +4820,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
                         </div>
                     </div>
 
-                    <div class="key-insight fragment" data-fragment-index="3" style="padding: 0.7em 0.8em; margin: 0.8em 0 0.4em 0;">
+                    <div class="key-insight" data-fragment-index="3" style="padding: 0.7em 0.8em; margin: 0.8em 0 0.4em 0;">
                         <span class="insight-label" style="font-size: 0.75em; background: #667eea;">💡 Recommendation</span>
                         <div style="font-size: 0.85em; line-height: 1.3;">
                             <strong style="color: #42affa;">Encoder-only models</strong> (especially FinBERT) optimal for pure classification tasks. 
@@ -4632,7 +4910,7 @@ EB_{t,p} = & \alpha_p + EB_{t-1,p} + \beta_1 NCB_{t-1,p} + \gamma C_t \\
   </div>
 </section>
       
-      <section>
+      <section id="guess-the-regime">
         <h3 style="margin-bottom:1.2rem;">Guess the Regime</h3>
         <div class="gr-panel" style="margin-bottom:1.2rem;">
           <p id="gr-text" style="font-style:italic;margin:0 0 .9rem">Loading example…</p>
