@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Is Your Local At Risk?</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+/* Base Reset & Typography */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#08090d;color:#e0e0e0;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+a{color:#457B9D;text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Layout - Split Screen */
+#map-container{flex:55;position:relative;width:100%;background:#000;z-index:1}
+#split-resizer{height:10px;background:#E63946;cursor:row-resize;z-index:30;position:relative;display:flex;align-items:center;justify-content:center}
+#split-resizer::after{content:"";width:48px;height:3px;border-radius:999px;background:rgba(255,255,255,0.7)}
+#content-panel{flex:45;background:#0b0c10;overflow-y:auto;position:relative;z-index:2;box-shadow:0 -10px 40px rgba(0,0,0,0.5)}
+
+/* Container for content */
+.container{max-width:800px;margin:0 auto;padding:40px 24px}
+
+/* Typography */
+h1{font-size:2.8em;line-height:1.1;margin-bottom:12px;letter-spacing:-1px}
+h1 span{color:#E63946}
+p.lead{color:#888;font-size:1.2em;line-height:1.5;margin-bottom:32px;max-width:600px}
+h3{font-size:1.1em;margin-bottom:16px;color:#fff;text-transform:uppercase;letter-spacing:1px;font-weight:800}
+
+/* Components */
+#search-box{display:flex;gap:12px;margin-bottom:40px;position:relative}
+#pc-input{flex:1;padding:18px 24px;border-radius:12px;border:1px solid #333;background:#15161a;color:#fff;font-size:18px;transition:border-color .2s}
+#pc-input:focus{outline:none;border-color:#E63946}
+#go-btn{padding:0 32px;border-radius:12px;border:none;background:#E63946;color:#fff;font-weight:700;cursor:pointer;font-size:16px;transition:background .2s,transform .1s}
+#go-btn:hover{background:#ff4d5a}
+#go-btn:active{transform:scale(0.98)}
+
+/* Stats Grid */
+#stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:#15161a;border-radius:12px;padding:20px 16px;text-align:center;border:1px solid #222;transition:transform .2s}
+.stat-card:hover{transform:translateY(-2px);border-color:#333}
+.stat-val{font-size:2em;font-weight:800;line-height:1}
+.stat-label{font-size:.70em;color:#777;text-transform:uppercase;letter-spacing:0.5px;margin-top:8px;font-weight:600}
+.c-green{color:#2A9D8F}.c-amber{color:#E9C46A}.c-red{color:#E63946}
+
+/* Third Place Score */
+#score-section{background:#15161a;border-radius:16px;padding:24px;border:1px solid #222;margin-bottom:32px;display:flex;align-items:center;gap:24px}
+.score-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5em;font-weight:800;background:#111;border:4px solid #333;color:#fff;flex-shrink:0}
+.score-content{flex:1}
+.score-bar-bg{height:8px;background:#222;border-radius:4px;margin:12px 0;overflow:hidden}
+.score-bar-fill{height:100%;transition:width 1s cubic-bezier(0.2,0.8,0.2,1)}
+
+/* Pub List */
+.pub-item{display:flex;justify-content:space-between;align-items:center;padding:16px;background:#15161a;border-bottom:1px solid #222;transition:background .2s}
+.pub-item:first-child{border-top-left-radius:12px;border-top-right-radius:12px}
+.pub-item:last-child{border-bottom-left-radius:12px;border-bottom-right-radius:12px;border-bottom:none}
+.pub-item:hover{background:#1a1b20}
+.pub-info h4{font-size:1em;margin-bottom:4px}
+.pub-meta{font-size:.8em;color:#777}
+.risk-badge{padding:4px 12px;border-radius:20px;font-size:.75em;font-weight:800;text-transform:uppercase}
+.bg-green{background:rgba(42,157,143,0.2);color:#2A9D8F}
+.bg-amber{background:rgba(233,196,106,0.2);color:#E9C46A}
+.bg-red{background:rgba(230,57,70,0.2);color:#E63946}
+
+/* Modal */
+#modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(4px);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+#modal-overlay.active{opacity:1;pointer-events:auto}
+#welcome-modal{background:#111;border:1px solid #333;width:90%;max-width:500px;border-radius:24px;padding:40px;text-align:center;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5)}
+
+/* Utilities */
+.hidden{display:none}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid #222;font-size:.85em;color:#555}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#0b0c10}
+::-webkit-scrollbar-thumb{background:#333;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#444}
+
+@media(max-width:768px){
+  body{flex-direction:column}
+  #map-container{height:60vh;flex:none}
+  #split-resizer{height:12px}
+  #content-panel{
+    height:40vh;
+    flex:none;
+    overflow-y:auto;
+    border-top-left-radius:24px;
+    border-top-right-radius:24px;
+    box-shadow:0 -10px 40px rgba(0,0,0,0.5);
+    z-index:100;
+    transition: height 0.3s;
+  }
+  #content-panel.expanded { height: 80vh; }
+  .hidden-desktop { display: flex !important; }
+}
+@media(min-width:769px){
+  .hidden-desktop { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- MAP SECTION (Top) -->
+<div id="map-container"></div>
+<div id="split-resizer" title="Drag to resize map and panel"></div>
+
+<!-- CONTENT SECTION (Bottom) -->
+<div id="content-panel">
+  <div id="panel-trigger" style="height:20px;display:flex;justify-content:center;cursor:pointer;padding-top:8px" class="hidden-desktop">
+     <div style="width:40px;height:4px;background:#333;border-radius:2px"></div>
+  </div>
+  <div class="container">
+    
+    <!-- Hero Header -->
+    <div id="hero-header">
+      <h1>Is Your <span>Local</span> At Risk?</h1>
+      <p class="lead">Data from thousands of venues reveals a "third place" crisis. Search your town or postcode to assess the health of your local pubs.</p>
+    </div>
+
+    <!-- Search Tool -->
+    <div id="search-box">
+      <input id="pc-input" type="text" placeholder="Enter town or postcode (e.g. Bristol, SE15)" autocomplete="postal-code"/>
+      <button id="go-btn" onclick="search()">Search</button>
+    </div>
+
+    <!-- Explanation / Legend (Mobile/Desktop) -->
+    <div style="margin-top:12px;display:flex;gap:16px;justify-content:center;font-size:0.85em;color:#888">
+       <span><span style="color:#2A9D8F">●</span> Low Risk</span>
+       <span><span style="color:#E9C46A">●</span> Medium Risk</span>
+       <span><span style="color:#E63946">●</span> High Risk</span>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="hidden" style="text-align:center;padding:40px;color:#777">
+      <div class="spinner"></div> Finding your local...
+    </div>
+
+    <!-- National Stats (Default View) -->
+    <div id="national-view">
+      <h3>National Overview</h3>
+      <div id="stats-grid">
+        <div class="stat-card"><div class="stat-val" id="n-total">—</div><div class="stat-label">Total Pubs</div></div>
+        <div class="stat-card"><div class="stat-val c-green" id="n-green">—</div><div class="stat-label">Low Risk</div></div>
+        <div class="stat-card"><div class="stat-val c-amber" id="n-amber">—</div><div class="stat-label">Medium Risk</div></div>
+        <div class="stat-card"><div class="stat-val c-red" id="n-red">—</div><div class="stat-label">High Risk</div></div>
+      </div>
+      <p style="font-size:0.9em;color:#666;line-height:1.6">
+        The model analyzes geographic isolation ("nearest neighbour" distance) and density to identify pubs most vulnerable to closure. 
+        Since 2016, isolation has been a leading indicator of permanent closure.
+      </p>
+      <div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:0.85em;color:#7f7f7f">Method note: score is based on local density + nearest-neighbour isolation from venue locations.</span>
+        <button id="method-info-btn" style="background:#15161a;color:#ccc;border:1px solid #333;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer">Info</button>
+      </div>
+      <div id="method-info-panel" class="hidden" style="margin-top:10px;background:#121318;border:1px solid #24262d;border-radius:10px;padding:12px 14px;font-size:0.86em;color:#9a9a9a;line-height:1.5">
+        <strong style="color:#d2d2d2">Methodology details</strong><br>
+        I derive risk from two spatial signals: (1) nearest-neighbour distance and (2) pub density in the surrounding area. I then convert that continuous risk into green / amber / red bands. This is a location-structure model, so it does not directly include prices, opening hours, operator quality, or temporary seasonal shocks.
+      </div>
+    </div>
+
+    <!-- Local Results (Hidden until search) -->
+    <div id="local-view" class="hidden">
+      
+      <!-- Score Card -->
+      <div id="score-section">
+        <div class="score-circle" id="tp-score-circle">--</div>
+        <div class="score-content">
+          <h4 style="margin-bottom:8px;font-size:1.1em">Community Third Place Score</h4>
+          <div class="score-bar-bg"><div class="score-bar-fill" id="tp-bar" style="width:0%"></div></div>
+          <p id="tp-msg" style="font-size:0.9em;color:#aaa;margin-top:8px">Analyzing area density...</p>
+        </div>
+      </div>
+
+      <!-- Local Stats -->
+      <h3>Nearby Analysis (1.5km radius)</h3>
+      <div id="stats-grid">
+        <div class="stat-card"><div class="stat-val" id="l-total">—</div><div class="stat-label">Venues</div></div>
+        <div class="stat-card"><div class="stat-val c-green" id="l-green">—</div><div class="stat-label">Safe</div></div>
+        <div class="stat-card"><div class="stat-val c-amber" id="l-amber">—</div><div class="stat-label">Watch</div></div>
+        <div class="stat-card"><div class="stat-val c-red" id="l-red">—</div><div class="stat-label">At Risk</div></div>
+      </div>
+
+      <!-- Pub List -->
+      <h3 style="margin-top:40px">Pub Watchlist</h3>
+      <div id="pub-list-container"></div>
+      
+      <!-- Action Section -->
+      <div id="action-container" class="hidden" style="margin-top:40px;background:#1a1111;border:1px solid #4a1a1a;padding:24px;border-radius:16px">
+        <h3 style="color:#E63946">⚠️ Urgent: Protected Status Needed</h3>
+        <p style="color:#aaa;font-size:0.95em;margin-bottom:16px">High-risk pubs in your area need Asset of Community Value (ACV) status. Send this pre-written objection to your local council.</p>
+        <textarea id="letter-text" style="width:100%;height:150px;background:#000;border:1px solid #333;color:#ccc;padding:12px;border-radius:8px;font-family:monospace;font-size:12px;resize:vertical" readonly></textarea>
+        <button onclick="copyLetter()" style="margin-top:12px;background:#457B9D;color:white;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer">Copy Template</button>
+      </div>
+
+    </div>
+    
+    <footer>
+      Data: Open Pubs / FSA (Aug 2024) · Built by and Risk Model by <a href="#">Lauren Leek</a>
+    </footer>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal-overlay" class="active">
+  <div id="welcome-modal">
+    <h2 style="font-size:2em;margin-bottom:16px">Welcome to Pub Watch 🍻</h2>
+    <p style="color:#aaa;line-height:1.6;margin-bottom:32px">
+      Is your local pub partially isolated? Does it have enough community footfall?
+      <br><br>
+      I've modelled the survival risk of every pub in Britain.
+      Use the map above to explore, or search your town or postcode below.
+    </p>
+    <button onclick="closeModal()" style="padding:16px 32px;background:#E63946;color:white;border:none;border-radius:30px;font-size:1.1em;font-weight:700;cursor:pointer">Explore Data</button>
+  </div>
+</div>
+
+<script>
+// State
+let map, pubsNearby=[], allPubs=[], activeLayers=L.layerGroup();
+const el = i => document.getElementById(i);
+const panel = el('content-panel');
+const handle = el('panel-trigger');
+const resizer = el('split-resizer');
+
+// Init Map with Canvas Renderer for performance
+map = L.map('map-container', {
+    zoomControl: false, 
+    preferCanvas: true,
+    minZoom: 6,
+    maxZoom: 18,
+    scrollWheelZoom: true  // Allow zooming immediately
+}).setView([54.5, -3], 6);
+
+L.control.zoom({position: 'topright'}).addTo(map); // Add zoom controls
+
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution: '&copy; OSM &copy; CARTO', maxZoom: 19
+}).addTo(map);
+
+// Add Legend
+const legend = L.control({position: 'bottomright'});
+legend.onAdd = function (map) {
+    const div = L.DomUtil.create('div', 'info legend');
+    div.style.background = "rgba(0,0,0,0.8)";
+    div.style.padding = "10px";
+    div.style.borderRadius = "8px";
+    div.style.color = "#ccc";
+    div.innerHTML = `
+        <div style="display:flex;align-items:center;margin-bottom:4px"><span style="width:12px;height:12px;background:#2A9D8F;border-radius:50%;display:inline-block;margin-right:8px"></span> Low Risk</div>
+        <div style="display:flex;align-items:center;margin-bottom:4px"><span style="width:12px;height:12px;background:#E9C46A;border-radius:50%;display:inline-block;margin-right:8px"></span> Medium Risk</div>
+        <div style="display:flex;align-items:center"><span style="width:12px;height:12px;background:#E63946;border-radius:50%;display:inline-block;margin-right:8px"></span> High Risk</div>
+    `;
+    return div;
+};
+legend.addTo(map);
+
+map.addLayer(activeLayers);
+
+// Load Data
+fetch("data/meta.json").then(r=>r.json()).then(d=>{
+  ['total','green','amber','red'].forEach(k => {
+    if(el(`n-${k}`)) el(`n-${k}`).textContent = d[k].toLocaleString();
+  });
+});
+
+// Load All Dots (Initial State)
+fetch("data/all_pubs.json").then(r=>r.json()).then(data => {
+    allPubs = data;
+    renderAllDots();
+});
+
+function renderAllDots() {
+    activeLayers.clearLayers();
+    const colors = ["#2A9D8F", "#E9C46A", "#E63946"]; // 0=green, 1=amber, 2=red
+    
+    // Use Canvas renderer for 40k+ points
+    const myRenderer = L.canvas({ padding: 0.5 });
+    
+    allPubs.forEach(p => {
+        // p = [lat, lon, cat_index]
+        L.circleMarker([p[0], p[1]], {
+            renderer: myRenderer,
+            radius: 2,
+            color: colors[p[2]],
+            fillColor: colors[p[2]],
+            fillOpacity: 0.7,
+            stroke: false
+        }).addTo(activeLayers);
+    });
+}
+
+
+function closeModal(){
+  el('modal-overlay').classList.remove('active');
+}
+
+// Methodology Info Toggle
+const methodInfoBtn = el('method-info-btn');
+const methodInfoPanel = el('method-info-panel');
+if (methodInfoBtn && methodInfoPanel) {
+  methodInfoBtn.addEventListener('click', () => {
+    methodInfoPanel.classList.toggle('hidden');
+    methodInfoBtn.textContent = methodInfoPanel.classList.contains('hidden') ? 'Info' : 'Hide';
+  });
+}
+
+// Helpers
+const hav = (lat1,lon1,lat2,lon2) => {
+  const R=6371e3, toR=Math.PI/180;
+  const dLat=(lat2-lat1)*toR, dLon=(lon2-lon1)*toR;
+  const a=Math.sin(dLat/2)**2+Math.cos(lat1*toR)*Math.cos(lat2*toR)*Math.sin(dLon/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+};
+
+async function geocode(query) {
+    // 1. Try Postcode Regex
+    const pcRegex = /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/;
+    if (pcRegex.test(query)) {
+        const r = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(query)}`);
+        const d = await r.json();
+        if (d.status === 200) {
+            return { 
+                lat: d.result.latitude, 
+                lon: d.result.longitude, 
+                area: d.result.outcode.match(/^[A-Z]{1,2}/)[0],
+                type: 'postcode'
+            };
+        }
+    }
+
+    // 2. Fallback to Nominatim (Place Name)
+    const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ", UK")}&countrycodes=gb&addressdetails=1&limit=8`);
+    const d = await r.json();
+    if (d && d.length > 0) {
+      const q = query.trim().toLowerCase();
+      const scored = d.map((item, idx) => {
+        const label = (item.display_name || '').toLowerCase();
+        const addType = (item.addresstype || '').toLowerCase();
+        const type = (item.type || '').toLowerCase();
+        let score = 0;
+
+        if (addType === 'city' || addType === 'town') score += 6;
+        if (type === 'city' || type === 'town') score += 6;
+        if ((item.class || '').toLowerCase() === 'place') score += 3;
+        if (label.startsWith(`${q},`)) score += 4;
+        if (label.includes(` ${q},`) || label.includes(`, ${q},`)) score += 2;
+
+        if (q === 'london' && label.includes('city of london')) score -= 12;
+        if (q === 'london' && label.includes('greater london')) score += 8;
+
+        score += (Number(item.importance) || 0);
+        return { item, score, idx };
+      }).sort((a, b) => b.score - a.score || a.idx - b.idx);
+
+      const best = scored[0].item;
+        return {
+        lat: parseFloat(best.lat),
+        lon: parseFloat(best.lon),
+        type: 'text',
+        bbox: Array.isArray(best.boundingbox)
+          ? [
+            parseFloat(best.boundingbox[0]),
+            parseFloat(best.boundingbox[1]),
+            parseFloat(best.boundingbox[2]),
+            parseFloat(best.boundingbox[3])
+          ]
+          : null
+        };
+    }
+    
+    throw new Error('Loc not found');
+}
+
+// Search Logic
+async function search(){
+  const query = el('pc-input').value.trim();
+  if(!query) return;
+
+  el('loading').classList.remove('hidden');
+  el('national-view').classList.add('hidden');
+  el('local-view').classList.add('hidden');
+  
+  try {
+    const loc = await geocode(query);
+    if (window.innerWidth < 769) {
+      panel.classList.remove('expanded');
+    }
+
+    if (loc.type === 'text' && loc.bbox) {
+      map.fitBounds(
+        [[loc.bbox[0], loc.bbox[2]], [loc.bbox[1], loc.bbox[3]]],
+        { padding: [30, 30], maxZoom: 12 }
+      );
+    } else {
+      const zoom = loc.type === 'text' ? 13 : 15;
+      map.flyTo([loc.lat, loc.lon], zoom, {duration: 1.2});
+    }
+    
+    // Identify which detailed tile to load.
+    // If we have a postcode area, great. If not (place search), we have to guess or use the 'allPubs' fallback.
+    // Optimization: Since we already have allPubs (lat/lon/risk), we can just use that to find nearby pubs 
+    // without loading the huge detailed tiles, UNLESS we need the names/metadata.
+    // But allPubs only has [lat, lon, cat]. We need names.
+    // To support place search properly without a tile map, we'd need a spatial index on the server or a smarter file structure.
+    // Hacks for now: 
+    // 1. Find nearest pub in 'allPubs' to get the likely postcode area?
+    // 2. Load the tile for that nearest pub?
+    
+    let areas = [];
+    if (loc.type === 'postcode') {
+      areas = [loc.area];
+    } else {
+      const rev = await fetch(`https://api.postcodes.io/postcodes?lon=${loc.lon}&lat=${loc.lat}`);
+      const revD = await rev.json();
+      if (revD.status === 200 && Array.isArray(revD.result) && revD.result.length > 0) {
+        const uniqueAreas = new Set();
+        revD.result.forEach(entry => {
+          if (!entry || !entry.outcode) return;
+          const match = entry.outcode.match(/^[A-Z]{1,2}/);
+          if (match) uniqueAreas.add(match[0]);
+        });
+        areas = Array.from(uniqueAreas).slice(0, 8);
+      }
+      if (!areas.length) throw new Error("Could not map location to pub data area");
+    }
+
+    const tilePromises = areas.map(async area => {
+      try {
+        const response = await fetch(`data/pubs_${area}.json`);
+        if (!response.ok) return [];
+        return await response.json();
+      } catch {
+        return [];
+      }
+    });
+
+    const tileResults = await Promise.all(tilePromises);
+    const areaPubs = tileResults.flat();
+    const radius = loc.type === 'text' ? 3500 : 2000;
+    pubsNearby = areaPubs.filter(p=>hav(loc.lat,loc.lon,p.lat,p.lon)<=radius)
+      .map(p=>({...p, dist:Math.round(hav(loc.lat,loc.lon,p.lat,p.lon))}))
+      .sort((a,b)=>a.dist-b.dist);
+
+    // Render detailed markers (overlay on top of dots)
+    if(window.resultsLayer) map.removeLayer(window.resultsLayer);
+    window.resultsLayer = L.layerGroup().addTo(map);
+    
+    L.circle([loc.lat,loc.lon],{radius,color:"#333",weight:1,fillOpacity:0.1}).addTo(window.resultsLayer);
+    
+    const colors={green:"#2A9D8F",amber:"#E9C46A",red:"#E63946"};
+    
+    pubsNearby.forEach(p=>{
+      L.circleMarker([p.lat,p.lon],{
+        radius:8, color: "#fff", fillColor:colors[p.cat], fillOpacity:1, weight:2
+      }).addTo(window.resultsLayer).bindPopup(`<b>${p.name}</b><br>${p.cat.toUpperCase()}<br>${p.dist}m away`);
+    });
+
+    // Update Dashboard
+    updateDashboard(pubsNearby);
+
+    el('loading').classList.add('hidden');
+    el('local-view').classList.remove('hidden');
+
+  } catch (e) {
+    console.error(e);
+    el('loading').classList.add('hidden');
+    el('national-view').classList.remove('hidden');
+    alert('Location not found or no data available.');
+  }
+}
+
+function updateDashboard(pubs) {
+    const nG=pubs.filter(p=>p.cat==="green").length;
+    const nA=pubs.filter(p=>p.cat==="amber").length;
+    const nR=pubs.filter(p=>p.cat==="red").length;
+    
+    el('l-total').textContent = pubs.length;
+    el('l-green').textContent = nG;
+    el('l-amber').textContent = nA;
+    el('l-red').textContent = nR;
+    
+    // Score
+    const score = Math.min(100, Math.round(pubs.length/12*100)); // Arbitrary health metric
+    el('tp-score-circle').textContent = score;
+    const color = score<30?"#E63946":score<60?"#E9C46A":"#2A9D8F";
+    el('tp-score-circle').style.borderColor = color;
+    el('tp-score-circle').style.color = color;
+    el('tp-bar').style.width = score+"%";
+    el('tp-bar').style.background = color;
+    
+    el('tp-msg').innerHTML = score<30 
+      ? "<b>Third Place Desert.</b> Low venue density."
+      : score<60 ? "Average coverage." 
+      : "Well served local area.";
+
+    // List
+    const listHTML = pubs.map(p => `
+      <div class=\"pub-item\">
+        <div class=\"pub-info\">
+          <h4>${p.name}</h4>
+          <div class=\"pub-meta\">${p.dist}m away · ${p.cat.toUpperCase()}</div>
+        </div>
+        <div class=\"risk-badge bg-${p.cat}\">RISK: ${p.cat}</div>
+      </div>
+    `).join('');
+    el('pub-list-container').innerHTML = listHTML;
+
+    // Actions
+    if (nR > 0) {
+        el('action-container').classList.remove('hidden');
+        const atRisk = pubs.filter(p=>p.cat==="red");
+        el('letter-text').value = `To Planning Dept:\n\nRequesting Asset of Community Value status for:\n` + 
+          atRisk.map(p=> `- ${p.name} (${p.postcode})`).join('\n') + 
+          `\n\nThese venues are critical infrastructure but data indicates high risk of closure.`;
+    } else {
+        el('action-container').classList.add('hidden');
+    }
+}
+
+function togglePanel() {
+    el('content-panel').classList.toggle('expanded');
+    map.invalidateSize();
+}
+
+// Global Split Resize (Map ↕ Content)
+let splitDragging = false;
+let splitStartY = 0;
+let splitStartMapH = 0;
+
+function applySplitHeights(mapHeightPx) {
+  const viewport = window.innerHeight;
+  const divider = resizer ? resizer.offsetHeight : 10;
+  const minMap = viewport * 0.2;
+  const maxMap = viewport * 0.82;
+  const nextMapH = Math.min(maxMap, Math.max(minMap, mapHeightPx));
+  const nextPanelH = viewport - nextMapH - divider;
+
+  el('map-container').style.flex = 'none';
+  panel.style.flex = 'none';
+  el('map-container').style.height = `${nextMapH}px`;
+  panel.style.height = `${Math.max(viewport * 0.16, nextPanelH)}px`;
+  map.invalidateSize();
+}
+
+function startSplitDrag(clientY) {
+  splitDragging = true;
+  splitStartY = clientY;
+  splitStartMapH = el('map-container').offsetHeight;
+}
+
+function moveSplitDrag(clientY) {
+  if (!splitDragging) return;
+  const delta = clientY - splitStartY;
+  applySplitHeights(splitStartMapH + delta);
+}
+
+function endSplitDrag() {
+  splitDragging = false;
+}
+
+if (resizer) {
+  resizer.addEventListener('mousedown', (e) => {
+    startSplitDrag(e.clientY);
+    e.preventDefault();
+  });
+  resizer.addEventListener('touchstart', (e) => {
+    startSplitDrag(e.touches[0].clientY);
+  }, { passive: true });
+  resizer.addEventListener('touchmove', (e) => {
+    moveSplitDrag(e.touches[0].clientY);
+    e.preventDefault();
+  }, { passive: false });
+  resizer.addEventListener('touchend', endSplitDrag, { passive: true });
+}
+
+window.addEventListener('mousemove', (e) => moveSplitDrag(e.clientY));
+window.addEventListener('mouseup', endSplitDrag);
+
+// Mobile Drag Logic
+let startY, startH, dragging = false;
+// Existing panel handle drag for mobile quick adjustments
+
+function applyPanelHeight(newH) {
+  const minH = window.innerHeight * 0.22;
+  const maxH = window.innerHeight * 0.9;
+  const clamped = Math.min(maxH, Math.max(minH, newH));
+  panel.style.height = clamped + 'px';
+  el('map-container').style.height = (window.innerHeight - clamped) + 'px';
+  map.invalidateSize();
+}
+
+function onDragStart(clientY) {
+  if (window.innerWidth >= 769) return;
+  dragging = true;
+  startY = clientY;
+  startH = panel.offsetHeight;
+}
+
+function onDragMove(clientY) {
+  if (!dragging) return;
+  const delta = startY - clientY;
+  applyPanelHeight(startH + delta);
+}
+
+function onDragEnd() {
+  dragging = false;
+}
+
+handle.addEventListener('touchstart', (e) => {
+  onDragStart(e.touches[0].clientY);
+}, {passive:true});
+
+handle.addEventListener('touchmove', (e) => {
+  onDragMove(e.touches[0].clientY);
+  e.preventDefault();
+}, {passive:false});
+
+handle.addEventListener('touchend', onDragEnd, {passive:true});
+
+handle.addEventListener('mousedown', (e) => {
+  onDragStart(e.clientY);
+  e.preventDefault();
+});
+
+window.addEventListener('mousemove', (e) => onDragMove(e.clientY));
+window.addEventListener('mouseup', onDragEnd);
+
+handle.addEventListener('click', () => {
+  if (window.innerWidth < 769) togglePanel();
+});
+
+function copyLetter(){
+  const t = el("letter-text");
+  if (!t) return;
+  t.select();
+  navigator.clipboard.writeText(t.value);
+}
+
+el("pc-input").addEventListener("keydown",e=>{if(e.key==="Enter")search()});
+</script>
+</body>
+</html>
